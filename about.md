@@ -4,12 +4,12 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+Ph.D. student in computer science, aspiring scientist and applied cryptographer, triathlete and quasi-crossfitter, late-night software engineer, and nu-metal lover.
 
-### More Information
+### The Daily Grind
 
-A place to include any other types of information that you'd like to include about yourself. 
+I am currently a core developer of CCNx in the Computer Science Laboratory at PARC (Palo Alto Research Center). My research focuses on the intersection of security and privacy, applied cryptography, theory and formal methods, and content centric networking. Lately, I have been working on encryption-based access control and trust management in CCN.
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[christopherwood07@gmail.com](mailto:christopherwood07@gmail.com)
