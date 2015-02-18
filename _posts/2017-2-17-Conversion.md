@@ -1,12 +1,6 @@
 ---
 layout: post
-title: Converting like a hippy
+title: Making the switch
 ---
 
-Yeah.
-
-<!-- Next you can update your site name, avatar and other options using the _config.yml file in the root of your repository (shown below :point_down:).
-
-![_config.yml]({{ site.baseurl }}/images/config.png)
-
-The easiest way to make your first post is to edit this one. Go into /_posts/ and update the Hello World markdown file. For more instructions head over to the [Jekyll Now repository](https://github.com/barryclark/jekyll-now) on GitHub. -->
+I've decided to give up on Wordpress, Medium Postach.io, etc. in favor of a Jekyll-powered blog. I love Github and Markdown, so maybe this happy marriage will entice me to be more active with my writing. 
