@@ -84,21 +84,21 @@ To get started, I will describe the basic set of files that are included in the 
 
 As a user you should mainly be concerned with the dax-generator.py script, job-wrapper script, and input directory. The purpose of these files is outlined below.
 
-> dax-generator.py
-> > This script creates and configures the OSG workflow, which involves partitioning the job workload appropriately among however many computational nodes is needed, wiring input files to jobs (including program binaries and data files), and specifying all output files that will be created on each computational node (including error files).
-> job-wrapper
-> > This script contains the code that will execute your program for one particular slice of the input. How you determine an input slice is up to you; it may be a range of indices that your program will loop over, a set of files that the program will read from, and so on. This is specific to your application and workflow.
-> inputs
-> > This directory contains the input files used in your workflow. It is common to place the program binaries (e.g. the class files for a Java program) in this folder.
+### dax-generator.py
+This script creates and configures the OSG workflow, which involves partitioning the job workload appropriately among however many computational nodes is needed, wiring input files to jobs (including program binaries and data files), and specifying all output files that will be created on each computational node (including error files).
+### job-wrapper
+This script contains the code that will execute your program for one particular slice of the input. How you determine an input slice is up to you; it may be a range of indices that your program will loop over, a set of files that the program will read from, and so on. This is specific to your application and workflow.
+### inputs
+This directory contains the input files used in your workflow. It is common to place the program binaries (e.g. the class files for a Java program) in this folder.
 
 Before looking at actual code for these files, let's first devise a simple application that one might need to run on the grid. Computations in the field of extremal graph theory commonly require many, many CPU hours to compute. For example, recent work by Lange et al. [1] used approximately 200,000 CPU hours on the grid. Imagine how long that would take on a simple machine!
 
 Assume we want to tackle a related Ramsey-like computation on the grid. Namely, we want to run a program that decides whether or not for every red/blue (binary) edge coloring of a complete graph G on n vertices it holds that G contains a blue or red triangle. Furthermore, assume we want to find the smallest such n that this is true. These types of problems are often the subject of Ramsey theory. Fortunately, this problem (i.e. finding the smallest n such that this condition holds) is already solved - it is known to be 6. However, for the sake of illustration, assume we didn't know that the answer was 6, and we instead wanted to check if it was true for n = 8. A naive algorithm for answering the previous question is to do the following:
 
-> For each 2^28 edge colorings:
-> > Color the edges of G 
-> > If there does not exist a red or blue triangle, output no. Otherwise, continue
-> Output yes. 
+For each 2^28 edge colorings:
+	Color the edges of G 
+	If there does not exist a red or blue triangle, output no. Otherwise, continue
+Output yes. 
 
 Note that for a complete graph on 8 vertices there are exactly (8*(8-1) / 2) = (8*7 / 2) = 28 edges, and so there are 2^28 possible edge colorings. A Java program that implements this algorithm given an integer n is shown in Listing 1. You may run this program with n = 5 and n = 6 to see that in fact the desired value of n is 6, as shown below:
 
@@ -151,9 +151,12 @@ Summary: 1 DAG total (Running:1)
 
 Once a job has been submitted, you can monitor and change its status using the pegasus CLI. You can view the possible commands by typing "pegasus-" in the terminal and hitting the tab key. The most important of these commands are shown below for emphasis.
 
-> pegasus-status - Check on the status of an existing workflow (similar to Figure 7 below). You can view how many jobs are queued, running, complete, and how many have failed. This is very useful for making sure your jobs are running smoothly and not halting indefinitely, which is a huge problem in this shared grid.
-> pegasus-remove - Remove an existing workflow from the grid. This effectively cancels and abandons all work in progress, so only use this if you are absolutely sure you do not need the output files.
-> pegasus-statistics - Gather various statistics about a workflow. This is useful for informational or debugging purposes.
+### pegasus-status
+Check on the status of an existing workflow (similar to Figure 7 below). You can view how many jobs are queued, running, complete, and how many have failed. This is very useful for making sure your jobs are running smoothly and not halting indefinitely, which is a huge problem in this shared grid.
+### pegasus-remove
+Remove an existing workflow from the grid. This effectively cancels and abandons all work in progress, so only use this if you are absolutely sure you do not need the output files.
+### pegasus-statistics
+Gather various statistics about a workflow. This is useful for informational or debugging purposes.
 
 ![Sample output from pegasus-status.](/images/osg_image6.png)
 
