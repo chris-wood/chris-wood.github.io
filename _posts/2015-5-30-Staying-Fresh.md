@@ -24,7 +24,7 @@ project is loss of this agility and, in severe cases, failure, leading to a need
 to restart from scratch. 
 
 This doesn't even address the problem of emerging technologies, techniques,
-or practices. The professional software community seems to be intensly focused on
+or practices. The professional software community seems to be intensely focused on
 web development. The rate at which new frameworks spawn is astonishing, and 
 it seems almost infeasible to stay up to date as a student with other priorities. 
 How can I justify spending time learning the Meteor.JS or Ionic frameworks when
@@ -42,7 +42,7 @@ it does have one important benefit: it forces me to maintain an industry- and
 product-driven mindset about software. 
 
 My biggest fear when doing my Ph.D. is that
-I might forget what it means to write software professionally. Being engulged in 
+I might forget what it means to write software professionally. Being engulfed in 
 research code can make a skilled engineer rot (technically speaking). Completing 
 my Ph.D. teaches me how to conduct research, so I have to teach (and re-teach) myself 
 how to be a professional programmer. So how do I stay fresh while still meeting
