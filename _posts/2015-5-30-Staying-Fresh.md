@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Staying fresh during research
+title: Staying fresh with research
 ---
 
 Despite the nature of research, I find it challenging to stay up-to-date
@@ -48,7 +48,7 @@ my Ph.D. teaches me how to conduct research, so I have to teach (and re-teach) m
 how to be a professional programmer. So how do I stay fresh while still meeting
 my research goals? The following set of tasks work for me:
 
-* Do a code kata every single day (see [codewars](codewars.com) -- it's fantastic).
+* Do a code kata every single day (see [codewars](http://www.codewars.com) -- it's fantastic).
 * Browse through open source projects on Github written in languages in which I am distinctly *not* proficient. 
 * Try to read professional programmer blogs or articles as much as possible. Preferably, at least one every morning. 
 * Maintain at least one side project in a language, tool, or framework which I am uncomfortable with. For me, this usually means some sort of web or mobile app. 
