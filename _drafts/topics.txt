@@ -1,0 +1,12 @@
+- Software refactoring and continual improvement
+- Eating well, sleeping, and exercising -- finding (making) the time and money to stay healthy
+- Coffee and code
+- Side project selection
+- A notebook and pen should be your weapons of choice next to a good laptop
+- Learn another language
+- Try to write every day
+- there's too many libraries with few authoratative resources
+- NaCl crypto library overview
+- what goes into a good kata 
+
+
