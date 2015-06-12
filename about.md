@@ -13,6 +13,3 @@ I am currently a core developer of CCNx in the Computer Science Laboratory at PA
 ### Contact me
 
 [christopherwood07@gmail.com](mailto:christopherwood07@gmail.com)
-
-[github]: https://github.com/chris-wood
-[twitter]: https://twitter.com/phonzbm
