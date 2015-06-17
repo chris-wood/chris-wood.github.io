@@ -1,6 +1,6 @@
 ---
 layout: post
-title: CCN vs CDN: What is the Difference?
+title: CCN vs CDN -- What is the Difference?
 ---
 
 As a researcher and developer focusing on CCN and CCNx, one question I am often asked is, "What is

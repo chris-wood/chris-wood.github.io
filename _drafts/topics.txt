@@ -1,3 +1,4 @@
+- PIR over CCN?
 - Private addresses -- can we do better with routing? Can we correlate packets for the same address?
 - Software refactoring and continual improvement
 - Eating well, sleeping, and exercising -- finding (making) the time and money to stay healthy
