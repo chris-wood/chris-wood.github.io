@@ -4,8 +4,8 @@ title: CCN vs CDN: What is the Difference?
 ---
 
 As a researcher and developer focusing on CCN and CCNx, one question I am often asked is, "What is
-the difference between CCN and CDNs like Akamai and Limelight?" This is valid question, and one that we (myself
-included) tend to dance around, and while a blog post probably isn't the place to address such
+the difference between CCN and CDNs like Akamai and Limelight?" This is a valid question, and one that we (myself
+included) as a community tend to dance around. And while a blog post probably isn't the place to address such
 an important issue, something needs to be written down. This is my attempt to fill the void.
 
 For those unfamiliar with Akamai, it is an enterprise content delivery network (CDN) used by media and 
