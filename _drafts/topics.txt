@@ -1,3 +1,4 @@
+- Handling debates internally through proper process (Some Process Pays)
 - The Security and Privacy Delta between CCN(ICN) and IP
 - Request vs Response Policing
 - Composite fields (from galois fields)
