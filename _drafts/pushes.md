@@ -3,7 +3,7 @@ layout: post
 title: Professional Pushes
 ---
 
-Code reviews are normal part of my day at PARC. No bug fix, enhancement, or feature is committed without
+Code reviews are a normal part of my day at PARC. No bug fix, enhancement, or feature is committed without
 going through the proper channels. Since this is a fairly routine process, we sought to automate it
 as much as possible. A big part of this automation included developing in-house static analysis tools 
 to measure the quality of all code changes, A subset of the metrics we compute include:
@@ -36,13 +36,13 @@ and processes. However, given our team size, we seem to have found a productive 
 Still, though, what's missing from this equation is an element of professionalism. Reviewing
 someone else's code is a very difficult task. To do it successfully you must understand 
 the purpose of a code change, the context in which it was made. A professional programmer may 
-(read: should) ask the devleoper to raionalize or explain design choices if they're not immediately 
+(read: should) ask the developer to rationalize or explain design choices if they're not immediately 
 clear. However, it is unreasonable to expect the reviewer to understand the entire thought
 process of the developer. This means that the cleanliness of the code under review is (for
 obvious reasons) the responsibility of the developer. 
 
 This is where I want to bring the issue of code review and pre-commit quality checks back 
-to full circle. As a developer, it is not enough to be able to show that your code changes meet 
+to full circle. As a developer, it is not enough to be able to show that your code meets 
 some suitable measure. It is possible for "unclean" or "dirty" code to meet these objectives.
 As a developer, you are ultimately responsible for producing clean code, and that includes, 
 at a minimum:
@@ -55,7 +55,7 @@ the first tidied up answer from SO. Understand both the problem and solution.
 
 These are just the first ones that come to mind for me. Any developer who takes his or her
 craft seriously should invest in and read Bob Martin's Clean Code book for more tips,
-suggestions, and hidden trasures. 
+suggestions, and hidden treasures. 
 
 At the end of the day, pushing production code requires more than achieving some basic quality 
 checks. It requires the code to be clean, and for the developer to understand exactly
