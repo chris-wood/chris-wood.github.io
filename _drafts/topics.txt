@@ -1,3 +1,5 @@
+- Research is politics (shame I never really cared for politics)
+- pyramid of memory and the parallel idea with keeping software in a register or cache (actively working on it), memory (have to do some work to remember what was happening), and on disk (have to re-learn the code again) -> implications on design temporality
 - Handling debates internally through proper process (Some Process Pays)
 - The Security and Privacy Delta between CCN(ICN) and IP
 - Request vs Response Policing
