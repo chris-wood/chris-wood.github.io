@@ -1,4 +1,4 @@
---
+---
 layout: post
 title: What does security and privacy parity mean for CCN?
 ---
