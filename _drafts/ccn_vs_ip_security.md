@@ -11,20 +11,11 @@ than IP? Does it provide better privacy and anonymity? Can it withstand common
 networking attacks such as DDoS? The answer is unclear. Second, there is generally
 no adversarial model in which to assess these supposedly superior security properties.
 How can we say that "X is more secure than Y" without having defined an appropriate
-way to measure the security of X and Y. In this series of posts I will attempt to
-answer these questions one at a time.
+way to measure the security of X and Y?
 
-To begin, we need a definition of security that is appropriate for the discussion
-at hand. Historically, before security transformed from an art to a
-science, it was characterized by confidentiality, integrity, and availability [cite].  
-These terms were loosely defined and molded to fit the needs of the user.
-For example, confidentiality is roughly stated as the property that sensitive data
-is not disclosed to unauthorized persons [1]. This is hand-wavy at best.
-If we are to assess the security of CCN or IP then we need sound definitions
-for these terms against which to do this assessment. Fortunately, thanks to
-the work of researchers over the last 35 years, we have such definitions at
-our disposal.
-
+We need a definition of security that is appropriate for the discussion
+at hand. Fortunately, thanks to the work of researchers over the last 35 years,
+we either have or can craft such definitions.
 During the 1980s, security (and cryptography in particular) went through a
 major phase change: once fluid, moving, and ad-hoc definitions of security were re-cast
 as concrete ideas with mathematical formulations. As pointed out by Koblitz
@@ -35,12 +26,10 @@ on cryptography [3],
 > realization that formal definitions of security are *essential* prerequisites for
 > the design, usage, or study of any cryptographic primitive or protocol.
 
-The same standards must be upheld for the assessment of any networking protocol as well.
+The same standards must be upheld for the assessment of any network protocol as well.
 Especially when the assessment is made with respect to the security properties of the
-protocol. To that end, let us now revisit the CIA terms introduced above (in addition to
-privacy and anonymity). I will briefly describe what each term means here. The formal
-definitions are deferred to subsequent posts wherein I will assess CCN and IP with respect
-to each.
+protocol. In this series of posts I hope to present concrete definitions of security
+with respect to the following properties (which I vaguely define here for brevity):
 
 * Confidentiality: Data is only accessible by those which are authorized or have
 permission to access the data. Put differently, data is confidential if it is not
@@ -52,8 +41,11 @@ packet to from one host to another or sending a CCN interest) is (strictly)
 limited. For example, in the context of CCN, such leakage cannot be used to
 ascertain the what data was requested or what operation was performed.
 * Anonymity: Information leaked by a particular operation cannot be used to
-ascertain the identity of some party involved in performing the operation. For
-example,
+ascertain the identity of some party involved in performing the operation.
+
+I will then assess how CCN fares against IP in each category. Hopefully, by
+writing this down, many of the misconceptions about CCN with respect to its supposedly
+"better security" properties will vanish.
 
 # 6. References
 [1] Gollmann, Dieter. "Computer security." Wiley Interdisciplinary Reviews: Computational Statistics 2.5 (2010): 544-554.
