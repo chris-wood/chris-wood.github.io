@@ -17,19 +17,54 @@ Surveillance is possible because we rely on networks such as the Internet
 to communicate with the outside world. Indeed, the actions performed on a device 
 that is disconnected from the network are private since they are not subject
 to surveillance. It then seems that the coupling of privacy and confidentiality
-are an artifact of the network protocols used for communication. 
+are an artifact of the network protocols used for communication which are 
+inherently subject to possibly malicious eavesdroppers (Big Brother). 
 
 In this post I will explain why confidentiality is a necessary though not
 sufficient condition for privacy. This is particularly important for CCN as
 it focuses on *data* as a first class entity in the network rather than
-hosts and addresses. To begin, XXX
+hosts and addresses. To begin, consider first why confidentiality is
+needed for privacy. If the traffic between a web browser and banking service
+was not encrypted, then it would be trivial for an eavesdropper to 
+learn the details of a given session and, as a result, learn what the user
+was doing in that session. In this context, privacy is not possible without
+hiding the details of the traffic. However, encryption alone is not
+sufficient. Suppose what could happen if clients hid the details of their
+activity using some form of deterministic encryption, e.g., CPA-secure RSA,
+using a *shared public key*. The properties of this encryption algorithm 
+mean that for any two identical plaintext inputs the output ciphertexts
+will be identical. If two users hide requests for some shared resource 
+using encryption with the same public key, then these obfuscated requests
+will be identical on the wire. To an eavesdropping who can only passively
+observe packets in transit between clients and a server, it is easy to 
+deduce that some pair of clients asked for the same resource. How
+does this knowledge relate to privacy? First, if these encrypted requests
+correspond to some well-known resource, any adversary may guess the resource,
+compute the encrypted form, and compare it to the observed form to verify 
+the guess. Secondly, the fact that some request matches that of another
+client reveals distinctly more information than that of the request.
+
+Today, the Internet trend is to encrypt *all web traffic* using some form
+of CCA-secure encryption algorithm backed by *forward secret* keys. CCA security,
+or chosen-ciphertext attack security, roughly means that no two identical inputs
+for an encryption algorithm will yield the same output (with negligible probability).
+The latter property means that short-term or ephemeral session keys are safe
+even in the event that the long-term secrets used in the key exchange protocol
+are compromised. These two properties are realized by TLS, the standard
+translate layer security protocol used to encrypt *all* TCP traffic which
+encompasses much of the Internet. DTLS (datagram TLS) and QUIC are two UDP
+variants which solve the same problem modulo some differentiating features. 
+In fact, TLS 1.3 (the latest incarnation) is heavily inspired by QUIC. 
 
 
 
+
+
+<!--
 1) confidentiality is necessary for privacy: if data was unencrypted, privacy is impossible (proof by contradiction -- an unencrypted bank transaction)
 2) not sufficient for privacy: if data is encrypted once for many people then a valid user (and eavesdropper) can learn what another user is consuming without decryption
 3) (D)TLS with HTTP/2 solve this problem by using forward-secure encryption for all communication. There is no grey area. It's all or nothing. Maybe that's needed, maybe it's not. 
-
+-->
 
 
 # References
