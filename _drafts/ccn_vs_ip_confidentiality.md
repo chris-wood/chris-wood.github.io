@@ -54,18 +54,33 @@ are compromised. These two properties are realized by TLS, the standard
 translate layer security protocol used to encrypt *all* TCP traffic which
 encompasses much of the Internet. DTLS (datagram TLS) and QUIC are two UDP
 variants which solve the same problem modulo some differentiating features. 
-In fact, TLS 1.3 (the latest incarnation) is heavily inspired by QUIC. 
+In fact, TLS 1.3 (the latest version) is heavily inspired by QUIC. 
+The goals of these protocols, not the details, are important for this discussion.
+At a high level, the mantra is to encrypt everything and everywhere. 
+There is no grey area to encrypt only a subset of the data; it's all or nothing. 
+In this way, confidentiality and privacy are intimately related in the 
+current Internet. Most web applications to do not add additional layers
+of encryption *on top of TLS* to protect content. 
 
+Without getting into a political or philosophical discussion, I simply
+propose that ubiquitious privacy-preserving communication mechanisms may 
+not be appropriate for all forms of data. Said differently, it should be 
+possible to decouple confidentiality and privacy and, when appropriate, 
+effortlessly enable privacy-preserving technologies. The current TCP/IP
+communication model almost necessitates that these two properties be
+tightly coupled. Clients know *where* to retrieve data or interact
+with services and simply perform all end-to-end actions within a secure
+channel. The communication is inherently channel-based and therefore 
+benefits from end-to-end encryption for both confidentiality and privacy.
 
+CCN is differently. It's data-centric communication model allows for
+confidentialty and privacy to be decoupled when needed. 
 
+TODO: describe an example of confidentiality and then privacy
 
-
-<!--
-1) confidentiality is necessary for privacy: if data was unencrypted, privacy is impossible (proof by contradiction -- an unencrypted bank transaction)
-2) not sufficient for privacy: if data is encrypted once for many people then a valid user (and eavesdropper) can learn what another user is consuming without decryption
-3) (D)TLS with HTTP/2 solve this problem by using forward-secure encryption for all communication. There is no grey area. It's all or nothing. Maybe that's needed, maybe it's not. 
--->
-
+TODO: argue that CCN provides a better communication abstraction that allows
+security properties to be decorate the data exchange, but it does not
+introduce new solutions to these problems. 
 
 # References
 
