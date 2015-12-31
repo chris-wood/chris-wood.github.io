@@ -108,13 +108,16 @@ on the type of transport protocol used).
 
 In CCN, communication happens between a consumer and some entity which contains
 or can procure the data. There may be more than one entity capable of returning the
-desired content, e.g., a caching router. Thus, if privacy is desired, a consumer must establish
-a secure channel between one of these endpoints. But how does a consumer identify the correct endpoint when
-all it has is the name for some content? How does it learn the correct minimal routable
-prefix? I don't propose a solution here. Instead, I end by claiming that this problem
-makes private communication *more difficult* in CCN.
+desired content, e.g., a caching router. Thus, if privacy is desired, a consumer
+must establish a secure channel between one of these endpoints. But how does a
+consumer identify the correct endpoint when all it has is the name for some
+content? How does he or she learn the correct minimal routable prefix? The simple
+answer is that, currently, there is no easy way. A consumer's application must
+come with that information a priori. This is in stark contrast to the TCP/IP model
+wherein consumers securely and privately obtain server addresses using DNS (with
+DNSSEC [5] and DANE [6]). There is no guesswork. This means that, today, the problem
+of private communication is distinctly harder in CCN than it is in TCP/IP.
 
-This difficulty is an artifact of merging DNS and TCP/IP with name-based routing.
 The problem is to be expected since CCN is about locating and transferring named
 data rather than locating services that can produce data upon request. Privacy,
 in this context, necessitates a secure channel between a consumer and some endpoint
@@ -131,7 +134,9 @@ consumers learn the minimal routable prefix?
 
 # References
 
-- [1] Farrell, Stephen, and Hannes Tschofenig. "Pervasive monitoring is an attack." (2014). https://tools.ietf.org/html/rfc7258
-- [2] The Transport Layer Security (TLS) Protocol Version 1.3. https://tools.ietf.org/html/draft-ietf-tls-tls13-09
-- [3] CCNx Key Exchange Protocol Version 1.0. https://github.com/PARC/ccnx-keyexchange-rfc/blob/master/draft-wood-icnrg-ccnxkeyexchange.txt
+- [1] S. Farrell and H. Tschofenig. "Pervasive monitoring is an attack." (2014). https://tools.ietf.org/html/rfc7258
+- [2] E. Rescorla. "The Transport Layer Security (TLS) Protocol Version 1.3." https://tools.ietf.org/html/draft-ietf-tls-tls13-09
+- [3] M. Mosko, E. Uzun, and C. Wood. "CCNx Key Exchange Protocol Version 1.0." https://github.com/PARC/ccnx-keyexchange-rfc/blob/master/draft-wood-icnrg-ccnxkeyexchange.txt
 - [4] DNS PRIvate Exchange (dprive). https://datatracker.ietf.org/wg/dprive/charter/
+- [5] G. Ateniese and S. Mangard. "A new approach to DNS security (DNSSEC)." Proceedings of the 8th ACM conference on Computer and Communications Security. ACM, 2001. https://web.cs.wpi.edu/~cshue/cs4404/papers/integrity_dnssec.pdf
+- [6] P. Hoffman and J. Schlyter. "The DNS-Based Authentication of Named Entities (DANE) Transport Layer Security (TLS) Protocol: TLSA." https://tools.ietf.org/html/rfc6698
