@@ -72,7 +72,7 @@ to a *name* and not an *address*. This means that data can be retrieved from
 anywhere in the network. To make data confidential, content can
 be encrypted such that only authorized users can perform
 decryption. This is typically done by encrypting the payload of a
-CCNx Content Object message [cite] -- everything else is left in the clear.
+CCNx Content Object message -- everything else is left in the clear.
 Since names explicitly identify a content object, this means that
 (consumer) privacy is not possible; Any eavesdropper neighboring the
 consumer can observe the name and learn what content the victim
@@ -83,7 +83,7 @@ Privacy in the presence of eavesdroppers implies that, for any link
 susceptible to surveillance, a packet must not reveal information about its
 contents. In TCP/IP, this is done by encrypting everything in the
 TCP payload (in a TLS record). The only information leaked from a packet
-is its size (which can be padded -- see Section 5.2.3 of [tls]) and
+is its size (which can be padded -- see Section 5.2.3 of [2]) and
 the source and destination address. In CCN, the equivalent property
 is that the name only reveals information about the location or service
 which could have procured the content. I generally refer to this
@@ -91,7 +91,7 @@ name prefix as the *minimal routable prefix* since it is the maximal name
 length that is needed to route an interest to some authoritative producer
 who can procure the corresponding content. Everything after this
 prefix, including the payload in both interest and content objects,
-must be protected with CCA-secure encryption. CCNx-KE [ccnxke] is a TLS-like
+must be protected with CCA-secure encryption. CCNx-KE [3] is a TLS-like
 key exchange protocol for CCN that enables this type of private communication
 based on secure channels. However, it does not solve the problem of
 identifying the minimal routable prefix.
@@ -102,7 +102,7 @@ Recall that, in TCP/IP, communication happens between a pair of end-hosts, be
 it a client and server or two similar peers in a P2P network.
 This communication forms a channel between the two end-hosts. Again, the industry
 momentum is set on encrypting all traffic over these channels using TLS or some similar
-protocol (TLS is in fact baked into HTTP2). Moreover, the DPRIVE IETF [dprive]
+protocol (TLS is in fact baked into HTTP2). Moreover, the DPRIVE IETF [4]
 working group is even pushing to encrypt all DNS traffic over TLS or DTLS (depending
 on the type of transport protocol used).
 
@@ -131,10 +131,10 @@ consumers learn the minimal routable prefix?
 
 # References
 
-[1] Farrell, Stephen, and Hannes Tschofenig. "Pervasive monitoring is an attack." (2014). https://tools.ietf.org/html/rfc7258
-[tls] https://tools.ietf.org/html/draft-ietf-tls-tls13-09#section-5.2.3
-[ccnxke] TODO
-[dprive] TODO
+- [1] Farrell, Stephen, and Hannes Tschofenig. "Pervasive monitoring is an attack." (2014). https://tools.ietf.org/html/rfc7258
+- [2] The Transport Layer Security (TLS) Protocol Version 1.3. https://tools.ietf.org/html/draft-ietf-tls-tls13-09
+- [3] CCNx Key Exchange Protocol Version 1.0. https://github.com/PARC/ccnx-keyexchange-rfc/blob/master/draft-wood-icnrg-ccnxkeyexchange.txt
+- [4] DNS PRIvate Exchange (dprive). https://datatracker.ietf.org/wg/dprive/charter/
 
 
 
