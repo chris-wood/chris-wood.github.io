@@ -1,11 +1,10 @@
 In recent years, confidentiality and privacy have become relatively intertwined in practice.
 To be clear, confidentiality is a *property of data* which guarantees that said data
 is not disclosed to anyone without the owner's consent. Conversely, privacy is
-a *property of users* which states that the actions, behaviors, or any
-personal information of a particular user
+a *property of users* which states that the actions or behaviors of a particular user
 are not visible to unauthorized parties. In the context of networking, we are
 concerned with the privacy of people using the network, where the observable
-information lies in the traffic that they send and receive. In this way,
+actions and behavior are the traffic that they send and receive. In this way,
 privacy is more relevant to the *transfer of data* since, naturally, it is
 data and metadata in transit that is subject to surveillance [1].
 Surveillance is possible because we rely on networks such as the Internet
