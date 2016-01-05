@@ -41,5 +41,10 @@ design locality for a set of features can give an indication of coupling: if man
 TODO: come up with an equation based on set intersection of shared vertices and diameter of feature graph subsets
 
 
+---
+
+
+- pyramid of memory and the parallel idea with keeping software in a register or cache (actively working on it), memory (have to do some work to remember what was happening), and on disk (have to re-learn the code again) -> implications on design temporality
+
 
 Wide designs are hard to understand, hard to keep in your brain at a single point in time, etc

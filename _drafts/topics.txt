@@ -1,6 +1,6 @@
+- Pomodoro technique and arduino project
 - Amplification DDoS in IP and CCN blog post
 - overview, analysis, and comparison of build systems (scons, autotools, cmake)
-- pyramid of memory and the parallel idea with keeping software in a register or cache (actively working on it), memory (have to do some work to remember what was happening), and on disk (have to re-learn the code again) -> implications on design temporality
 - Handling debates internally through proper process (Some Process Pays)
 - The Security and Privacy Delta between CCN(ICN) and IP
 - Request vs Response Policing
@@ -12,6 +12,5 @@
 - Private addresses -- can we do better with routing? Can we correlate packets for the same address?
 - Software refactoring and continual improvement
 - Learn another language
-- Try to write every day
 - NaCl crypto library overview
 
