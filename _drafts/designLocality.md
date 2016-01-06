@@ -3,6 +3,12 @@ layout: post
 title: Design Locality
 ---
 
+Coupling and cohesion are two properties that drive many software design decisions. Coupling refers to the amount or degree of interdependencies between modules. High coupling is foul because it means changes in one module may affect others. High coupling is also indicative of incorrect abstractions. Cohesion refers to the number of duties for which a particular module is responsible. A highly cohesive module is one that does few tasks and does them well. It's never a good idea to spread a module too thin. Therefore, high cohesion is best. 
+
+
+
+
+
 simple definition: a design is well-contained in set of closely-related files and modules, it does not have design dependencies that are located in other modules, and the logic of the design is contained in files that are in close proximity
 
 why is it important: designs with poor locality are hard to understand all at once (more variables with unrelated or independent factors). good locality means that the variables are small or closely related to be well-understood by a single person.
