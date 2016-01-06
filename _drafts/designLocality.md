@@ -5,6 +5,15 @@ title: Design Locality
 
 Coupling and cohesion are two properties that drive many software design decisions. Coupling refers to the amount or degree of interdependencies between modules. High coupling is foul because it means changes in one module may affect others. High coupling is also indicative of incorrect abstractions. Cohesion refers to the number of duties for which a particular module is responsible. A highly cohesive module is one that does few tasks and does them well. It's never a good idea to spread a module too thin. Therefore, high cohesion is best. 
 
+These properties are often considered separately but in unison. For instance, I was taught to design software that exhibited low coupling and high cohesion. Although they are both measured separately, they were (are) almost always the goal. Coupling is typically trivial to quantify. Example methods are based on computing the number of module dependencies via header inclusion, library imports, and function calls. Cohesion is somewhat trickier to quantify.
+
+XXX
+
+
+What I often found lacking in my toolbelt was a way to measure both simultaneously. Or, rather, a principle that, if followed, would lead to designs with ideal coupling and cohesion. Having worked on a fairly diverse set of projects and software systems, I feel equipped to formalize what I call *design locality*, as something to fill this void.
+
+
+
 
 
 
