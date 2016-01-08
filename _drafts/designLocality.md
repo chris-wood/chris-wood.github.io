@@ -3,11 +3,9 @@ layout: post
 title: Design Locality
 ---
 
-Coupling and cohesion are two properties that drive many software design decisions. Coupling refers to the amount or degree of interdependencies between modules. High coupling is foul because it means changes in one module may affect others. High coupling is also indicative of incorrect abstractions. Cohesion refers to the number of duties for which a particular module is responsible. A highly cohesive module is one that does few tasks and does them well. It's never a good idea to spread a module too thin. Therefore, high cohesion is best. 
+Coupling and cohesion are two properties that drive many software design decisions. Coupling refers to the amount or degree of interdependencies between modules. High coupling is foul because it means changes in one module may affect others. High coupling is also indicative of incorrect abstractions. Cohesion refers to the number of duties for which a particular module is responsible. A highly cohesive module is one that does few tasks and does them well. It's never a good idea to spread a module too thin. Therefore, high cohesion is best.
 
-These properties are often considered separately but in unison. For instance, I was taught to design software that exhibited low coupling and high cohesion. Although they are both measured separately, they were (are) almost always the goal. Coupling is typically trivial to quantify. Example methods are based on computing the number of module dependencies via header inclusion, library imports, and function calls. Cohesion is somewhat trickier to quantify.
-
-XXX
+These properties are often considered separately but in unison. For instance, I was taught to design software that exhibited low coupling and high cohesion. Although they are both measured separately, they were (are) almost always the goal. Coupling is trivial to quantify. Example methods are based on computing the number of module dependencies via header inclusion, library imports, and function calls. Cohesion is somewhat trickier to quantify. A rough estimate of can be gleaned from the relationship between the functions of a module. For example, if all functions in a module perform some type of logging and are all named "log_X," and the name of said function is "Logger" (or something to that effect), it's clear that the module has good cohesive properties. The purpose of the module can be succinctly described in a short sentence (e.g., "this module handles logging") and the internals reflect that single responsibility behavior [1]. It would be inappropriate, for example, to put a function called "createFile" or "sendLogToServer" in this module. 
 
 
 What I often found lacking in my toolbelt was a way to measure both simultaneously. Or, rather, a principle that, if followed, would lead to designs with ideal coupling and cohesion. Having worked on a fairly diverse set of projects and software systems, I feel equipped to formalize what I call *design locality*, as something to fill this void.
@@ -34,7 +32,7 @@ why is it wide? to understand the key store, you had to go through signers, veri
 
 Example of a narrow design: Refactored design for the validator, keystore, and key relationship. (to understand and work with keys, just look at keys and keystores, to understand signers and validators, you must naturally know about keystores and signers.).
 
-everything separated into appropriate modules: keystores (certificate families and factories), keys, and signers (which use keystores), and verifiers (which use keystores). There are no cyclical dependencies between modules: keystores depend on certificates, signers depend on keystores, etc. 
+everything separated into appropriate modules: keystores (certificate families and factories), keys, and signers (which use keystores), and verifiers (which use keystores). There are no cyclical dependencies between modules: keystores depend on certificates, signers depend on keystores, etc.
 why is it narrow? a single feature maps to a small number of well-defined and highly cohesive modules
 
 how to measure it? module coupling and cohesion, dependencies, etc (maybe come up with a formula that depends on coupling and (inward and outward) dependency count). signs that foreshadow it? rippling (non-isolated) changes.
@@ -63,3 +61,8 @@ TODO: come up with an equation based on set intersection of shared vertices and 
 
 
 Wide designs are hard to understand, hard to keep in your brain at a single point in time, etc
+
+
+# References
+
+- [1] http://mortoray.com/2015/04/29/cohesion-and-coupling-good-measures-of-quality/
