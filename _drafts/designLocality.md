@@ -5,8 +5,8 @@ title: Design Locality
 
 Coupling and cohesion are two properties that drive many software design decisions.
 Coupling refers to the amount or degree of interdependencies between modules. High
-coupling is foul because it means changes in one module may affect others. High
-coupling is also indicative of incorrect abstractions. Cohesion refers to the number of
+coupling is foul because it means changes in one module may affect others and 
+is also indicative of incorrect abstractions. Cohesion refers to the number of
 duties for which a particular module is responsible. A highly cohesive module is one
 that does few tasks and does them well. It's never a good idea to spread a module too
 thin. Therefore, high cohesion is best.
