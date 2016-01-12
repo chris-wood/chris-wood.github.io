@@ -5,7 +5,7 @@ title: Design Locality
 
 Coupling and cohesion are two properties that drive many software design decisions.
 Coupling refers to the amount or degree of interdependencies between modules. High
-coupling is foul because it means changes in one module may affect others and 
+coupling is foul because it means changes in one module may affect others and
 is also indicative of incorrect abstractions. Cohesion refers to the number of
 duties for which a particular module is responsible. A highly cohesive module is one
 that does few tasks and does them well. It's never a good idea to spread a module too
@@ -47,29 +47,42 @@ a consequence, eases the development experience. Plainly put, designs with good
 locality are those which can be easily understood without recursively digging
 through unnecessary code.
 
+To give an example of how poor locality can manifest itself in code, let's consider
+an old piece of the PARC security library used in the CCNx project. There once
+were modules called _PublicKeySignerPkcs12Store_ and _SymmetricSignerFileStore_.
+If you're not sure what these do from the name alone, you're not alone. Are they
+key stores? Are they responsible for signing things? Are symmetric keys considered
+to be digital signature keys? The API for each of these modules was also bloated.
+They both conformed to a common interface which provided functions to obtain
+a public key, private key, and certificate digest, extract DER encoded keys,
+obtain a _hasher_ used for the signature algorithm (yes, I know...), get the
+signature algorithm details (e.g., RSA, DSA, etc.), and sign a message (a buffer).
+This once-specialized module mutated into a blob over time as the need for key-
+and signature-related operations spread throughout the CCNx code base. This led to
+dependencies in several different libraries for different purposes. For example,
+the Libccnx code, which implements the CCNx network stack, uses it for computing
+digital signatures on egress messages. Other parts of the code use it to build
+key stores and extract public keys to create identities. Given this breadth, the
+design is clearly not local. I set out to refactor this design when I couldn't
+easily accomplish the simple task of creating a public key object. I had to read
+and understand unrelated modules and unit tests in order to do this (i.e.,
+the Libccnx signing code).
 
+To refactor these modules I divvied them up based on their apparent responsibilities.
+Specifically, I divided the modules into separate key store, public and private key management,
+and signing hierarchies, each with a succinct and concise interface that is used
+to perform operations relevant to the module. For example, key stores only handle storing
+and extracting keys. To create a public key I now only need to examine the public
+key module. If I wanted to build a self-signed certificate, I simply look at the
+certificate module. If I wanted to construct something to sign a message (buffer),
+I look at the signer and its unit tests. There were longer any cyclical dependencies
+between these modules; Key stores depend on certificates, signers depend on key stores,
+etc. This is clearly a much more narrow design since a single feature (e.g.,
+signing a message) is mapped to a well-defined and highly cohesive (set of) module(s).
+The transformation between the initial design and the refactored version is shown
+pictorially below.
 
-
-EARLY EXAMPLE OF PARC CCNx CODE: CCNx validator code used to sign outgoing messages
-Example of a wide design: CCNx validation code (Libccnx code for validating, Libparc code for security stuff, files with different modules, bad. had to understand the CCNx validator code to get keys and... ugh)
-
-SymmetricSignerFileStore: signing, keystore managemet (certificate and public key digests)
-PublicKeySignerPkcs12Store: signing (tagging), keystore manamgent, and more
-
-this mixes: certificates, keystores, public and private keys, signing and verification
-upper-layer utilities relied on these modules for separate purposes (creating key stores, performing signing, etc.) -- they did more than necessary
-why is it wide? to understand the key store, you had to go through signers, veriifers, and more. this is too much. they were blobs
-
-Example of a narrow design: Refactored design for the validator, keystore, and key relationship. (to understand and work with keys, just look at keys and keystores, to understand signers and validators, you must naturally know about keystores and signers.).
-
-everything separated into appropriate modules: keystores (certificate families and factories), keys, and signers (which use keystores), and verifiers (which use keystores). There are no cyclical dependencies between modules: keystores depend on certificates, signers depend on keystores, etc.
-why is it narrow? a single feature maps to a small number of well-defined and highly cohesive modules
-
-
-
-
-
-
+[[TODO: insert the image of the modules and their dependencies here]]
 
 Design locality is by no means a formal metric. It's a principle that I try to
 use to guide my design decisions. As I mentioned at the beginning of this piece,
@@ -94,35 +107,169 @@ a single module, and then many designs mapping to different modules
 
 Clearly, the mapping of a design to its constituent modules must be more fine-grain.
 It must map features to parts of modules. This mapping exposes the information we
-need to identify where in the system are points of low cohesion.
+need in order to identify where in the system are points of low cohesion. To illustrate,
+consider the following slightly modified mapping.
 
-
-
-
-
-how does it relate to coupling and cohesion? narrow designs, as described, necessitate
-minimal coupling with maximal cohesion. It's a package deal and seems to be easy
-to detect together (than measuring coupling and cohesion separately).
-
-%%% TODO: one way to compute this.
-<!-- Afferent coupling: Number of responsibilities
-Efferent coupling: Number of dependencies
-Instability: Ratio of efferent coupling to total coupling (Afferent + Efferent).
-Instability is supported in various code metric tools. -->
-
-design locality for a set of features can give an indication of coupling: if many features share the same set of nodes then this is an indication of possibly poorly-defined abstractions or interfaces (give the example above)
-TODO: come up with an equation based on set intersection of shared vertices and diameter of feature graph subsets
-
-
----
-
-
-- pyramid of memory and the parallel idea with keeping software in a register or cache (actively working on it), memory (have to do some work to remember what was happening), and on disk (have to re-learn the code again) -> implications on design temporality
-
-
-Wide designs are hard to understand, hard to keep in your brain at a single point in time, etc
-
+TODO: draw a picture of design mapping to different parts of a module
 
 # References
 
 - [1] http://mortoray.com/2015/04/29/cohesion-and-coupling-good-measures-of-quality/
+
+
+
+
+[cwood@vpn1pool-13-4-14-62:~/PARC/PARCKey]$ grep -i --include \*.h --include \*.c '/parc_Pkcs12KeyStore' -r *
+Apps/CCN-Hello-World/src/HelloWorld/helloWorld_Consumer.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Apps/CCN-Hello-World/src/HelloWorld/helloWorld_ConsumerForever.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Apps/CCN-Hello-World/src/HelloWorld/helloWorld_Producer.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Apps/CCN-Tutorial-Demo/src/tutorial_Common.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Apps/ParAvion/apps/paravion/main.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Foundation.do-not-use-me/Libparc/parc/security/parc_IdentityFile.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Foundation.do-not-use-me/Libparc/parc/security/parc_Pkcs12KeyStore.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Foundation.do-not-use-me/Libparc/parc/security/parc_PublicKeySigner.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Languages/Python/Bindings/python2build/CCNxSWIG.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Libccnx/ccnx/common/ccnx_KeystoreUtilities.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Libccnx/ccnx/transport/test_tools/traffic_tools.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Libccnx/ccnx/transport/transport_rta/components/codec_Signing.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Libparc/parc/security/command-line/parc-publickey.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Libparc/parc/security/parc_IdentityFile.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Libparc/parc/security/parc_Pkcs12KeyStore.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Libparc/parc/security/parc_PublicKeySigner.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Libparc/parc/security/test/test_parc_InMemoryVerifier.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Libparc/parc/security/test/test_parc_Pkcs12KeyStore.c:#include "../parc_Pkcs12KeyStore.c"
+
+
+[cwood@vpn1pool-13-4-14-62:~/PARC/PARCKey]$ grep -i --include \*.h --include \*.c '/parc_Pkcs12KeyStore' -r *
+Apps/CCN-Hello-World/src/HelloWorld/helloWorld_Consumer.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Apps/CCN-Hello-World/src/HelloWorld/helloWorld_ConsumerForever.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Apps/CCN-Hello-World/src/HelloWorld/helloWorld_Producer.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Apps/CCN-Tutorial-Demo/src/tutorial_Common.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Apps/ParAvion/apps/paravion/main.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Foundation.do-not-use-me/Libparc/parc/security/parc_IdentityFile.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Foundation.do-not-use-me/Libparc/parc/security/parc_Pkcs12KeyStore.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Foundation.do-not-use-me/Libparc/parc/security/parc_PublicKeySigner.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Languages/Python/Bindings/python2build/CCNxSWIG.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Libccnx/ccnx/common/ccnx_KeystoreUtilities.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Libccnx/ccnx/transport/test_tools/traffic_tools.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Libccnx/ccnx/transport/transport_rta/components/codec_Signing.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Libparc/parc/security/command-line/parc-publickey.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Libparc/parc/security/parc_IdentityFile.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Libparc/parc/security/parc_Pkcs12KeyStore.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Libparc/parc/security/parc_PublicKeySigner.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Libparc/parc/security/test/test_parc_InMemoryVerifier.c:#include <parc/security/parc_Pkcs12KeyStore.h>
+Libparc/parc/security/test/test_parc_Pkcs12KeyStore.c:#include "../parc_Pkcs12KeyStore.c"
+
+
+[cwood@vpn1pool-13-4-14-62:~/PARC/PARCKey]$ grep -i --include \*.h --include \*.c '/parc_PublicKeySigner' -r *
+Apps/CCN-Hello-World/tutorial/consumer-tutorial-01.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/CCN-Hello-World/tutorial/producer-tutorial-01.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/CCN-Hello-World/tutorial/producer-tutorial-02.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/CCN-Hello-World/tutorial/producer-tutorial-03.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/CCN-Hello-World/tutorial/producer-tutorial-04.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/CCN-Hello-World/tutorial/producer-tutorial-05.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/CCN-Hello-World/tutorial/producer-tutorial-06.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/CCN-Hello-World/tutorial/producer-tutorial-07.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/CCN-Hello-World/tutorial/producer-tutorial-08.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/CCN-Hello-World/tutorial/producer-tutorial-09.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/CCN-Hello-World/tutorial/producer-tutorial-10.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/ParAvion/apps/paravion/test/test_paravion_FetcherSet.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/ParAvion/apps/paravion/test/test_paravion_Reconciler.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/ParAvion/apps/paravion/test/test_paravion_Share.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/ParAvion/apps/paravion/test/testrig_fetcher_common.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Athena/ccnx/forwarder/athena/test/test_athena_InterestControl.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Athena/ccnx/forwarder/athena/test/test_athenactl.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Foundation.do-not-use-me/Libparc/parc/security/command-line/parc-publickey.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Foundation.do-not-use-me/Libparc/parc/security/parc_IdentityFile.c:#include <parc/security/parc_PublicKeySigner.h>
+Foundation.do-not-use-me/Libparc/parc/security/parc_PublicKeySigner.c:#include <parc/security/parc_PublicKeySigner.h>
+Foundation.do-not-use-me/Libparc/parc/security/test/test_parc_InMemoryVerifier.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Foundation.do-not-use-me/Libparc/parc/security/test/test_parc_Pkcs12KeyStore.c:#include "../parc_PublicKeySignerPkcs12Store.c"
+Foundation.do-not-use-me/Libparc/parc/security/test/test_parc_PublicKeySigner.c:#include "../parc_PublicKeySigner.c"
+Foundation.do-not-use-me/Libparc/parc/security/test/test_parc_Signer.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/api/ccnx_Portal/command-line/ccnx-client.c:#include <parc/security/parc_PublicKeySigner.h>
+Libccnx/ccnx/api/ccnx_Portal/command-line/ccnx-portal-read.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/api/ccnx_Portal/command-line/ccnx-server.c:#include <parc/security/parc_PublicKeySigner.h>
+Libccnx/ccnx/api/ccnx_Portal/test/test_ccnx_Portal.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/api/ccnx_Portal/test/test_ccnx_PortalAPI.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/api/ccnx_Portal/test/test_ccnx_PortalFactory.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/api/ccnx_Portal/test/test_ccnx_PortalStack.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/common/ccnx_KeystoreUtilities.c:#include <parc/security/parc_PublicKeySigner.h>
+Libccnx/ccnx/common/codec/schema_v0/test/test_ccnxCodecSchemaV0_ContentObjectEncoder.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/common/codec/schema_v0/test/test_ccnxCodecSchemaV0_NameAuthEncoder.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/common/codec/test/test_ccnxCodec_NetworkBuffer.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/transport/test_tools/traffic_tools.c:#include <parc/security/parc_PublicKeySigner.h>
+Libccnx/ccnx/transport/transport_rta/components/codec_Signing.c:#include <parc/security/parc_PublicKeySigner.h>
+Libccnx/ccnx/transport/transport_rta/components/component_Codec_Tlv.c:#include <parc/security/parc_PublicKeySigner.h>
+Libccnx/ccnx/transport/transport_rta/components/Flowcontrol_Vegas/test/test_component_Vegas.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/transport/transport_rta/components/Flowcontrol_Vegas/test/test_vegas_Session.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/transport/transport_rta/connectors/test/test_connector_Forwarder_Local.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/transport/transport_rta/connectors/test/test_connector_Forwarder_Metis.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/transport/transport_rta/core/test/test_rta_Framework_Commands.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/transport/transport_rta/test/test_multi_connections.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libparc/parc/security/command-line/parc-publickey.c:#include <parc/security/parc_PublicKeySigner.h>
+Libparc/parc/security/parc_IdentityFile.c:#include <parc/security/parc_PublicKeySigner.h>
+Libparc/parc/security/parc_PublicKeySigner.c:#include <parc/security/parc_PublicKeySigner.h>
+Libparc/parc/security/test/test_parc_InMemoryVerifier.c:#include <parc/security/parc_PublicKeySigner.h>
+Libparc/parc/security/test/test_parc_PublicKeySigner.c:#include "../parc_PublicKeySigner.c"
+Libparc/parc/security/test/test_parc_PublicKeySignerPkcs12Store.c:#include "../parc_PublicKeySignerPkcs12Store.c"
+Libparc/parc/security/test/test_parc_Signer.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+
+
+[cwood@vpn1pool-13-4-14-62:~/PARC/CCNxKE]$ grep -i --include \*.h --include \*.c '/parc_PublicKeySignerPkcs12' -r *
+Apps/CCN-Hello-World/src/HelloWorld/helloWorld_Consumer.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/CCN-Hello-World/src/HelloWorld/helloWorld_ConsumerForever.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/CCN-Hello-World/src/HelloWorld/helloWorld_Producer.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/CCN-Hello-World/tutorial/consumer-tutorial-01.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/CCN-Hello-World/tutorial/producer-tutorial-01.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/CCN-Hello-World/tutorial/producer-tutorial-02.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/CCN-Hello-World/tutorial/producer-tutorial-03.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/CCN-Hello-World/tutorial/producer-tutorial-04.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/CCN-Hello-World/tutorial/producer-tutorial-05.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/CCN-Hello-World/tutorial/producer-tutorial-06.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/CCN-Hello-World/tutorial/producer-tutorial-07.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/CCN-Hello-World/tutorial/producer-tutorial-08.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/CCN-Hello-World/tutorial/producer-tutorial-09.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/CCN-Hello-World/tutorial/producer-tutorial-10.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/CCN-Tutorial-Demo/src/tutorial_Client.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/CCN-Tutorial-Demo/src/tutorial_Common.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/ParAvion/apps/paravion/main.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/ParAvion/apps/paravion/test/test_paravion_FetcherSet.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/ParAvion/apps/paravion/test/test_paravion_Reconciler.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/ParAvion/apps/paravion/test/test_paravion_Share.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Apps/ParAvion/apps/paravion/test/testrig_fetcher_common.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Athena/ccnx/forwarder/athena/command-line/athenactl/athenactl_main.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Athena/ccnx/forwarder/athena/test/test_athena_InterestControl.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Athena/ccnx/forwarder/athena/test/test_athenactl.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Foundation/Libparc/parc/security/command-line/parc-publickey.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Foundation/Libparc/parc/security/parc_IdentityFile.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Foundation/Libparc/parc/security/parc_PublicKeySignerPkcs12Store.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Foundation/Libparc/parc/security/test/test_parc_InMemoryVerifier.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Foundation/Libparc/parc/security/test/test_parc_PublicKeySignerPkcs12Store.c:#include "../parc_PublicKeySignerPkcs12Store.c"
+Foundation/Libparc/parc/security/test/test_parc_Signer.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Languages/Python/Bindings/python2build/CCNxSWIG.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/api/ccnx_Portal/command-line/ccnx-client.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/api/ccnx_Portal/command-line/ccnx-portal-read.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/api/ccnx_Portal/command-line/ccnx-server.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/api/ccnx_Portal/test/test_ccnx_Portal.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/api/ccnx_Portal/test/test_ccnx_PortalAPI.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/api/ccnx_Portal/test/test_ccnx_PortalFactory.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/api/ccnx_Portal/test/test_ccnx_PortalStack.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/common/ccnx_KeystoreUtilities.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/common/codec/schema_v0/test/test_ccnxCodecSchemaV0_ContentObjectEncoder.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/common/codec/schema_v0/test/test_ccnxCodecSchemaV0_NameAuthEncoder.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/common/codec/test/test_ccnxCodec_NetworkBuffer.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/transport/test_tools/traffic_tools.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/transport/transport_rta/components/codec_Signing.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/transport/transport_rta/components/component_Codec_Tlv.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/transport/transport_rta/components/Flowcontrol_Vegas/test/test_component_Vegas.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/transport/transport_rta/components/Flowcontrol_Vegas/test/test_vegas_Session.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/transport/transport_rta/connectors/test/test_connector_Forwarder_Local.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/transport/transport_rta/connectors/test/test_connector_Forwarder_Metis.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/transport/transport_rta/core/test/test_rta_Framework_Commands.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libccnx/ccnx/transport/transport_rta/test/test_multi_connections.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libparc/parc/security/command-line/parc-publickey.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libparc/parc/security/parc_IdentityFile.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libparc/parc/security/parc_PublicKeySignerPkcs12Store.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libparc/parc/security/test/test_parc_InMemoryVerifier.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
+Libparc/parc/security/test/test_parc_PublicKeySignerPkcs12Store.c:#include "../parc_PublicKeySignerPkcs12Store.c"
+Libparc/parc/security/test/test_parc_Signer.c:#include <parc/security/parc_PublicKeySignerPkcs12Store.h>
