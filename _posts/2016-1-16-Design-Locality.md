@@ -94,7 +94,7 @@ variant of the) key store module and the signer. The dependencies are simple cou
 of how many times the relevant modules were included for use when a key store was needed.
 
 ```bash
-grep -i --include \*.h --include \*.c '/parc_PublicKeySignerPkcs12' -r * | wc -l
+$ grep -i --include \*.h --include \*.c '/parc_PublicKeySignerPkcs12' -r * | wc -l
       57
 ```
 
