@@ -133,7 +133,7 @@ appropriately. For example, many features require logging. The implementation of
 these features will all depend on some logging module. That doesn't mean the logging
 module has low cohesion (in fact, it's quite the contrary).
 
-[Design to module mapping (i.e., module dependencies).](/images/posts/design_module_mapping.png)
+![Design to module mapping (i.e., module dependencies).](/images/posts/design_module_mapping.png)
 
 Clearly, the mapping of a design to its constituent modules must be more fine-grain
 to determine the cohesiveness of the module. It must map features to parts of modules.
@@ -141,7 +141,7 @@ This mapping exposes the information we need in order to identify where in the
 system are points of low cohesion. To illustrate, consider the following slightly
 modified mapping.
 
-[Function-level module dependencies.](/images/posts/fine_grain_design_mapping.png)
+![Function-level module dependencies.](/images/posts/fine_grain_design_mapping.png)
 
 The left-hand design has one module that contains three separate functions used
 by three separate designs. This is clearly the wrong level of abstraction. Refactoring
