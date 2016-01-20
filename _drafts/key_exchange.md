@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Comments on Key Exchange
----
+---  
 
 I sat through a paper presentation yesterday about a key exchange protocol for vehicular
 MANETs. The authors used a variant of group-based Diffie Hellman (DH) to derive a shared key
