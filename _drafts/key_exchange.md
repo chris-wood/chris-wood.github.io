@@ -3,7 +3,7 @@ layout: post
 title: Comments on Key Exchange
 ---
 
-I sat through a paper presentation yesterday about a key exchange protocol for vehicular
+I recently sat through a paper presentation that described a key exchange protocol for vehicular
 MANETs. The authors used a variant of group-based Diffie Hellman (DH) to derive a shared key
 for a set of nodes. Every node generated a random element in the DH group, raised the
 common generator to this element, and distributed the result to the rest of the group.
@@ -25,10 +25,10 @@ Alice              Bob
 
 y = (g^x2)^x1      y = (g^x1)^x2
 
-      k_g = H(y) XOR k_p // k_p is the pre-shared key
+   k_g = H(y) XOR k_p // k_p is the pre-shared key
 ~~~
 
-The claim was that this deter MitM attacks since an adversary is not
+The claim was that this deters MitM attacks since an adversary is not
 expected to have the pre-shared key and can therefore
 not derive the group key (the pre-shared key is never sent over the air).
 
@@ -52,3 +52,10 @@ at a minimum:
 - Resistance to server-side DoS attacks
 - Support for mutual authentication
 - Support for session re-keying
+
+Most importantly, the session key that's derived should be suitable for use,
+i.e., an adversary should not be able to use the key to derive any useful
+or meaningful information about the application layer protocol which uses 
+the key. Without having access to the paper, the proposed protocol appears
+to at least benefit from this property. However, given its many deficiencies, 
+it hardly seems useful in practice.
