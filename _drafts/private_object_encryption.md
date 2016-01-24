@@ -24,7 +24,7 @@ the same content by comparing their requests (without looking at the response).
 Following this train of thought, it is not hard to show that in fact the notion
 of "private object encryption" is not possible in vanilla CCN. 
 
-To prove this, let's first define what we mean by privacy. In the context of TLS,
+To argue this, let's first define what we mean by privacy. In the context of TLS,
 privacy in the presence of untrusted network elements and eavesdroppers means 
 that (side channel attacks aside) it is not possible to correlate the 
 traffic of two separate users (consumers) even if they happen to be sending and 
@@ -36,7 +36,7 @@ traffic not private (i.e., not protected with CCA-secure encryption), then it
 would be possible to determine when two identical messages were sent over the 
 wire by comparing the bits (ciphertexts).
 
-Now, to continue the proof, let's make the following assumptions:
+Now, to continue the discussion, let's make the following assumptions:
 
 1. Routers are untrusted. This means that any action or computation performed by 
 a router must be possible by an eavesdropping adversary. 
@@ -92,19 +92,22 @@ a contradiction.
 
 # Takeaway 
 
-This problem (or benefit, depending on who you talk to) with vanilla CCN is that all
+The problem (or benefit... depending on who you talk to) with vanilla CCN is that all
 requests must be issued for one piece of content. This means that if caching is to be
-useful, then two consumers must send the same request. No matter what type of 
-encryption is applied to the content object, privacy is not possible since requests
-can be correlated. 
+useful (i.e., the same content will serve two or more consumers), then two consumers 
+must send the same request. No matter what type of encryption is applied to the content 
+object, privacy is not possible since the requests can be easily correlated. 
 
 There are at least two ways to solve this problem. First, requests can be generalized to
-sets of content objects to give some measure of k-anonymity. Second, we could look into
-the work of private information retrieval (PIR) and differential privacy. 
+sets of content objects to give some measure of k-anonymity [3]. Second, we could look into
+the work of private information retrieval (PIR) [4] and differential privacy [5]. Both
+of these technologies enable privacy in scenarios that bear a slight resemblence to the 
+request-response protocol of CCN. 
 
 # References
 
-[1] - CCA-secure reference
-[2] - mixnets reencryption
-[3] PIR
-[4] differential privacy
+- [1] Katz, Jonathan, and Yehuda Lindell. Introduction to modern cryptography. CRC Press, 2014.
+- [2] Golle, Philippe, et al. "Universal re-encryption for mixnets." Topics in Cryptology–CT-RSA 2004. Springer Berlin Heidelberg, 2004. 163-178.
+- [3] Sweeney, Latanya. "k-anonymity: A model for protecting privacy." International Journal of Uncertainty, Fuzziness and Knowledge-Based Systems 10.05 (2002): 557-570.
+- [4] Ostrovsky, Rafail, and William E. Skeith III. "A survey of single-database private information retrieval: Techniques and applications." Public Key Cryptography–PKC 2007. Springer Berlin Heidelberg, 2007. 393-411.
+- [5] Dwork, Cynthia. "Differential privacy." Encyclopedia of Cryptography and Security. Springer US, 2011. 338-340.
