@@ -3,6 +3,9 @@ layout: post
 title: Why Bother with ICN?
 ---
 
+
+
+
 -layering is good... but did we find the right abstractions?
 
 - Why should industry consider finding funding dollars for ICN?
