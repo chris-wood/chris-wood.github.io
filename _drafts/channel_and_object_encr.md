@@ -1,32 +1,33 @@
 ---
 layout: post
-title: Channel and Object Encryption
+title: Channel and Object Encryption and their role in CCN
 ---
 
 TLDR: Object encryption is a significantly harder problem to solve correctly than
 channel encryption. Moreover, it is often said that object encryption provides sufficient
 "security" for CCN applications. But that's nonsense. Yes, it enables confidentiality.
-But it does not enable privacy (according to today's definition). For this reason,
-both channel and object encryption must be part of any viable network protocol
+But it does not enable privacy (according to today's definition). Thus,
+*both channel and object encryption* must be part of any viable network protocol
 and the applications that it enables.
 
 # Introduction
 
 Have you ever been to [keylength.com](http://www.keylength.com/)? It's a pretty neat site that
 gives you recommendations for the length of cryptographic keys depending on the lifetime
-of the data. To give an example, according to the ECRYPT II recommentations from 2012, 
+of the data you wish to protect. To give an example, according to the ECRYPT II recommentations from 2012, 
 if you want "long-term protection," i.e., protection from 2016 to 2040, then you need 
 at least 128 bits of security. This translates to a 128-bit symetric key, 3248-bit RSA key, 
-and 256-bit ECC key. The reason I bring this up is that the longevity of keys and data
-is an important concept that can often be the downfall of some security mechanism. However,
-an equally important issue is how keys and data are managed. Much of security boils down to 
-how well secrets are chosen and how they are kept safe. In this post, I'll discuss these two issues
-in the context of channel and object encryption. Or, if you prefer, encrypting data in
-transit and data at rest.
+and 256-bit ECC key. 
+
+The longevity of keys and data is an important concept that, when misunderstood, can be the achilles heel 
+of a security mechanism. However, an even more pressing issue is how these keys and data are managed. Much,
+if not all, of security boils down to how well secrets are chosen and how they are kept safe. In this post, 
+I'll discuss these two issues in the context of channel and object encryption. Or, if you prefer, protecting
+data in transit and data at rest.
 
 # Channel vs Object Encryption
 Perhaps the single most important job of cryptography is to protect the communication (transfer,
-movement, etc.) of data [1]. Schnieier describes data storage as a use case in which a data owner 
+movement, etc.) of data [1]. Bruce Schnieier describes data storage as a use case in which a data owner 
 wishes to communicate data to themselves over time [2]. This perspective places secure data storage
 on par with secure data transmission between two peers. Moreover, this normalization allows 
 us to consider the protection of data in transit and at rest using some of the same principles.
@@ -52,23 +53,22 @@ to being compromised).
 ## Object Encryption
 
 When I speak of object encryption I refer to encrypting whole objects (messages, blocks of data, etc.) at 
-rest. Unlike channel encryption, there is no notion of a session. Therefore, object encryption keys are 
-not ephemeral -- they must last for at least as long as the data. (How else would encrypted data be recovered?) 
-Consequently, not only must the keys be chosen appropriately (i.e., have a suitable security level
+rest. Unlike channel encryption, there is no notion of a session. Consequently, object encryption keys are 
+not ephemeral; they must last for at least as long as the data. (How else would encrypted data be recovered?) 
+Thus, not only must the keys be chosen appropriately (i.e., have a suitable security level
 depending on the sensitivity and longevitiy of the data), but the keys themselves must be protected.
 It does not matter if data that will last 10 seconds is encrypted with a 256-bit key --
 if the encryption key is compromised then data is also subject to being compromised. (In this case,
-why bother encrypting the data at all? I'm not advocating this approach. I'm merely 
-pointing out one conclusion to be derived from this course of action.)
-
-As you can plainly see, the key difference between object and channel encryption is that the former
-requires state to be stored whereas the latter does not. That state is the key.
+why bother encrypting the data at all? Of course, I'm not advocating this approach. I'm merely 
+pointing out one conclusion that can be derived from this stupid decision.)
 
 # Lifetime and Management Issues
 
-A vital ingredient for secure data encryption is proper key management. And in object 
-encryption, this is no easy problem to solve. Let's take AWS S3 as an
-example. S3 buckets provide server-side encryption with server-generated and
+As you can plainly see, the fundamental difference between object and channel encryption is that the former
+requires state to be stored whereas the latter does not. That state is the key.
+A vital ingredient for secure communication is proper key management. And in object 
+encryption, this is no easy problem to solve. Let's consider AWS S3 for a moment.
+S3 buckets (data stores) provide server-side encryption with server-generated and
 managed keys as well as client-generated keys [3]. Regardless of who maintains the keys,
 they must be secure from unauthorized access. The server and client are solving
 the same problem of access control. And that's a classical security problem that dates
@@ -76,28 +76,36 @@ back to the early days of multi-user and multi-tenent operating systems.
 
 Again in the case of S3, Amazon uses their KMS (key management service) to protect and manage 
 data encryption keys. The KMS is composed of a storage layer for plaintext keys and a management layer that
-authorizes requests for these keys [4]. Keys are protected by a HSM (hardware-security module),
-which is a special hardware component, typically comprised of a co-processor and tamper-resistant 
-protections, for managing the lifecycle of cryptographic keys. (That's a discussion for another time.)
-The internal design of the KMS is beyod the scope of this little blog post. I'll
-try to touch on that in the future.
+authorizes requests for these keys [4]. Keys are protected by a HSM (hardware-security module), which 
+is a special hardware component, typically comprised of a co-processor and tamper-resistant 
+protections, for managing the lifecycle of cryptographic keys. These HSMs exist inside
+hardware security appliances that have very strict access control rules and policies.
+(I'll defer the details of these systems to another post.) In general, what you need to know
+is that the complexity that goes into keeping object (data) encryption keys safe (i.e., 
+key management) is a mixture of proper access control, identity management, and trust.
+(I didn't touch on the latter two because, again, that's for another post.) Therefore, while 
+the lifetime of a key is easy to determine based on recommendations, keeping it safe for that
+lifetime is a whole other problem in and of itself.
 
 # Final Thoughts
 
 What does all of this mean? The cost, difficulty, and complexity required to implement proper
-object encryption certainly exceeds that of channel encryption. Consider a TCP/IP application where a
-channel is used to move arbitrary data from a server to a client (or vice versa). In this case, the benefit
-of encrypting data at rest depends on the cost of losing or exposing that data (e.g., credit card or other PII).
+object encryption certainly exceeds that of channel encryption and encompasses many other
+non-trivial elements (identity management, trust, access control, etc.). The importance of proper
+key management cannot be understated. All the cryptography in the world won't 
+protect you and your data from attackers if you mismanage your keys. And
+in the case of object encryption, where there are many possible avenues to access these
+keys (e.g., phishing attacks, remote code execution vulnerabilities, etc.), protecting these
+keys is an incredibly difficult task to do correctly. 
+
+To conclude: how does this affect CCN? Well, consider a TCP/IP application where a channel is used to 
+move arbitrary data from a server to a client (or vice versa). It may not always be 
+necessary to encrypt this data at rest. The cost of doing so depends 
+on the cost of losing or exposing that data (e.g., credit card or other PII should be encrypted).
 In CCN, where the server moves *specific data* to a client, the benefit of object encryption is 
 that, with proper key management facilities, it can subsume channel encryption (*with respect to
 confidentiality*). But what does this buy? Nothing, really, if we care about privacy,
 since we'll always have to use channel encryption to attain (today's definition of) privacy.
-
-In the end, this post is really about the importance of proper key management. All the cryptography
-in the world won't protect you and your data from attackers if you mismanage your keys. And
-in the case of object encryption, where there are many possible avenues to access these
-keys (e.g., phishing attacks, remote code execution vulnerabilities, etc.), protecting these
-keys is an incredibly difficult task to do correctly.
 
 # References
 
