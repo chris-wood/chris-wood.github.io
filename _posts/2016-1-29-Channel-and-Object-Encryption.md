@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Channel and Object Encryption and their role in CCN
+title: Channel and Object Encryption and their Role in CCN
 ---
 
 TLDR: Object encryption is a significantly harder problem to solve than
