@@ -109,7 +109,7 @@ since we'll always have to use channel encryption to attain (today's definition 
 
 # References
 
-- [1] https://www.schneier.com/blog/archives/2010/06/data_at_rest_vs.html
+- [1] [https://www.schneier.com/blog/archives/2010/06/data_at_rest_vs.html](Data at Rest vs. Data in Motion)
 - [2] B. Schneier. "Applied cryptography: protocols, algorithms, and source code in C." John Wiley & Sons, 2007.
-- [3] http://docs.aws.amazon.com/AmazonS3/latest/dev/ServerSideEncryptionCustomerKeys.html
-- [4] https://d0.awsstatic.com/whitepapers/aws-securing-data-at-rest-with-encryption.pdf
+- [3] [http://docs.aws.amazon.com/AmazonS3/latest/dev/ServerSideEncryptionCustomerKeys.html](Protecting Data Using Server-Side Encryption with Customer-Provided Encryption Keys (SSE-C))
+- [4] [https://d0.awsstatic.com/whitepapers/aws-securing-data-at-rest-with-encryption.pdf](Securing Data at Rest with Encryption)
