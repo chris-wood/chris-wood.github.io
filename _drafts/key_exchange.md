@@ -4,15 +4,14 @@ title: Comments on Key Exchange
 ---
 
 I recently sat through a paper presentation that described a key exchange protocol for vehicular
-MANETs. The authors used a variant of group-based Diffie Hellman (DH) [1] to derive a shared key
+MANETs. The authors used a variant of group-based Diffie-Hellman (DH) [1] to derive a shared key
 for a set of nodes. Every node generated a random element in the DH group, raised the
 common generator to this element, and distributed the result to the rest of the group.
 In the worst case, this is quadratic in the number of nodes in the group. One stressed
 point was none of the key exchange messages were signed. Naturally, this raised the suspicion
-of possible MitM attacks. The "remedy" was to XOR the output of the DH protocol with a
+of possible MitM attacks [2]. The "remedy" was to XOR the output of the DH protocol with a
 pre-shared key that is installed on every node. Under the assumption that only legitimate
-vehicles with this pre-shared key are able to compute this XOR operation and therefore
-derive the key.
+vehicles with this pre-shared key are able to compute this XOR operation and, therefore, derive the key.
 
 This protocol (for two parties) can be sketched as follows (the specific details about how k_g
 are derived are not available at present so I am writing it down as I interpreted it):
@@ -57,11 +56,12 @@ at a minimum:
 
 The only property that this protocol can claim to possess is (3) and (4) (if DH shares
 are not kept after a re-key). It is unclear if the keys derived reveal anything
-about the application-layer protocol which use them. Though, I doubt this is
+about the application-layer protocol which uses them. Though, I doubt this is
 the case based on what I saw. Regardless, given very rigid nature, this protocol
 hardly seems useful in practice. To me, this is just another reminder that "simple"
 and "efficient" shortcuts in cryptography are not often free.
 
 ## References
 
-- [1] Bresson, Emmanuel, Olivier Chevassut, and David Pointcheval. "The group diffie-hellman problems." Selected areas in cryptography. Springer Berlin Heidelberg, 2003.
+- [1] Bresson, Emmanuel, Olivier Chevassut, and David Pointcheval. "The Group Diffie-Hellman Problems." Selected areas in cryptography. Springer Berlin Heidelberg, 2003.
+- [2] (Diffie–Hellman key exchange)[https://en.wikipedia.org/wiki/Diffie–Hellman_key_exchange]
