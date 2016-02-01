@@ -14,21 +14,42 @@ additional functionality to the upper layer(s). For example, in the OSI model [1
 responsible for moving frames between nodes on the same WAN or LAN and the transport
 layer (4) is responsible for providing end-to-end communication services for applications [2].
 
-### TODO: tree picture here
+### TODO: internet tree picture here
 
 Everyone knows that building functionality on top of abstraction and well-defined interfaces
 is good practice for constructing complex systems. (What is software if not an abstraction
 of the underlying hardware on which it runs?) And after 4 decades of intense growth,
 development, and financial investment, we (the community) seem to have converged on the
 IP model and all of the upper-layer abstractions it carries for connectivity as the de facto
-standard by which users, devices, and applications become connected. For better or for worse,
-we will be dependent on IP for the forseeable future. 
+standard by which users, devices, and applications become connected. Whether you like it
+or not, we will be dependent on IP for the forseeable future. 
 
-- quite difficult to manage and secure - kc claffy  https://vimeo.com/channels/ndnvfaq
-- not designed for security (often "tossed over the wall" - david clark - to application folks)
-- doesn't always hit the right abstractions -> DNS as a workaround for name-to-content resolution, CDN DNS interception for content location, etc.
+This is problematic for a variety of reasons. Firstly, the Internet is difficult to manage
+and secure (at scale). Protocols and systems like DHCP, DNS, BGP, ICMP, etc. all exist because
+we live in a world where volatile hosts can come and go as they please in the network (which,
+in my opinion, should rightfully be the case). These technologies enable hosts to connect to
+and use the Internet. Securing these endhosts is yet another problem -- an afterthought. 
+Security is often tossed over the wall to application folks who are not best equipped to
+adequately handle them. (This is not to say that networking people are security experts -- 
+what I mean is that security is not something that should be so easily deferred to someone else.)
+This is why many protocols like TCP and DNS are pushing for secure-by-default options manifested
+in TCPcrypt [XX] and DNS-over-TLS [XX]. The pressures placed on these technologies is only exacerbated
+as the traffic type, volume, and sources shifts based on emerging mobile and content-driven applications.
 
-TODO: show why it's not that great (pressure points on the IP model -- DNS hacks, security bandages, CDNs pooey, etc.)
+Another major problem with the TCP/IP model seems to be that it did not hit the right abstraction
+necessary for today's applications. After all, the DNS exists because humans can't be expected to 
+remember the IP address of a machine which can serve, for example, Netflix content. It's a workaround
+for the name-to-content resolution strategy that's needed when fetching content from the network. 
+The interaction between DNS and CDNs, which I briefly describe in CITE_BLOG_POST, is an indication that the 
+mechanisms by which consumers fetch static content is not right. There are several layers of hooks and 
+indirection needed to re-route a DNS query for a Netflix movie to a local CDN. This is needed because the 
+only available abstraction is an IP address from which to fetch content. 
+
+Today's networking technologies sedimented in place as applications were built on top of them and 
+money was poured into the necessary infrastructure to support them. However, as applications changed, 
+the underlying technologies remained static. It's hard to shape concrete after it dries. And given
+everything we have observed in recent years, it may be time to break out the jackhammer and 
+start from scratch (at least conceptually).
 
 # Why Bother with ICN?
 
@@ -44,34 +65,35 @@ network designs and (2) re-distribution of network-layer functionality.
 
 ## Top-Down Network Design
 
+- describe goals of each of these applications
+twitch.tv  
+flickr
+facebook
+netflix
+spotify
 
-https://vimeo.com/channels/ndnvfaq/118965175 david clark MIT
-- enables the network to be application-driven
-- applications drive innovation, patterns emerge, and those are pulled into the underlying system (abstracted)
+- describe how they rely on these protocols to do this
+DNS
+TCP
+TLS
+HTTP1/2
+FTP
 
-- refer to Jeff Burke's talk at NDNCom (it was great!) -- applications define how the network 
-is to be used and the network shouldn't fight it. The network should aid modern application use
-cases. 
-- CDN is a good example here (its implementation has to fight and workaround the IP+DNS combo)
-- CCN enables opportunistic, native CDNs (modulo security properties that modern CDNs given you)
-
-
-
-
-
-
+- describe the patterns that emerge (content delivery, DNS resolution and redirection, HTTP gets for mostly everything, etc)
+- the standard pattern in software design is to recognize these patterns and the necessary abstractions they provide, and then
+collate the functionality to provide this application
+- this is what ICN research is doing: it's using application development (which is the most important since apps serve consumers and users)
+to drive abstraction changes that are realized at the architectural level. Jeff Burke gave a great overview of how this is
+happening at NDNComm last year. 
+- a great contribution of ICN research is not necessarily on the protocol itself. Rather, it's on the
+mentality of questioning the status quo of networking and rethinking how it could be done better.
+- replace IP address as fundamental unit of communication -> move to named data as the unit of communication
 
 ## Laying the Foundation
 
-- what does the network need to support different application?
-- security through application design patterns
-- take what we know the internet is being used for today (and in the future) and build a better "fit" underneath that can support the use of the network and apps
-- replace IP address as fundamental unit of communication -> move to named data as the unit of communication
+- what does the network need to support different applications? (connectivity, end-to-end services, something like HTTP, and security)
 - IP wasn't designed for security
-TODO: CDNs and content distribution, maybe IoT as well
-TODO; I think one of the biggest selling points is that it lets us re-think the abstractions we've been stuck with for the past 40 years.
-
--layering is good... but did we find the right abstractions?
+- take what we know the internet is being used for today (and in the future) and build a better "fit" underneath that can support the use of the network and apps
 
 - Why should industry consider finding funding dollars for ICN?
     - ability to re-think the network stack (IP with NATs emerged as an end-to-end protocol when applications and protocols were built on endpoints, not connectivity)

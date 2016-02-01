@@ -57,7 +57,7 @@ at a minimum:
 The only property that this protocol can claim to possess is (3) and (4) (if DH shares
 are not kept after a re-key). It is unclear if the keys derived reveal anything
 about the application-layer protocol which uses them. Though, I doubt this is
-the case based on what I saw. Regardless, given very rigid nature, this protocol
+the case based on what I saw. Regardless, given its very rigid nature, this protocol
 hardly seems useful in practice. To me, this is just another reminder that "simple"
 and "efficient" shortcuts in cryptography are not often free.
 
