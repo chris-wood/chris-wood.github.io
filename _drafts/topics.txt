@@ -1,16 +1,20 @@
-- Pomodoro technique and arduino project
+- Pomodoro technique and arduino project (2/3/16)
+- key management
+- Programmatically identifying patterns in software
+- CDN performance 
+- Re-encryption
 - Amplification DDoS in IP and CCN blog post
-- overview, analysis, and comparison of build systems (scons, autotools, cmake)
+- BEAD+Accounting and Fastly
+- Trust models and examples 
+- Code is Data and Data is Code?
+- Polymorphism in C
 - Handling debates internally through proper process (Some Process Pays)
-- The Security and Privacy Delta between CCN(ICN) and IP
-- Request vs Response Policing
 - Composite fields (from galois fields)
 - Galois fields (with sage code)
+- Learn another language
+- Private addresses -- can we do better with routing? Can we correlate packets for the same address?
+
+- overview, analysis, and comparison of build systems (scons, autotools, cmake)
 - DNS privacy overview, and degrees of privacy
 - DNS Cache poisoning 
-- Polymorphism in C
-- Private addresses -- can we do better with routing? Can we correlate packets for the same address?
-- Software refactoring and continual improvement
-- Learn another language
-- NaCl crypto library overview
 
