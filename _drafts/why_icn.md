@@ -18,163 +18,162 @@ of the underlying hardware on which it runs?) And after 4 decades of intense gro
 development, and financial investment, we (the community) seem to have converged on the
 IP model and all of the upper-layer abstractions it carries for connectivity as the de facto
 standard by which users, devices, and applications become connected. Whether you like it
-or not, we will be dependent on IP for the foreseeable future. 
+or not, we will be dependent on IP for the foreseeable future.
 
 This is problematic for a variety of reasons. Firstly, the Internet is difficult to manage
 and secure (at scale). Protocols and systems like DHCP, DNS, BGP, ICMP, etc. all exist because
 we live in a world where volatile hosts can come and go as they please in the network (which,
 in my opinion, should rightfully be the case). These technologies enable hosts to connect to
-and use the Internet. Securing these end-hosts is yet another problem -- an afterthought. 
+and use the Internet. Securing these end-hosts is yet another problem -- an afterthought.
 Security is often tossed over the wall to application folks who are not best equipped to
-adequately handle them. (This is not to say that networking people are security experts -- 
+adequately handle them. (This is not to say that networking people are security experts --
 what I mean is that security is not something that should be so easily deferred to someone else.)
 This is why many protocols like TCP and DNS are pushing for secure-by-default options manifested
-in TCPcrypt [XX] and DNS-over-TLS [XX]. The pressures placed on these technologies is only exacerbated
+in TCPcrypt [3] and DNS-over-TLS [4]. The pressures placed on these technologies is only exacerbated
 as the traffic type, volume, and sources shifts based on emerging mobile and content-driven applications.
 
 Another major problem with the TCP/IP model seems to be that it did not hit the right abstraction
-necessary for today's applications. After all, the DNS exists because humans can't be expected to 
+necessary for today's applications. After all, the DNS exists because humans can't be expected to
 remember the IP address of a machine which can serve, for example, Netflix content. It's a workaround
-for the name-to-content resolution strategy that's needed when fetching content from the network. 
-The interaction between DNS and CDNs, which I briefly describe in CITE_BLOG_POST, is an indication that the 
-mechanisms by which consumers fetch static content is not right. There are several layers of hooks and 
-indirection needed to re-route a DNS query for a Netflix movie to a local CDN. This is needed because the 
-only available abstraction is an IP address from which to fetch content. 
+for the name-to-content resolution strategy that's needed when fetching content from the network.
+The interaction between DNS and CDNs, which I briefly describe [here](http://chris-wood.github.io/CCN-vs-CDN/), is an indication that the
+mechanisms by which consumers fetch static content is not right. There are several layers of hooks and
+indirection needed to re-route a DNS query for a Netflix movie to a local CDN. This is needed because the
+only available abstraction is an IP address from which to fetch content.
 
-Today's networking technologies sedimented in place as applications were built on top of them and 
-money was poured into the necessary infrastructure to support them. However, as applications changed, 
+Today's networking technologies sedimented in place as applications were built on top of them and
+money was poured into the necessary infrastructure to support them. However, as applications changed,
 the underlying technologies remained static. It's hard to shape concrete after it dries. And given
-everything we have observed in recent years, it may be time to break out the jackhammer and 
+everything we have observed in recent years, it may be time to break out the jackhammer and
 start from scratch (at least conceptually).
 
 # What Does ICN Bring to the Table?
 
 I was recently asked about why one might bother investing in ICN and its related technologies,
-e.g., CCN [X] and NDN [Y]. I don't think go-to responses such as, "it enables better security" (really, how?), 
-"it reduces network congestion," and "it supports better content distribution" give 
-any justice to the years of research and development from the ICN (CCN and NDN 
-combined) community. I think the reason is much more profound and "ground breaking." 
-To explain, I'll break down my answer into two different parts: (1) application-driven 
-network designs and (2) re-distribution of network-layer functionality. 
+e.g., CCN [5] and NDN [6]. I don't think go-to responses such as, "it enables better security,"
+"it reduces network congestion," and "it supports better content distribution" give
+justice to the years of research and development from the ICN (CCN and NDN
+combined) community. I think the reason is much more profound and "ground breaking."
+To explain, I'll break down my answer into two different parts: (1) application-driven
+network designs and (2) re-distribution of network-layer functionality.
 
 ## Top-Down Network Design
 
-Consider some of the modern applications that many people (yourself probably included) use on a 
-daily basis: Flickr, Facebook, Netflix, Spotify, and Twitch.tv. Each 
-of these massive systems have grown organically out of simple use cases. Flickr seeks to let 
+Consider some of the modern applications that many people (yourself probably included) use on a
+daily basis: Flickr, Facebook, Netflix, Spotify, and Twitch. Each
+of these massive systems have grown organically out of simple use cases. Flickr seeks to let
 people share pictures with one another more easily. Facebook wants to help you "engage" in a social
-life with others online. Spotify and Netflix want to stream entertainment in the form of audio and 
+life with others online. Spotify and Netflix want to stream entertainment in the form of audio and
 video to you on any and every device you own. And finally, Twitch wants to let people stream their
 (computer game) videos to the public. I will make no attempt to try to explain how these systems work,
-but I will say that they share a common characteristic: they all deliver static (immutable) content 
+but I will say that they share a common characteristic: they all deliver static (immutable) content
 (with some identifier) to consumers. (They differ greatly what that content is and how it is consumed, but bear with me.)
 Granted, some content may have a degree of temporality (e.g., someone's home Facebook feed). But this
 content is usually composed of immutable data underneath -- it's the bindings from identifiers to content
-that changes. 
+that changes.
 
-What do these systems do to deliver content to their users as fast and efficiently as possible? 
-Generally speaking, they rely on a variety of standard protocols and technologies to make this 
-happen. This includes, in no particular order, TCP/UDP/QUIC, (D)TLS, HTTP1/2, CDNs, and DNS. 
-Taken as a whole, these key pieces enable data to be *easily* transferred from one end-host to another. 
-By easy I mean that the API to obtain data is simple: it usually manifests itself in a HTTP GET 
-request or something similar. The DNS is used to re-route these requests to an appropriate CDN 
+What do these systems do to deliver content to their users as fast and efficiently as possible?
+Generally speaking, they rely on a variety of standard protocols and technologies to make this
+happen. This includes, in no particular order, TCP/UDP/QUIC, (D)TLS, HTTP, CDNs, and DNS.
+Taken as a whole, these key pieces enable data to be easily transferred from one end-host to another.
+By easy I mean that the API to obtain data is simple: it usually manifests itself in a HTTP GET
+request or something similar. The DNS is used to re-route these requests to an appropriate CDN
 node. Afterwards, the client device typically creates a (D)TLS session with the CDN node and then
 uses TCP or UDP to send and receive data. (QUIC is used over UDP and is its own secure transport
-protocol). It would be hard to argue that his workflow is *not* incredibly common among modern 
-applications. Would you also agree that it isn't necessarily the most efficient? (Measuring
+protocol). It would be hard to argue that his workflow is *not* incredibly common among modern
+applications. Would you then also agree that it isn't necessarily the most efficient? (Measuring
 this is something I'd like to explore in a future post.)
 
-One of the foundations of software engineering is the insatiable desire to recognize patterns 
+One of the foundations of software engineering is the insatiable desire to recognize patterns
 and the necessary abstractions they provide and then collate the functionality to provide
 this to an application via an API. The TCP/IP network stack is a prime example of how these
-types of abstractions can be layered upon one another to provide a simple interface to complex 
-machinery. Why then have we not found a better way to abstract the basic pattern of fetching 
-static content from a remote server? 
+types of abstractions can be layered upon one another to provide a simple interface to complex
+machinery. Why then have we not found a better way to abstract the basic pattern of fetching
+static content from a remote server?
 
 This is what the ICN research community is doing: it's using application development to chisel
 down into the network layer to see if maybe we can find a better set of abstractions for dealing
 with *modern applications*. Currently, that abstraction is the form of named content rather than
 addressable end-hosts in the network. The goal is to build on this abstraction to see if application
-development can be simplified. Jeff Burke, a PI of the NDN project and professor at UCLA, gave a 
-great talk at NDNComm last year [x] about how applications can and should drive network
+development can be simplified. Jeff Burke, a PI of the NDN project and professor at UCLA, gave a
+great talk at NDNComm last year [7] about how applications can and should drive network
 development. I highly recommend anyone who's interested in this topic to go back and listen to
-or watch his presentation. 
+or watch his presentation.
 
 I'm not convinced that the great contribution of the ICN is the protocol itself. Rather, to me,
-it's how we question the status quo of networking and seek out ways in which how it could be done 
-better. 
+it's how we question the status quo of networking and seek out ways in which how it could be done
+better.
 
 ## Retiling the Floor
 
-What if we consider what the network provides from a bottom-up approach? Consider the 
+What if we consider what the network provides from a bottom-up approach? Consider the
 layers in the TCP/IP stack and their roles:
 
 - Layer 2 (link): hop-by-hop connectivity
 - Layer 3 (network): end-to-end connectivity
-- Layer 4 (transport): end-to-end communication services 
+- Layer 4 (transport): end-to-end communication services
 - Layer 4+ (TLS): secure channels between two end points
 
-As these layers grew, protocols and applications built on top became entrenched in 
-APIs that were *host-centric.* HTTP, for example, fetches resources from a *specific server*.
+As these layers grew, protocols and applications built on top became entrenched in
+APIs that were host-centric. HTTP, for example, fetches resources from a *specific server*.
 It seems to me that the majority of HTTP requests are GETs, anyway, which are used,
 as the name suggests, to obtain a specific resource from somewhere in the network. As this
 use case increased and HTTP became the standard for web communication, the layers underneath
-were almost set in stone. 
+were almost set in stone.
 
 But if we take a step back we can see that applications use HTTP to *get data*. To achieve
-this, the client must be able to connect to and communicate with some host that has the data. 
-At a minimum, this means that the client must be able to talk to some adjacent machine 
+this, the client must be able to connect to and communicate with some host that has the data.
+At a minimum, this means that the client must be able to talk to some adjacent machine
 to perform communication. Basic connectivity to other nodes in the network is a necessity. But
-is the rest of the stack a necessity? Beyond basic end-to-end connectivity, the network stack 
-must deal with security and privacy via TLS, DTLS, or QUIC, transporting data, and managing 
-session logic. (The need for security by default only recently became obvious in the network 
-stack. This is another reason why revisiting the underlying layers is important. The TCP/IP 
-model was not designed with security and privacy in mind.) These are also necessary properties 
-of the layers between an application and the link layer in the stack. This is summarized in the 
-following image. 
+is the rest of the stack a necessity? Beyond basic end-to-end connectivity, the network stack
+must deal with security and privacy via TLS, DTLS, or QUIC, transporting data, and managing
+session logic. (The need for security by default only recently became obvious in the network
+stack. This is another reason why revisiting the underlying layers is important. The TCP/IP
+model was not designed with security and privacy in mind.) These are also necessary properties
+of the layers between an application and the link layer in the stack. This is summarized in the
+following image.
 
 [The traditional TCP/IP stack and the features it provides.](/images/posts/ccn_stack.png)
 
-It is not, however, mandatory for these features to be provided by the TCP/IP 
+It is not, however, mandatory for these features to be provided by the TCP/IP
 abstraction. What if we could find a better way to accomplish these same things
-without TCP or IP? This is another ambitious goal of ICN. It tries to reallocate the 
-functionality needed to *get data from the network* into sensible abstractions that better 
+without TCP or IP? This is another ambitious goal of ICN. It tries to reallocate the
+functionality needed to *get data from the network* into sensible abstractions that better
 suit today's applications.
 
 [The proposed ICN stack and the features it provides.](/images/posts/ccn_stack_new.png)
 
 # Open Research Problems
 
-The obvious followup question to, "why should we bother with ICN?" is, "what are the problems yet 
-to be solved?". My role in this space comes from that of security and privacy. I think these are
-given inadequate treatment among researchers in this space who primarily focus on applications, 
-caching, and routing. Don't get my wrong. These are noble and necessary topics of research. However,
-if the techniques they develop are ultimately insecure then all would have been for nothing. 
-Having said that, I'll now summarize what I believe are the most pressing open problems in 
-this field, in no particular order. I'll also provide related security questions that need to be
-addressed to make this viable. 
+The obvious followup question to, "why should we bother with ICN?" is, "what are the problems yet
+to be solved?". My role in this space lies in security and privacy. Unfortunately, I also think these are
+given inadequate treatment among researchers who primarily focus on applications,
+caching, and routing. Don't get me wrong. These are noble and necessary topics of research. However,
+if the techniques they develop are ultimately insecure then all would have been for nothing.
+Having said that, I'll now summarize what I believe are the most pressing open problems in
+this field (in no particular order). I'll also provide related security questions that need to be
+addressed to make this viable. Maybe this can paint a picture of the future of this vibrant area
+of research.
 
-- Naming and application namespace design
+- *Naming and application namespace design*
   - How do applications get permission to publish and operate under a given name?
   - How are namespace collisions handled?
-- Trust management
+- *Trust management*
   - Can we break our dependence on a centralized or decentralized PKI?
   - How can we adopt a distributed trust model (e.g., similar to that in Bitcoin)?
-- Encryption and privacy
+- *Encryption and privacy*
   - How can we enable object encryption without sacrificing privacy (as it is defined today)?
   - Can we make better broadcast encryption schemes that can handle the foreseen IoT scale?
-- Routing and routing hints (a la NDN's Links)
+- *Routing*
   - How do we create secure routing hints?
   - Can we decouple "application names" from "network names"?
-
-# A Comment on Application-Driven Design
-
-One problem is that not everything is or requires HTTP to operate. Many protocols operate without
-HTTP request/response functionality and I see many people try to pigeonhole their applications to 
-meet this need. 
 
 # References
 
 - [1] Briscoe, Neil. "Understanding the OSI 7-layer model." PC Network Advisor 120.2 (2000).
 - [2] Kurose, J., and K. Ross. Computer Networking: A Top Down Approach, 4e. Vol. 1. 2012.
-
+- [3] Mazieres, David, et al. "Cryptographic protection of TCP Streams (tcpcrypt)." (2014).
+- [4] Zhu, Liang, et al. "Connection-oriented DNS to improve privacy and security." Security and Privacy (SP), 2015 IEEE Symposium on. IEEE, 2015.
+- [5] [https://github.com/parc/ccnx_distillery](https://github.com/parc/ccnx_distillery)
+- [6] [http://named-data.net](http://named-data.net)
+- [7] [https://www.caida.org/workshops/ndn/1509/](https://www.caida.org/workshops/ndn/1509/)

@@ -1,11 +1,12 @@
+- Why CCN is inadequate
 - Pomodoro technique and arduino project (2/3/16)
 - key management
 - Programmatically identifying patterns in software
-- CDN performance 
+- CDN performance
 - Re-encryption
 - Amplification DDoS in IP and CCN blog post
 - BEAD+Accounting and Fastly
-- Trust models and examples 
+- Trust models and examples
 - Code is Data and Data is Code?
 - Polymorphism in C
 - Handling debates internally through proper process (Some Process Pays)
@@ -16,5 +17,4 @@
 
 - overview, analysis, and comparison of build systems (scons, autotools, cmake)
 - DNS privacy overview, and degrees of privacy
-- DNS Cache poisoning 
-
+- DNS Cache poisoning
