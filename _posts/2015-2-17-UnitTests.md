@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Unit Tests. Write Them. End of Story.
+comments: true
 ---
 
 I think somewhere along the line between classes at RIT and my current internship I lost sight of the value of unit tests. In school they seemed tedious, and in fact they are. I don’t think there’s an engineer out there who will claim to be passionate about writing unit tests. The problem in school was that we were simply writing unit tests, not using them for anything that seemed meaningful. Our class projects were isolated and short-lived — never meant to be used or maintained by others down the road. This is where academia falls short and time in industry shines. Experienced software engineers know that (well-written) unit tests serve many useful purposes, including:

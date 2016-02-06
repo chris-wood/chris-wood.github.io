@@ -1,6 +1,7 @@
 ---
 layout: post
 title: A Discussion of Confidentiality and Privacy in CCN and TCP/IP
+comments: true
 ---
 
 In recent years, confidentiality and privacy have become relatively intertwined in practice.

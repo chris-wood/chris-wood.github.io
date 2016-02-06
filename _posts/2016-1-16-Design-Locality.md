@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Design Locality
+comments: true
 ---
 
 Coupling and cohesion are two properties that drive many software design decisions.

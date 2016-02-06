@@ -2,10 +2,10 @@
 - Pomodoro technique and arduino project (2/3/16)
 - key management
 - Programmatically identifying patterns in software
-- CDN performance
+- CDN performance and what the key factors are
 - Re-encryption
 - Amplification DDoS in IP and CCN blog post
-- BEAD+Accounting and Fastly
+- BEAD+Accounting and Fastly 
 - Trust models and examples
 - Code is Data and Data is Code?
 - Polymorphism in C

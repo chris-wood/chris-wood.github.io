@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Comments on Key Exchange
+comments: true
 ---
 
 I recently sat through a paper presentation that described a key exchange protocol for vehicular
@@ -16,19 +17,17 @@ vehicles with this pre-shared key are able to compute this XOR operation and, th
 This protocol (for two parties) can be sketched as follows (the specific details about how k_g
 are derived are not available at present so I am writing it down as I interpreted it):
 
-~~~
-Alice              Bob
+    Alice              Bob
 
- x1                x2
-         g^x1
-       -------->
-         g^x2
-       <-------
+     x1                x2
+             g^x1
+           -------->
+             g^x2
+           <-------
 
-y = (g^x2)^x1      y = (g^x1)^x2
+    y = (g^x2)^x1      y = (g^x1)^x2
 
-   k_g = H(y) XOR k_p // k_p is the pre-shared key
-~~~
+      k_g = H(y) XOR k_p // k_p is the pre-shared key
 
 The claim was that this deters MitM attacks since an adversary is not expected to
 have the pre-shared key and can therefore not derive the group key (the

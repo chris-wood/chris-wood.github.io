@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Private Object Encryption in Vanilla CCN is an Oxymoron
+comments: true
 ---
 
 TL;DR: Interests are matched to content objects in CCN using exact match. If
@@ -83,6 +84,8 @@ The lookup procedure for each of which is shown below:
 
 ```
 X1 = Transform(K1) => I1 = Process(X1) => V1 = Lookup(I1)
+```
+```
 X2 = Transform(K1) => X2 = Process(X2) => V2 = Lookup(I2)
 ```
 

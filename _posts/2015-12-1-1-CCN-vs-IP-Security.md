@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Is CCN more secure than IP?
+comments: true
 ---
 
 Security is an annoyingly broad term, especially when used to describe a networking architecture.
