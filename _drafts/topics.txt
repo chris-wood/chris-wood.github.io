@@ -1,4 +1,4 @@
-- Why CCN is inadequate
+- Why CCN is inadequate (no POST/PUSH, and caching everything by default)
 - Pomodoro technique and arduino project (2/3/16)
 - key management
 - Programmatically identifying patterns in software
@@ -14,6 +14,7 @@
 - Galois fields (with sage code)
 - Learn another language
 - Private addresses -- can we do better with routing? Can we correlate packets for the same address?
+
 
 - overview, analysis, and comparison of build systems (scons, autotools, cmake)
 - DNS privacy overview, and degrees of privacy

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: CCN is no Silver Bullet
+title: Deficiencies in CCN
 ---
 
 CCN is the equivalent of HTTP GET, but what about the other methods? HEAD, POST, PUT, DELETE, CONNECT, CONNECT, OPTIONS, TRACE
