@@ -264,7 +264,7 @@ You can view the entire code in a Gist [here](https://gist.github.com/chris-wood
 
 # references
 
-[1] [https://en.wikipedia.org/wiki/Liskov_substitution_principle](https://en.wikipedia.org/wiki/Liskov_substitution_principle)
-[2] Gamma, Erich. Design patterns: elements of reusable object-oriented software. Pearson Education India, 1995.
-[3] [http://www.cs.sjsu.edu/~pearce/cs251b/principles/crp.htm](http://www.cs.sjsu.edu/~pearce/cs251b/principles/crp.htm)
-[4] [http://www.learncpp.com/cpp-tutorial/125-the-virtual-table/](http://www.learncpp.com/cpp-tutorial/125-the-virtual-table/)
+- [1] [https://en.wikipedia.org/wiki/Liskov_substitution_principle](https://en.wikipedia.org/wiki/Liskov_substitution_principle)
+- [2] Gamma, Erich. Design patterns: elements of reusable object-oriented software. Pearson Education India, 1995.
+- [3] [http://www.cs.sjsu.edu/~pearce/cs251b/principles/crp.htm](http://www.cs.sjsu.edu/~pearce/cs251b/principles/crp.htm)
+- [4] [http://www.learncpp.com/cpp-tutorial/125-the-virtual-table/](http://www.learncpp.com/cpp-tutorial/125-the-virtual-table/)
