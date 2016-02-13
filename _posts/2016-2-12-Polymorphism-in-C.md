@@ -147,8 +147,14 @@ typedef struct {
     double x;
 } Square;
 
+double
+square_Area(Square *square)
+{
+    return square->x * square->x;
+}
+
 ShapeInterface *SquareAsShape = &(ShapeInterface) {
-    .Area = (double (*)(void *)) = square_Area
+    .Area = (double (*)(void *)) square_Area
 };
 
 Square *
@@ -158,25 +164,25 @@ square_Create(double sideLength)
     square->x = sideLength;
     return square;
 }
-
-double
-square_Area(Square *square)
-{
-    return square->x * square->x;
-}
 ```
 
 And now for a Circle.
 
 ```C
-#incluce <math.h>
+#include <math.h>
 
 typedef struct {
     double radius;
 } Circle;
 
+double
+circle_Area(Circle *circle)
+{
+    return M_PI * (circle->radius * circle->radius);
+}
+
 ShapeInterface *CircleAsShape = &(ShapeInterface) {
-    .Area = (double (*)(void *)) = circle_Area
+    .Area = (double (*)(void *)) circle_Area
 };
 
 Circle *
@@ -185,12 +191,6 @@ circle_Create(double radius)
     Circle *circle = (Circle *) malloc(sizeof(Circle));
     circle->radius = radius;
     return circle;
-}
-
-double
-circle_Area(Circle *circle)
-{
-    return M_PI * (circle->radius * circle->radius);
 }
 ```
 
@@ -202,6 +202,8 @@ Circle and Square instance, "cast" them to general Shape instances,
 and then compute their area through the ```shape_Area``` function.
 
 ```C
+#include <stdio.h>
+
 int
 main(int argc, char **argv)
 {
