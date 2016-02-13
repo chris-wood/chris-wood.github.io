@@ -260,6 +260,8 @@ since we can rely on the compiler to catch function table wiring problems
 for us. However, it is quite cumbersome to define new "subclasses." You have
 to make the decision about whether it's important yourself.
 
+You can view the entire code in a Gist [here](https://gist.github.com/chris-wood/034a619392f8b95138a6).
+
 # references
 
 [1] [https://en.wikipedia.org/wiki/Liskov_substitution_principle](https://en.wikipedia.org/wiki/Liskov_substitution_principle)
