@@ -89,7 +89,7 @@ an array list implementation inherit from a generic list implementation
 
 This leads me to the main topic of this post. Since I spend the majority
 of my time programming in C, which is not an object-oriented language,
-I find myself yearning the great benefits of inheritance. To that end,
+I often find myself yearning for the benefits of inheritance. To that end,
 I will discuss one way of implementing polymorphism in C via C++-like inheritance.
 
 # Polymorphic Shapes
