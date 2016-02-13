@@ -262,7 +262,7 @@ to make the decision about whether it's important yourself.
 
 You can view the entire code in a Gist [here](https://gist.github.com/chris-wood/034a619392f8b95138a6).
 
-# references
+# References
 
 - [1] [https://en.wikipedia.org/wiki/Liskov_substitution_principle](https://en.wikipedia.org/wiki/Liskov_substitution_principle)
 - [2] Gamma, Erich. Design patterns: elements of reusable object-oriented software. Pearson Education India, 1995.
