@@ -237,6 +237,8 @@ Let's assume that we do encrypt the suffixes of a name so that the only
 part that's left in the clear is the minimal routable prefix. Is that enough
 to ensure privacy? 
 
+
+
 TODO: describe the email example... and the question about application namespaces and their privacy implications
 :wq
 
