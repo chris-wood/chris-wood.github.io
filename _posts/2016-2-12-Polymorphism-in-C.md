@@ -131,7 +131,7 @@ shape_Area(Shape *shape)
 }
 ```
 
-Shapes are created with a pointer to the instance and an specific function
+Shapes are created with a pointer to the instance and a specific function
 table (```ShapeInterface```). In the ```shape_Area``` function, we simply
 call the ```Area``` function in the function table and pass in the
 instance provided during construction.
@@ -197,7 +197,7 @@ circle_Area(Circle *circle)
 That's it. We have the pieces necessary to create concrete Shape types
 and then instantiate general Shapes from them. This allows us to pass
 around Circles and Squares wherever Shapes are needed, thereby abiding
-by Liskov's priniciple. The code below shows how we might create a
+by Liskov's principle. The code below shows how we might create a
 Circle and Square instance, "cast" them to general Shape instances,
 and then compute their area through the ```shape_Area``` function.
 
@@ -225,7 +225,7 @@ main(int argc, char **argv)
 
 # Differences from C++
 
-As an object oriented language, C++ also provides polymorphism through
+As an object-oriented language, C++ also provides polymorphism through
 inheritance. And it does so using a similar technique to what I described
 above for shapes. Specifically, it uses what's called a virtual function
 table (vtable) to point to the appropriate implementations of functions [4].
