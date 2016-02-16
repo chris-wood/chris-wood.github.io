@@ -1,3 +1,4 @@
+- ElGamal over (Klonowksi3 7 from breaking URE paper (Forgeries)) composite groups
 - Why CCN is inadequate (no POST/PUSH, and caching everything by default)
 - Pomodoro technique and arduino project (2/3/16)
 - key management
@@ -19,3 +20,26 @@
 - overview, analysis, and comparison of build systems (scons, autotools, cmake)
 - DNS privacy overview, and degrees of privacy
 - DNS Cache poisoning
+
+
+
+I see two big problems with arguments waged by many people in the field. 
+
+1. CCN (ICN in general) can completely re-define the application landscape
+and enable better application development.
+2. Ubiqituous caching (or even caching at the edge) of *every* type of
+content object will serve the user (modulo policies applied based on 
+popularity). 
+
+In this post I'll discuss my grievances with these claims in more detail. 
+
+# Half Way There
+
+In a way, CCN is a simplified variant of the HTTP GET method. Users send 
+requests and receive responses. But in a RESTful world where HTTP is 
+ubiqitious, what do we do to compensate? 
+
+# Caches Rule
+
+poisoning attacks... just cache things asked by hash... everyhitg else
+can (and SHOULD!) be fetched from the source.
