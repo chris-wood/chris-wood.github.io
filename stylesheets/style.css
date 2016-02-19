@@ -24,6 +24,11 @@ img {
   #go-back-home:hover {
     background-image: none; }
 
+.center-image {
+    margin: 0 auto;
+    display: block;
+}
+
 .capitalize {
   text-transform: capitalize; }
 

@@ -50,8 +50,8 @@ baseurl: ""
 #
 # !! You don't need to change any of the configuration flags below !!
 #
-highlighter:      rouge
-permalink:        pretty
+highlighter: rouge
+permalink: pretty
 redcarpet:
   extensions:
     - smart
