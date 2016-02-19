@@ -81,7 +81,7 @@ The URE scheme based on ElGamal from [1] is presented below.
 
 - *Key Generation* $\mathsf{UKG}$: Output $(PK, SK) = (y = g^x, x)$ for $x \in_U Z_q$
 
-- *Encryption* $\mathsf{UE}$: On input message $m$ and public key $y$, and output the ciphertext
+- *Encryption* $\mathsf{UE}$: On input message $m$ and public key $y$, compute and output the ciphertext
 
 $CT = [(\alpha_0, \beta_0), (\alpha_1, \beta_1)] = [(my^{k_0}, g^{k_0}), (y^{k_1}, g^{k_1})]$,
 
