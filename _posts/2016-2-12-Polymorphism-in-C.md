@@ -10,48 +10,7 @@ via composition relies on (1) well-defined and narrow interfaces and (2) other o
 or types *containing* references to things that implement those interfaces. To give
 a modern example, consider the following Go program.
 
-```go
-package main
-
-import "fmt"
-
-type description struct {
-    breedName string
-    color     string
-}
-
-func (d description) toString() string {
-    return fmt.Sprintf("%s %s", d.color, d.breedName)
-}
-
-type animal interface {
-    identify() string // oof.
-}
-
-type cat struct {
-    desc description
-    name string
-}
-type dog struct {
-    desc description
-    name string
-}
-
-func (c cat) identify() string {
-    return fmt.Sprintf("%s -- %s\n", c.name, c.desc.toString())
-}
-
-func (d dog) identify() string {
-    return fmt.Sprintf("%s -- %s\n", d.name, d.desc.toString())
-}
-
-func main() {
-    c := cat{name: "Salem", desc: description{breedName: "Siamese Cat", color: "Blue"}}
-    d := dog{name: "Buddy", desc: description{breedName: "Labrador Retriever", color: "Black"}}
-    fmt.Println(c.identify())
-    fmt.Println(d.identify())
-}
-```
+{% gist e555df7504d94c56f0db %}
 
 We have a generic ```animal``` interface and then two structs that implement
 this interface: ```dog``` and ```cat```. Each animal *has* a description which
@@ -105,31 +64,7 @@ invoking the correct concrete function with the appropriate concrete instance.
 This is done by storing a function table and pointer to the concrete type in
 a Shape instance. This code is shown below.
 
-```C
-typedef struct shape_interface {
-    double (*Area)(void *instance);
-} ShapeInterface;
-
-typedef struct {
-    void *instance;
-    const ShapeInterface *interface;
-} Shape;
-
-Shape *
-shape_Create(void *instance, ShapeInterface *interface)
-{
-    Shape *shape = (Shape *) malloc(sizeof(Shape));
-    shape->instance = instance;
-    shape->interface = interface;
-    return shape;
-}
-
-double
-shape_Area(Shape *shape)
-{
-    return (shape->interface->Area)(shape->instance);
-}
-```
+{% gist 269e651d1f5b0bbf1119 %}
 
 Shapes are created with a pointer to the instance and a specific function
 table (```ShapeInterface```). In the ```shape_Area``` function, we simply
@@ -142,57 +77,11 @@ to implement the ```Area``` function, which takes as input a pointer to
 _something_ and returns a ```double```. The following code shows how we
 might do this for a Square.
 
-```C
-typedef struct {
-    double x;
-} Square;
-
-double
-square_Area(Square *square)
-{
-    return square->x * square->x;
-}
-
-ShapeInterface *SquareAsShape = &(ShapeInterface) {
-    .Area = (double (*)(void *)) square_Area
-};
-
-Square *
-square_Create(double sideLength)
-{
-    Square *square = (Square *) malloc(sizeof(Square));
-    square->x = sideLength;
-    return square;
-}
-```
+{% gist d9537a828448fab851b7 %}
 
 And now for a Circle.
 
-```C
-#include <math.h>
-
-typedef struct {
-    double radius;
-} Circle;
-
-double
-circle_Area(Circle *circle)
-{
-    return M_PI * (circle->radius * circle->radius);
-}
-
-ShapeInterface *CircleAsShape = &(ShapeInterface) {
-    .Area = (double (*)(void *)) circle_Area
-};
-
-Circle *
-circle_Create(double radius)
-{
-    Circle *circle = (Circle *) malloc(sizeof(Circle));
-    circle->radius = radius;
-    return circle;
-}
-```
+{% gist d07a33050f6561772494 %}
 
 That's it. We have the pieces necessary to create concrete Shape types
 and then instantiate general Shapes from them. This allows us to pass
@@ -201,29 +90,7 @@ by Liskov's principle. The code below shows how we might create a
 Circle and Square instance, "cast" them to general Shape instances,
 and then compute their area through the ```shape_Area``` function.
 
-```C
-#include <stdio.h>
-
-int
-main(int argc, char **argv)
-{
-    // Create concrete types.
-    Circle *circle = circle_Create(5.0);
-    Square *square = square_Create(10.0);
-
-    // Wire up the tables.
-    Shape *circleShape = shape_Create(circle, CircleAsShape);
-    Shape *squareShape = shape_Create(square, SquareAsShape);
-
-    // Sanity check.
-    printf("Equal circle areas? %d\n", circle_Area(circle) == shape_Area(circleShape));
-    printf("Equal square areas? %d\n", square_Area(square) == shape_Area(squareShape));
-
-    // ... free up memory
-
-    return 0;
-}
-```
+{% gist 5e2869a6a8e808679da1 %}
 
 # Differences from C++
 
@@ -260,7 +127,9 @@ since we can rely on the compiler to catch function table wiring problems
 for us. However, it is quite cumbersome to define new "subclasses." You have
 to make the decision about whether it's important yourself.
 
-You can view the entire code in a Gist [here](https://gist.github.com/chris-wood/034a619392f8b95138a6).
+You can view an example of this code in the Gist below.
+
+{% gist 034a619392f8b95138a6 %}
 
 # References
 
