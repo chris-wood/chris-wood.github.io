@@ -17,7 +17,7 @@ Generally, a mix node receives messages from many nodes and then shuffles
 and re-encrypts them as needed before transmitting them to their intended recipient (in this case, $S$). The shuffle
 procedure step serves to hide the mapping from the mix node's outputs to its inputs. This helps keep receivers anonymous.
 
-![A mix net with many receivers.](/images/mix net.png){: .center-image }
+![A mix net with many receivers.](/images/mixnet.png){: .center-image }
 
 In the original mix net proposal, many mix nodes existed to transfer messages between senders and receivers. Each mix node in a mix net had a pubic key for message encryption. Senders wrapped messages in layers of concentric encryption to form an onion. Each layer included at least two pieces of information: (1) some encrypted payload or plaintext message and (2) information about where to forward the message after removing a layer of encryption. The sender creates the onion based on the path of mix nodes through which the message traverses. Upon receipt of a message, a mix node removes a layer of encryption (via decryption with its private key) and forwards the inner payload to the destination address at some future time. A mix node may batch messages to prevent timing correlation attacks.
 
