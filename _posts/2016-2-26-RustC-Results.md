@@ -91,6 +91,8 @@ the cascading conditional counterpart. Maybe others will find it useful too.
 
 {% gist cb2dc502d2a17acf5081 %}
 
+You can see them being used in the program below.
 
+{% gist 6e61797888b6b185a151 %}
 
 
