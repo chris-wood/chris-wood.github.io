@@ -64,7 +64,7 @@ cases where multiple return types are needed.
 
 The code below mimics the Rust program above with an "in and out" parameter to store the quotient result.
 
-{% gist c777e8b42ec3b47979bd %}
+{% gist a5709c129cf883664205 %}
 
 The problem with this code is not the function signature itself. Rather, to me,
 the deeper issue is how the function is invoked and its result is consumed. If you examine
