@@ -1,57 +1,77 @@
-Scribble
-========
+# Lagom
 
-A Jekyll theme. [Want a demo? click and read instruction. :point_left:](http://scribble.muan.co/2013/05/06/scribble-the-jekyll-theme/)
-<br />
-[More themes](https://github.com/muan/muan.github.com/releases).
+> #### *Lagom* is a Swedish word with no direct English equivalent, meaning "just the right amount"
 
-![screenshot](https://cloud.githubusercontent.com/assets/1153134/11014801/12c7940a-853e-11e5-9f7b-87325c9bc695.png)
+Lagom, a [Jekyll][j] blog theme with just the right amount of style. 
 
-There is no clever design philosophy to talk about, I tried to find something to work with, and 'scribble' came to my mind.
+Extracted lovingly from [http://mdswanson.com][mds] for your enjoyment!
 
-This theme uses Open Sans powered by Google Web Fonts, and was written in plain HTML, SCSS & CoffeeScript, though .scss & .coffee files wouldn't be included in the theme.
 
-The theme is mobile optimized but I did not check browser compatibility. It looks great in Chrome, Safari and Firefox though.
 
----
+* Responsive, based on [Skeleton][skeleton]
+* [Font Awesome][font-awesome] for icons
+* Open Sans from [Google web fonts][gfonts]
+* Built-in Atom feed
 
-### Get started
+[![Live Demo](https://img.shields.io/badge/view-live--demo-blue.svg?style=flat-square)](http://lagom.mdswanson.com/)
 
-1. [Fork the repository](https://github.com/muan/scribble/fork).
-2. Clone the repository to your computer.<br /> `git clone https://github.com/username/scribble`
-3. `bundle install`
-4. **Using older versions of Jekyll**<br />
-  Build and run Jekyll using `jekyll --server --auto`.<br />
-  **Using [Jekyll 1.0](http://blog.parkermoore.de/2013/05/06/jekyll-1-dot-0-released/)**<br />
-  Build Jekyll using `jekyll build`.<br />
-  Then run Jekyll using `jekyll serve --watch`, go to http://localhost:4000 for your site.
+## Action Shots
+![](http://i.imgur.com/Pmzk4j1.png)
+![](http://i.imgur.com/CT2Xvug.png)
+![](http://i.imgur.com/XisjqW1.jpg)
 
----
+## Installation
 
-### Make it yours
+- [Fork this repository][fork]
+- Clone it: `git clone https://github.com/YOUR-USER/lagom`
+- Install the [GitHub Pages gem][pages] (includes Jekyll): `bundle install`
+- Run the jekyll server: `jekyll serve`
 
-1. I have extracted most user specific information to `_config.yml`, you should be able to set up almost everything from it.
-2. Change about.md for blog intro.
-3. For domain settings, see [the guide from GitHub](https://help.github.com/articles/setting-up-a-custom-domain-with-pages).
+You should have a server up and running locally at <http://localhost:4000>.
 
----
+## Customization
 
-### Options
+Next you'll want to change a few things. Most of them can be changed directly in
+[theme.yml][config]. That's where you can add your social links, change the accent
+color, stuff like that.
 
-When writing a post, there are 3 options you can add to the header.
+There's a few other places that you'll want to change, too:
 
-1. **disqus: y**<br />
-  If disqus is set to 'y', at the end of the post there will be a disqus thread, just like this one. To use disqus, you MUST [set up your own disqus account](http://disqus.com/).
+- [CNAME][cname]: If you're using this on GitHub Pages with a custom domain name, 
+  you'll want to change this to be the domain you're going to use. All that should 
+  be in here is a domain name on the first line and nothing else (like: `example.com`).
+- [favicon.png][favicon]: This is the icon in your browser's address bar. You should 
+  change it to whatever you'd like.
+- [logo.png][logo]: A square-ish image that appears in the upper-left corner
 
-2. **share: y**<br />
-  An option for showing tweet and like button under a post.
+## Deployment
 
-3. **date**: 2013-05-06 18:07:17<br />
-  Date is not a required header since Jekyll reads the file name for date, this was added in only for the **signoff time**. (as shown at the end of this post) If you don't want the signoff time, go into `/includes/signoff.html` remove the `<span>`, and remove `{% include signoff.html %}` from `/layouts/post.html`.
+You should deploy with [GitHub Pages][pages] - it's just easier.
 
----
+All you should have to do is rename your repository on GitHub to be
+`username.github.io`. Since everything is on the `gh-pages` branch, you
+should be able to see your new site at <http://username.github.io>.
 
-### The end
+## Licensing
 
-Like it? [Tell me](http://twitter.com/muanchiou).<br/>
-Question? [Use GitHub Issues](https://github.com/muan/scribble/issues).
+[MIT](https://github.com/swanson/lagom/blob/master/LICENSE) with no
+added caveats, so feel free to use this on your site without linking back to
+me or using a disclaimer or anything silly like that.
+
+## Contact
+I'd love to hear from you at [@_swanson][twitter]. Feel free to open issues if you
+run into trouble or have suggestions. Pull Requests always welcome.
+
+[j]: http://jekyllrb.com/
+[mds]: http://mdswanson.com
+[skeleton]: http://www.getskeleton.com/
+[font-awesome]: http://fortawesome.github.io/Font-Awesome/
+[gfonts]: http://www.google.com/fonts/specimen/Open+Sans
+[fork]: https://github.com/swanson/lagom/fork
+[config]: https://github.com/swanson/lagom/blob/master/_data/theme.yml
+[cname]: https://github.com/swanson/lagom/blob/master/CNAME
+[favicon]: https://github.com/swanson/lagom/blob/master/favicon.png
+[logo]: https://github.com/swanson/lagom/blob/master/logo.png
+[pages]: http://pages.github.com
+[twitter]: https://twitter.com/_swanson
+[pages]: https://github.com/github/pages-gem

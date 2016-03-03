@@ -1,34 +1,40 @@
-<html>
-  <head>
-    <meta content='{{ page.title }} - {{ site.title }}' property='og:title' />
-    <title>{{ page.title }} - {{ site.title }}</title>
-    {% include head.html %}
-  </head>
-  <body>
-    {% include header.html %}
-    <div id='container'>
-      {% include links.html %}
-      {% include pages.html %}
-      <div class="content">
-        <section class='post'>
-          <h1 class="upcase">
-            <div class='date'>{{ page.date | date_to_string }}</div>
-            {{ page.title }}
-          </h1>
-          {{ content }}
-        </section>
-      </div>
-      
-      {% include signoff.html %}
+---
+layout: default
+---
 
-      {% if page.share == 'y' %}
-        {% include share.html %}
-      {% endif %}
+<p class="meta">
+  {{ page.date | date: "%B %d, %Y" }}
+  <a href="/">
+    <i class="home fa fa-home"></i>
+  </a>
+</p>
 
-      {% if page.comments == true %}
-        {% include disqus.html %}
-      {% endif %}
-    </div>
-    {% include footer.html %}
-  </body>
-</html>
+<h1 class="title">{{ page.title }}</h1>
+
+<div id="post">
+  {{ content }}
+</div>
+
+<div id="related">
+  <h3>Recent Posts</h3>
+  <ul class="posts">
+    {% for post in site.related_posts limit:3 %}
+    <li>
+      <span>{{ post.date | date_to_string }} &raquo;</span> <a href="{{ post.url }}">{{ post.title }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<div class="block">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = "{{ site.disqus_shortname }}";
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
