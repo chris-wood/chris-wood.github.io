@@ -13,10 +13,6 @@ description: Ph.D. Student and Software Engineer
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: images/headshot.jpeg
 
-#
-# Flags below are optional
-#
-
 # Includes an icon in the footer for each username you enter
 footer-links:
   dribbble:
@@ -59,6 +55,8 @@ permalink: /:title/
 
 # The release of Jekyll Now that you're using
 version: v1.0.0
+
+include: ['_digests']
 
 # Use the following plug-ins
 gems:

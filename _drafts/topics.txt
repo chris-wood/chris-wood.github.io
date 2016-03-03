@@ -1,15 +1,18 @@
+- statistical distance computations and their importance in cryptography
+- simple RSA accumulator
+- single-user vs multi-user security
+- hardness of different crypto problems (DL vs CDH vs DDH)
+- data-centric application design (move computations instead of code)
 - ElGamal over (Klonowksi3 7 from breaking URE paper (Forgeries)) composite groups
 - Why CCN is inadequate (no POST/PUSH, and caching everything by default)
 - Pomodoro technique and arduino project (2/3/16)
 - key management
 - Programmatically identifying patterns in software
 - CDN performance and what the key factors are
-- Re-encryption
 - Amplification DDoS in IP and CCN blog post
 - BEAD+Accounting and Fastly 
 - Trust models and examples
 - Code is Data and Data is Code?
-- Polymorphism in C
 - Handling debates internally through proper process (Some Process Pays)
 - Composite fields (from galois fields)
 - Galois fields (with sage code)
