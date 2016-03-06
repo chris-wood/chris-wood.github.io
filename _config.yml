@@ -1,5 +1,5 @@
 # General Jekyll Config
-highlighter: pygments
+highlighter: rouge
 url: ""
 lsi: false
 disqus_shortname: httpchriswoodgithubio
