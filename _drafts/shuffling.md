@@ -54,13 +54,29 @@ some running code. But first, we need to do some review.
 # A Review of Paillier
 
 The Paillier encryption system is a tuple of algorithms $(\mathsf{G}, \mathsf{E}, \mathsf{G})$ for 
-key generation, encryption, and decryption defined as follows.
+key generation, encryption, and decryption defined as follows (adapted from [1]).
+
+TODO: change this based on my notebook
+- Key generation: On input $1^{\kappa}, choose two random safe primes $p = 2p' + 1$ and $q = 2q' + 1$,
+where $p'$ and $q'$ are also prime $n = pq$ is a $\kappa$-bit integer. Output the public key
+$pk = n$ and secret key $sk = p$. 
+- Encryption: On input $pk$ an $m \in \mathbb{Z}_n$, randomly select $r \in \mathbb{Z}_n^*$ and compute
+$c = (n + 1)^mr^n \mod n^2$. 
+- Decryption: On input $sk$ and $c$, given $e \cong 1 \mod n$ and $e \cong 0 \mod \phi(n)$, output
+$p = (c^e - 1) / n$. 
+
+To show correctnessm, assume we encrypted a message $m$ with the
+public key $pk$ and retrieved the ciphertext $c$. We would expect for the output of the decryption
+algorithm given $c$ and the secret key $sk$ to yield $p$ where $p = m$. Let's walk through
+the decryption computation.
+
+$$
+\begin{align}
+    // TODO
+\end{align}
+$$
 
 TODO: finish spec and then show the code
-
-- Key generation: 
-- Encryption: 
-- Decryption: 
 
 # Generalizing Paillier
 
