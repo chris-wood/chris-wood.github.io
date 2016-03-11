@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Suppress Speculative Design
---
+---
 
 When you have time to kill, speculative design is a fun topic to get into with a
 group of software engineers. Everyone is free to pitch their wildest ideas about
