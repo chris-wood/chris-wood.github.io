@@ -5,10 +5,10 @@ title: A Python DSL for CCN
 
 Most CCN applications I've seen or written so far go something like this:
 
-1. Producers listen for interests with a particular prefix. Upon receipt
-of such an interest, some callback function is invoked to generate or obtain
-the data. The data is then put in the payload of a content object and sent
-back to the network.
+1. Producers listen for interests with a particular prefix. They invoke
+some callback function which generates or obtains the data when they receive
+an interest with that particular prefix. The data is then put in the payload
+of a content object and sent back to the network.
 2. Consumers issue interests to the network for specific prefixes to get
 data. Most of these calls are blocking.
 
@@ -23,7 +23,7 @@ outline some basic examples of the framework to build a simple file server.
 Producers in CCN applications can be differentiated by how they respond to
 interests with a specific name. The rest of the mechanics -- listening for
 incoming interests, extracting the name and payload information to act on it,
-and invoking a particular callback -- is relatively common among many applications.
+and invoking a particular callback -- are common among many applications.
 Consider the following code snippet taken from the PARC standard file transfer
 application written in C.
 
@@ -44,26 +44,26 @@ method is a decorator that takes a string and some other options. The string is 
 interest name prefix. This decorator has the effect of registering the decorated
 function as a callback whenever an interest with the specified prefix arrives at
 the producer. The ```run``` function implements the infinite loop to listen for
-interests and invoke the specified callback. The output of the callback is used as
-the payload in the content object response. Pretty simple.
+interests and invoke the specified callback. The payload of the content object
+response is then set to the output of the callback. Pretty simple.
 
 # Consumer Framework
 
 The goal of the consumer part of the protoccn framework is to allow application
-developers easily configure functions or methods that can trigger interests
+developers to configure functions or methods that can trigger interests
 and return their responses. It provides two ways of doing this:
 
-1. A consumer can register a custom function or method which maps directly to an
+1. A consumer can register a custom function or method which maps to an
 interest request. For example, an application can create a method called
 ```get_data``` that, when invoked, issues an interest for, say, "ccnx:/random/data,"
 and returns the response.
 
 2. A consumer can create a function "sink" that points to a data location
 and serves to generate the payload of the interests sent to that location. For
-example, a method called ```send_data``` could be defined to accept a string
-parameter. This method can be decorated with a sink that refers to the location
-to where the data should be sent. Upon invoking the ```send_data``` method, the
-string parameter will be inserted into the interest payload and then sent in
+example, one could define a method called ```send_data``` to accept a string
+parameter. A sink can that refers to the location to where the data is sent
+can decorate this method. Upon invoking the ```send_data``` method, the
+string parameter is inserted into the interest payload and then sent in
 an interest carrying the locator name.
 
 The following gist summarizes the main parts of this simple consumer framework.
@@ -77,14 +77,14 @@ it's now time to build the simple file server. It will work as follows:
 
 - Consumers will download files by issuing interests for them. The interest name will
 contain some routable prefix that identifies the server, a string command to indicate
-what should be done with the request, and the remainder suffix will carry the parameter
-of said command, e.g., the file to download. We will only support two commands:
+what should be done with the request, and the remainder of the suffix carries the
+parameter of said command, e.g., the file to download. We will only support two commands:
 ```list``` and ```fetch```.
 
 - Producers will listen for interests and respond to them with the respective content.
 A list request will generate a recursive listing of the directory rooted at the
 server's "mount point." A fetch request will generate the content of the indicated file.
-In both cases, the result is returned to the consumer in the payload of a content
+In both cases, the producer returns the result to the consumer in the payload of a content
 object.
 
 Let's start with the ```Producer``` code.
@@ -99,19 +99,22 @@ server directory as a list.
 
 The consumer code is almost just as simple. It's shown below.
 
-{% gist 3b20bcd42b02c1bad938 %}
+{% gist f8c7c93fa48b63b7b3ff %}
 
 Consider the nature of the ```list``` and ```fetch``` commands. The ```list``` command
 doesn't take any parameters, so we it's registered as a method in the application
 using the ```register``` function. Conversely, the ```fetch``` command does require
-an argument. Specifically, as mentioned above, it inserts the name of the file to
+an argument. As mentioned above, it inserts the name of the file to
 fetch as the suffix of the interest name. Therefore, we use the ```install_sink```
 decorator to create a function that, when invoked with a file name, appends
 that file name to the suffix of the locator.
 
-A sample run of the consumer is shown below.
+A sample run of the consumer is below.
 
-{% gist f8c7c93fa48b63b7b3ff %}
+{% gist c0f3395ab9f35ba67713 %}
+
+The ```list``` command shows that there are four files to be downloaded. The
+```fetch``` command then retrieves and prints the file contents to stdout.
 
 And that's it. I'll try to write more applications using this framework. But
 even if I don't, it was still fun to put together and play with the API.
