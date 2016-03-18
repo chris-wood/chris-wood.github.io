@@ -1,6 +1,6 @@
 ---
 layout: post
-title: A Python DSL for CCN
+title: Protoccn -- A Python Framework for CCN Applications
 ---
 
 Most CCN applications I've seen or written so far go something like this:
