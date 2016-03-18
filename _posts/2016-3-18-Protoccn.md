@@ -14,7 +14,7 @@ data. Most of these calls are blocking.
 
 This is a fairly common pattern so I decided to write a little framework
 to help hide the mundane details that go into structuring these applications.
-The result -- [protoccn](https://github.com/chris-wood/protoccn) -- is a Flask-like
+The result -- [protoccn](https://github.com/chris-wood/protoccn) -- is a Flask-like [1]
 framework for creating producer and consumer CCN applications. In this post I'll
 outline some basic examples of the framework to build a simple file server.
 
