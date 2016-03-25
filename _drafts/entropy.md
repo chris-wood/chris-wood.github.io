@@ -3,9 +3,9 @@ layout: post
 title: How Random are URIs?
 ---
 
-The web is an interesting place. It's full of systems, devices, applications, resources, 
-and other miscellaneaous entities that play some part in its operation or use it on
-a regular basis. URIs are the identifiers or names we assign to these entities to give 
+The web is an interesting place. It's full of systems, devices, applications, resources,
+and other miscellaneous entities that play some part in its operation or use it on
+a regular basis. URIs are the identifiers or names we assign to these entities to give
 them meaning and enable interoperability. Sometimes these names are fairly deterministic
 and predictable, e.g., the URI one might request to get my latest public events on Github
 would be:
@@ -54,7 +54,7 @@ and joint entropy of an arbitrary number of random variables.
 
 # Posing URI Randomness
 
-Consider the following simplified URI: 
+Consider the following simplified URI:
 
 ~~~
 www.github.com/chris-wood/
@@ -66,14 +66,14 @@ Let's rewrite this as follows:
 /com/google/chris-wood
 ~~~
 
-Now let me pose the following question. What if we considered this URI as an array of 
-individual components (i.e., one separated by the '/' character)? Given a list of N 
+Now let me pose the following question. What if we considered this URI as an array of
+individual components (i.e., one separated by the '/' character)? Given a list of N
 URIs of length M, we can treat this as a matrix of N rows and M columns. Each entry
-of which is a component of a URI. 
+of which is a component of a URI.
 
 Let's now ask the following questions:
 
-1. What is the amount of randomness in each component of these URIs? 
+1. What is the amount of randomness in each component of these URIs?
 2. How much information about the i-th component is leaked by the previous
 (i - 1) components?
 
@@ -86,7 +86,7 @@ section, I will describe how I solved this problem.
 
 The last step we need to complete in our query for URI randomness is
 to actually compute the entropy of a set given a list of samples. Given
-the definition presented earlier, this is a fairly straightforward task. 
+the definition presented earlier, this is a fairly straightforward task.
 We just need to do the following:
 
 1. Compute the PMF of the set by counting the number of occurrences of each
@@ -97,40 +97,33 @@ Simple enough. The code to do this is below.
 
 {% gist 82c5f788d697fa92c308 %}
 
-Although correct, this code runs pretty slow a large input. Its exact 
-complexity is TODO. But without a different algorithm, we can't do much 
-better. So let's try to parallelize what we can. This is nothign more
-than a simple map-reduce problem in disguise. We can compute the PMF
-of the set by splitting diviing the input elements to multiple workers,
-generating a partial count map, and then reducing the results by combining
-the dictionaries. We can do the same thing when using this PMF to compute
-the final entropy. Specifically, for P partitions, we compute the following:
+Although correct, this code runs pretty slow a large input. Its exact
+complexity is linear in the size of the sample space. We could improve this code
+by parallelizing the PMF or entropy computation steps above. However, since
+our goal is to compute the entropy for each URI component, it's probably better
+to parallelize at a higher level. Specifically, instead of computing the entropy
+based on the 1st component, and then the 1st and 2nd components, and so on, we
+can compute the entropy of all combinations in parallel. The code to do this
+is below. Notice that the only change is to use a ```ProcessPoolExecutor```
+to walk over the range of columns.
 
-$$
-\begin{align}
-\sum_{ji0}^P \sum_{x \in X_i} P(X = x)\log(P(X = x))
-\end{align}
-$$
-
-The following code snippet puts these two pieces together. 
-
-{% gist 82c5f788d697fa92c308 %}
+{% gist babf54632a13ed04301d %}
 
 # Performance Comparison
 
 Did we actually do any better by computing the entropy in parallel? Let's run
 some tests to find out. I downloaded the set of Cisco-generated URIs from
-[icn-names.net](icn-names.net) and took a large enough sample to make for a 
-visible comparison. I then parsed list of URIs to create the matrix of components. 
-Finally, I ran this matrix through the entropy calculation for *each* column 
-(component). The results are shown in the table below.
-
-| Component | Sequential Entropy | Parallel Entropy |
-| X | Y | Z |
-
-TODO: do some analysis
+[icn-names.net/](http://www.icn-names.net/) and took a large enough sample to make for a
+visible comparison. I then parsed list of URIs to create the matrix of components.
+Finally, I ran this matrix through the entropy calculation for *each* column
+(component). I used the sequential and parallel versions of the program included
+above. For a file containing 1,000,000 URIs, the sequential version took approximately
+13.4s whereas the parallel version took 4.2s. So, yes, we did better.
 
 # Randomness Results
 
-TODO
+Let's finish my actually answering the question. How much better did we do?
+The plot below shows the actual data. For this data set containing ~1.5GB of plaintext
+URIs, the entropy hovers in [9,14]. So, put simply: URI names are not that random.
 
+![URI entropy randomness results.](/images/posts/entropy.png)
