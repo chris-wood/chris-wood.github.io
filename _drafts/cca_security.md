@@ -3,6 +3,8 @@ layout: post
 title: Clarifying Encryption Security
 ---
 
+
+
 # What is Secure Encryption?
 - what does it mean for an encryption scheme to be secure?
 - the ciphertext should reveal nothing about the plaintext -> notion of indistinguishability

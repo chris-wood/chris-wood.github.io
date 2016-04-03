@@ -1,3 +1,5 @@
+- sieve of atkins and erastothenes
+- grove's algorithm
 - long-term encryption of genomic data
 - statistical distance computations and their importance in cryptography
 - simple RSA accumulator
