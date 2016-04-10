@@ -1,3 +1,8 @@
+- Stars and bars (for the number of names)
+- J-PAKE Python code and discussion
+- ITPIR protocol Python code
+- Stephen's ICN paradox
+- MQV key exchange (Python)
 - sieve of atkins and erastothenes
 - grove's algorithm
 - long-term encryption of genomic data
