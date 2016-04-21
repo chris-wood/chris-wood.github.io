@@ -96,3 +96,7 @@ when you consider that names are really capped at just under 64KB in length.
 I think it's safe to say that we won't suffer from namespace saturation any time soon.
 
 {% gist 26216ecc97bc624b08bded6d31db4253 %}
+
+# References
+
+- [1] https://en.wikipedia.org/wiki/Stars_and_bars_(combinatorics)
