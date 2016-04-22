@@ -1,10 +1,12 @@
+- Asynchronous vs synchronous I/O APIs
+- Comparing common security APIs (for encryption and hashing)
 - Stars and bars (for the number of names)
-- J-PAKE Python code and discussion
+- J-PAKE Python code and discussion (PAKE requirements, PAKE usage scenarios, etc)
 - ITPIR protocol Python code
 - Stephen's ICN paradox
 - MQV key exchange (Python)
 - sieve of atkins and erastothenes
-- grove's algorithm
+- grover's algorithm and symmetric key cryptography implications
 - long-term encryption of genomic data
 - statistical distance computations and their importance in cryptography
 - simple RSA accumulator
