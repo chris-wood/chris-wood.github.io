@@ -1,6 +1,5 @@
 - Asynchronous vs synchronous I/O APIs
 - Comparing common security APIs (for encryption and hashing)
-- Stars and bars (for the number of names)
 - J-PAKE Python code and discussion (PAKE requirements, PAKE usage scenarios, etc)
 - ITPIR protocol Python code
 - Stephen's ICN paradox

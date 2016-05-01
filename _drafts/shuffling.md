@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Shuffle Up and Deal
+title: Shuffle Up and Deal -- Part 1
 ---
 
 Consider the problem where we have $l$ parties with messages $m_i$ who wish to generate
@@ -19,9 +19,9 @@ having to observe the message plaintexts or know about the recipient of each mes
 In fact, this is not farfetched at all. Adida et al. [1] show that any homomorphic 
 encryption scheme can be used to build an inefficient decryption and re-encryption shuffling 
 schemes by obfuscation. They also show how to construct efficient shuffling schemes based on
-the BGN and Paillier encryption schemes. In this post, I'll review the fundamental idea behind
-their shuffle algorithm and then describe an implementation of their re-encryption shuffle
-algorithm based on a generalized Paillier encryption scheme.
+the BGN and Paillier encryption schemes. In this post, I'll review outline fundamental idea 
+behind their shuffle algorithm and then describe an implementation of their re-encryption 
+shuffle algorithm based on a generalized Paillier encryption scheme.
 
 # Permutations with Homomorphic Encryption
 
