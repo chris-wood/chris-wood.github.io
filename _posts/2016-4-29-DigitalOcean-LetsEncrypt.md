@@ -9,4 +9,4 @@ Altogether, the process was pretty simple. Toying with the nginx configuration s
 and permissions was probably the most difficult part. I don't have much more to say 
 than that. 
 
-![Here's some proof. Check it out for yourself if you're interested.](/images/letsencrypt_proof.png)
+![Here's some proof. Check it out for yourself if you're interested.](/images/letsencrypt_proof.png =400x200)
