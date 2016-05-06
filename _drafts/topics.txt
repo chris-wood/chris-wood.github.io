@@ -1,3 +1,4 @@
+- When to update the block cipher inputs? (nonce/IV and key)
 - Review of Golang crypto subtle packet (constant time operations)
 - Karatsuba algorithm for AES-GCM
 - Block ciphers and random access
