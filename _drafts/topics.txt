@@ -1,3 +1,7 @@
+- Review of Golang crypto subtle packet (constant time operations)
+- Karatsuba algorithm for AES-GCM
+- Block ciphers and random access
+- SecureRandom implementation in C (reference the Golang implementation)
 - Asynchronous vs synchronous I/O APIs
 - Comparing common security APIs (for encryption and hashing)
 - J-PAKE Python code and discussion (PAKE requirements, PAKE usage scenarios, etc)
