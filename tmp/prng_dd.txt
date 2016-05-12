@@ -1,0 +1,4 @@
+% dd if=/dev/urandom of=/dev/null obs=1 count=1                                                                     !10189
+1+0 records in
+512+0 records out
+512 bytes transferred in 0.000205 secs (2499981 bytes/sec)
