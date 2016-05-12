@@ -83,24 +83,45 @@ going to do.
 
 # A Simple PRNG
 
-TODO: show our code
-TODO: profile the code to show the time required to sample large amounts of data (time as a function of bit length), and then do the same for dd from /dev/urandom (and compare the overhead)
-TODO: compare the time with many small random calls vs big random calls
+I wanted to keep the PRNG as simple and straight-forward to use as possibe. To that
+end, its API consists of four core functions: two constructors (one without and one
+with a seed), a function to return a random 32-bit integer, and a function to fill
+a pre-allocated buffer with random bytes. I didn't add a function to re-seed the 
+PRNG because, as discussed above, that's not necessary if we rely on /dev/urandom. 
+The implementation of these functions is as you might expect. The default constructor 
+opens a handle to the /dev/urandom device. The seed variant goes further and 
+subsequently writes the seed to /dev/urandom before returning the PRNG. The actual
+randomness extraction functions are trivial to use:
+
+~~~
+PARCSecureRandom *rng = parcSecureRandom_Create();
+uint32_t randomWord = parcSecureRandom_Next(rng);
+
+...
+
+PARCBuffer *buffer = parcBuffer_Allocate(32); // 256 bits
+ssize_t numBytes = parcSecureRandom_NextBytes(rng, buffer);
+// numBytes == 32
+~~~
+
+The actual implementation [is available here](https://github.com/PARC/Libparc/blob/master/parc/security/parc_SecureRandom.c). (I may re-name the `parcSecureRandom_Next` function
+to something that indicates the return type. I now recognize that this isn't
+the best name.) Some quick profiling shows that it has satisfactory performance. 
+On my laptop with a 2.8 GHz Intel Core i7 chip, it cranks out 32-bit integers at 
+an average speed of 718ns, The following plot also shows the average time to
+extract bytes into a buffer. There's a lot of variation, but you can see the
+increasing trend. On average, the time hovers in the range of 3000ns and 8000ns. 
+
+![`parcSecureRandom_NextBytes` profile results.](/images/prng.jp)
 
 
-
-
+<!-- 
 https://blog.cloudflare.com/ensuring-randomness-with-linuxs-random-number-generator/
 http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/drivers/char/random.c#n946
 http://www.mail-archive.com/cryptography@randombit.net/msg04763.html
 http://www.2uo.de/myths-about-urandom/
 http://sockpuppet.org/blog/2014/02/25/safely-generate-random-numbers/
-
-
-
-
-5. describe how the code works and then show it.
-
+-->
 
 # References
 
