@@ -1,5 +1,7 @@
+- Random Rational Numbers in Different Radii (normal numbers and the probability that each digit occurs equally in the representation)
+- Blocking vs unblocking entropy?
 - When to update the block cipher inputs? (nonce/IV and key)
-- Review of Golang crypto subtle packet (constant time operations)
+- Review of Golang crypto subtle packet (constant time operations) and C code equivalents (show code and LLVM IR)
 - Karatsuba algorithm for AES-GCM
 - Block ciphers and random access
 - SecureRandom implementation in C (reference the Golang implementation)
@@ -9,7 +11,7 @@
 - ITPIR protocol Python code
 - Stephen's ICN paradox
 - MQV key exchange (Python)
-- sieve of atkins and erastothenes
+- sieve of erastothenes and atkins
 - grover's algorithm and symmetric key cryptography implications
 - long-term encryption of genomic data
 - statistical distance computations and their importance in cryptography
