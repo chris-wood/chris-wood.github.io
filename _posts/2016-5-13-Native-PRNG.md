@@ -29,7 +29,7 @@ that runs in polynomial time which is able to determine tell the PRNG output
 apart from true randomness with probability non-negligibly better than 1/2.
 See [1] for more information about this notion.)
 
-In practice, creating randomess of this quality is hard. It requires randomness with
+In practice, creating randomness of this quality is hard. It requires randomness with
 a high amount of entropy. All modern operating systems that I'm aware of gather this
 entropy from things that go in within and beneath the kernel, such as device I/O
 and jitter. Some libraries like OpenSSL operate as userspace PRNGs. This is
@@ -48,11 +48,12 @@ don't share entropy space and has a better source of entropy from which to accum
 random bits. If you're bored, just take a look at
 [the Linux source code](http://lxr.free-electrons.com/source/drivers/char/random.c)
 to see all the different sources of entropy for the pool. It processes inputs
-from timers, interrupts, and disk I/O, among other things. This code maintains a pool
-of entropy. Bits can be added and extracted from this pool. Adding to the pool
-(via the sources above) increases the amount of entropy. Likewise, sampling from this
-pool decreases the amount of entropy. This has (used to have) important implications
-on how the randomness is used, as we'll discuss in the following sections.
+from timers, interrupts, human input, and disk I/O, among other things. This code maintains a pool
+of entropy. Bits can be added to this pool and are then extracted and run through
+a NIST-compliant deterministic PRNG [7]. Adding to the pool (via the sources above) increases the
+amount of entropy. Likewise, sampling from this pool decreases the amount of
+entropy. This has (well, used to have) important implications on how the
+randomness is used, as we'll discuss in the following sections.
 
 It's also worth mentioning that recent Intel chips have a new RDSEED instruction
 that is able to provide "seed-grade entropy" [4]. The [Linux random code](http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/drivers/char/random.c#n937)
@@ -66,10 +67,13 @@ it won't hurt adding to the a pool with other random sources.
 On *nix systems, this randomness is exposed via the /dev/random
 and /dev/urandom character devices. As a matter of technicality, both /dev/random
 and /dev/urandom use the exact same PRNG internally. On Linux, the /dev/random
-device can block if there's insufficient entropy [6 CITE], which is an issue for
+device can block if there's insufficient entropy [6], which is an issue for
 application stability and predictability. Conversely, the /dev/urandom device on
 other modern platforms (FreeBSD and OS X, for example) provides the same randomness
-as its counterpart by does so without blocking.
+as its counterpart by does so without blocking. As an interesting implementation
+note, /dev/urandom is actually seeded with the PRNG used by /dev/random and then
+stretched whenever it's called. This device is re-seeded frequently, e.g., every
+ten minutes.
 
 Due to misleading documentation and false rumors, there has been confusion about
 which of these two devices to use when generating entropy. Today, the definite
@@ -83,7 +87,7 @@ going to do.
 
 # A Simple PRNG
 
-I wanted to keep the PRNG as simple and straight-forward to use as possibe. To that
+I wanted to keep the PRNG as simple and straight-forward to use as possible. To that
 end, its API consists of four core functions: two constructors (one without and one
 with a seed), a function to return a random 32-bit integer, and a function to fill
 a pre-allocated buffer with random bytes. I didn't add a function to re-seed the
@@ -122,3 +126,4 @@ increasing trend. On average, the time hovers in the range of 3000ns and 8000ns.
 - [4] https://software.intel.com/en-us/blogs/2012/11/17/the-difference-between-rdrand-and-rdseed
 - [5] http://csrc.nist.gov/publications/nistpubs/800-90A/SP800-90A.pdf
 - [6] http://www.2uo.de/myths-about-urandom/
+- [7] https://lwn.net/Articles/685371/
