@@ -1,10 +1,12 @@
+- safe prime generation library for python
+- salted hash comparison, DL/CDH/DDH security, and how it’s not DDH secure, with the Sage code to prove it
+- ChaCha20 stream cipher and Ted's RNG patch for linux (https://lwn.net/Articles/685737/)
 - Random Rational Numbers in Different Radii (normal numbers and the probability that each digit occurs equally in the representation)
 - Blocking vs unblocking entropy?
 - When to update the block cipher inputs? (nonce/IV and key)
 - Review of Golang crypto subtle packet (constant time operations) and C code equivalents (show code and LLVM IR)
 - Karatsuba algorithm for AES-GCM
 - Block ciphers and random access
-- SecureRandom implementation in C (reference the Golang implementation)
 - Asynchronous vs synchronous I/O APIs
 - Comparing common security APIs (for encryption and hashing)
 - J-PAKE Python code and discussion (PAKE requirements, PAKE usage scenarios, etc)
@@ -17,7 +19,6 @@
 - statistical distance computations and their importance in cryptography
 - simple RSA accumulator
 - single-user vs multi-user security
-- hardness of different crypto problems (DL vs CDH vs DDH)
 - data-centric application design (move computations instead of code)
 - ElGamal over (Klonowksi3 7 from breaking URE paper (Forgeries)) composite groups
 - Why CCN is inadequate (no POST/PUSH, and caching everything by default)
