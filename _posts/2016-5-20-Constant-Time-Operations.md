@@ -136,8 +136,8 @@ the read.
 
 # References
 
-[1] [https://en.wikipedia.org/wiki/Software_bug](https://en.wikipedia.org/wiki/Software_bug)
-[2] Kocher, Paul C. et al, "Introduction to Differential Power Analysis and Related Attacks." ([http://web.mit.edu/6.857/OldStuff/Fall03/ref/kocher-DPATechInfo.pdf](http://web.mit.edu/6.857/OldStuff/Fall03/ref/kocher-DPATechInfo.pdf))
-[3] Kocher, Paul C. "Timing attacks on implementations of Diffie-Hellman, RSA, DSS, and other systems." Advances in Cryptology—CRYPTO’96. Springer Berlin Heidelberg, 1996.
-[4] Bernstein, Daniel J. "Cache-timing attacks on AES." 2005.
-[5] [https://golang.org/pkg/crypto/subtle/](https://golang.org/pkg/crypto/subtle/)
+- [1] [https://en.wikipedia.org/wiki/Software_bug](https://en.wikipedia.org/wiki/Software_bug)
+- [2] Kocher, Paul C. et al, "Introduction to Differential Power Analysis and Related Attacks." ([http://web.mit.edu/6.857/OldStuff/Fall03/ref/kocher-DPATechInfo.pdf](http://web.mit.edu/6.857/OldStuff/Fall03/ref/kocher-DPATechInfo.pdf))
+- [3] Kocher, Paul C. "Timing attacks on implementations of Diffie-Hellman, RSA, DSS, and other systems." Advances in Cryptology—CRYPTO’96. Springer Berlin Heidelberg, 1996.
+- [4] Bernstein, Daniel J. "Cache-timing attacks on AES." 2005.
+- [5] [https://golang.org/pkg/crypto/subtle/](https://golang.org/pkg/crypto/subtle/)
