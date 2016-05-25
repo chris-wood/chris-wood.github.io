@@ -1,5 +1,8 @@
-- safe prime generation library for python
-- salted hash comparison, DL/CDH/DDH security, and how it’s not DDH secure, with the Sage code to prove it
+- searchable encryption schemes (SSE)
+- monte carlo prime generation: A fast monte-carlo test for primality
+- naming hashing and equivalence classes
+- safe prime generation library for python (miller-rabin test explanation, probability explanation, code, and how to tests for it)
+- DL/CDH/DDH security, why DL in Z_p is not DDH secure, with the Sage code to prove it
 - ChaCha20 stream cipher and Ted's RNG patch for linux (https://lwn.net/Articles/685737/)
 - Random Rational Numbers in Different Radii (normal numbers and the probability that each digit occurs equally in the representation)
 - Blocking vs unblocking entropy?
