@@ -89,12 +89,12 @@ segment $i=1,\dots,k$, it follows that:
 $$
 \begin{align}
 p_1 & = (\beta_{i,1}^k)\alpha_{i,2} \\
-    & = (g^{N_{i,1}' + s_1)^k})p^{s_2} \\
-    & = (g^{kN_{i,1}' + ks_1})g^{ks_2} \\
+    & = (g^{N_{i,1}' + s_1})^kp^{s_2} \\
+    & = g^{kN_{i,1}' + ks_1}g^{ks_2} \\
     & = g^{kN_{i,1}' + ks_1 + ks_2} \\
-    & = (g^{kN_{i,1}' ks_2})g^{ks_1} \\
-    & = (g^{N_{i,1}' + s_2}^k)p^{s_1} \\
-    & = (\beta_{i,2}^k)\alpha_{i,1} \\
+    & = g^{kN_{i,1}' ks_2}g^{ks_1} \\
+    & = (g^{N_{i,1}' + s_2})^kp^{s_1} \\
+    & = \beta_{i,2}^k\alpha_{i,1} \\
     & = p_2
 \end{align}
 $$
