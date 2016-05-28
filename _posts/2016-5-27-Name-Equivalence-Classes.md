@@ -3,9 +3,10 @@ layout: post
 title: CCN Network Name Equivalence Classes
 ---
 
-CCN has one deeply disturbing problem: application data names are required in
-the network layer to forward packets. Why is this a problem, you ask? Well, 
-for starters, application names, being often-overloaded URIs, can leak a significant
+Named data packets cut both ways in CCN. Perhaps their most beneficial quality
+is that they shift the communication emphasis from end hosts and fixed addresses to content.
+However, from a security perspective, there is a steep cost for this transition. 
+Application names, being often-overloaded URIs, can leak a significant
 amount of information about the data being requested. Far beyond what's leaked from
 an IP packet address and port tuple. (I've discussed this in a [past post](http://chris-wood.github.io/2016/03/04/Naming.html)).
 
