@@ -1,3 +1,4 @@
+- the electric carpenter
 - searchable encryption schemes (SSE)
 - monte carlo prime generation: A fast monte-carlo test for primality
 - naming hashing and equivalence classes
