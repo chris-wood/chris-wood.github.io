@@ -1,7 +1,6 @@
 - the electric carpenter
 - searchable encryption schemes (SSE)
 - monte carlo prime generation: A fast monte-carlo test for primality
-- naming hashing and equivalence classes
 - safe prime generation library for python (miller-rabin test explanation, probability explanation, code, and how to tests for it)
 - DL/CDH/DDH security, why DL in Z_p is not DDH secure, with the Sage code to prove it
 - ChaCha20 stream cipher and Ted's RNG patch for linux (https://lwn.net/Articles/685737/)
