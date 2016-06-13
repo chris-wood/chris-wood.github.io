@@ -1,3 +1,4 @@
+- verifiable random functions
 - Types of block ciphers: SPN, Feistel, Lai-Massey
 - safe prime generation library for python (miller-rabin test explanation, probability explanation, code, and how to tests for it)
 - the electric carpenter
