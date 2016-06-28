@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Forward Secrecy: Yay or Nay?
+title: Forward Secrecy -- Yay or Nay?
 ---
 
 In a room full of security people, no one seemed to think that forward secrecy
