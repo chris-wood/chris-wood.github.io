@@ -1,7 +1,8 @@
+- LISP protocol
+- ipv6 MTU discovery
 - verifiable random functions
 - Types of block ciphers: SPN, Feistel, Lai-Massey
 - safe prime generation library for python (miller-rabin test explanation, probability explanation, code, and how to tests for it)
-- the electric carpenter
 - searchable encryption schemes (SSE)
 - monte carlo prime generation: A fast monte-carlo test for primality
 - ChaCha20 stream cipher and Ted's RNG patch for linux (https://lwn.net/Articles/685737/)
