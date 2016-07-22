@@ -1,6 +1,14 @@
+- proxy re-encryption and collusion
+- network vs link adaption layers
+- Argon2d cache timing and side channel attacks
+- Password hashing decision making processes (balancing throughput vs long-term encryption)
+- BGP security
+- Dijkstra with loops (NLSR is broken?)
+- LURK protocols and use cases
+- PEPs
 - LISP protocol
 - ipv6 MTU discovery
-- verifiable random functions
+- verifiable random functions -- code, usage, theory, etc.
 - Types of block ciphers: SPN, Feistel, Lai-Massey
 - safe prime generation library for python (miller-rabin test explanation, probability explanation, code, and how to tests for it)
 - searchable encryption schemes (SSE)
