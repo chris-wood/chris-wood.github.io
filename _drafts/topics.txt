@@ -1,3 +1,4 @@
+- FEC (https://tools.ietf.org/html/rfc5052)
 - proxy re-encryption and collusion
 - network vs link adaption layers
 - Argon2d cache timing and side channel attacks
