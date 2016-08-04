@@ -1,9 +1,15 @@
+- universal composability protocols
+- SIGMA protocols and their importance and reflection in TLS 1.3
+- Dropbox LAN sync protocol privacy and private service discovery
+- Linear Congruential Generators (LCGs), Linear Feedback Shift Registers (LFSRs) and POOR PRNGs
+- Kolmogorov–Smirnov test
+- DieHard tests for randomness of various block ciphers
 - FEC (https://tools.ietf.org/html/rfc5052)
 - proxy re-encryption and collusion
 - network vs link adaption layers
 - Argon2d cache timing and side channel attacks
 - Password hashing decision making processes (balancing throughput vs long-term encryption)
-- BGP security
+- BGP security approaches
 - Dijkstra with loops (NLSR is broken?)
 - LURK protocols and use cases
 - PEPs
@@ -31,7 +37,7 @@
 - long-term encryption of genomic data
 - statistical distance computations and their importance in cryptography
 - simple RSA accumulator
-- single-user vs multi-user security
+- single-user vs multi-user security for signature schemes
 - data-centric application design (move computations instead of code)
 - ElGamal over (Klonowksi3 7 from breaking URE paper (Forgeries)) composite groups
 - Why CCN is inadequate (no POST/PUSH, and caching everything by default)
@@ -46,9 +52,7 @@
 - Handling debates internally through proper process (Some Process Pays)
 - Composite fields (from galois fields)
 - Galois fields (with sage code)
-- Private addresses -- can we do better with routing? Can we correlate packets for the same address?
-
-
+- Private/transient addresses -- can we do better with routing? Can we correlate packets for the same address?
 - overview, analysis, and comparison of build systems (scons, autotools, cmake)
 - DNS privacy overview, and degrees of privacy
 - DNS Cache poisoning
