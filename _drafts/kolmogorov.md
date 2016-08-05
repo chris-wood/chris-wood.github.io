@@ -3,32 +3,29 @@ layout: post
 title: The Kolmogorov-Smirnov Test and RNGs
 ---
 
-During a recent Web crawl I came across the topic of pseudorandom number generators (PRGs). I've talked
+During a recent Web crawl, I came across the topic of pseudorandom number generators (PRGs). I've talked
 about ways in which they're implemented [in the past](http://chris-wood.github.io/2016/05/13/Native-PRNG.html). There are plenty
-of deterministic PRGs that can be used to stretch a small amount of randomness with sufficiently
+of deterministic PRGs that stretch a small amount of randomness with sufficiently
 high entropy into a longer stream of bytes with comparable entropy. Nowadays, Bernstein's ChaCha20
 seems to be the most widely used algorithm. You might ask yourself why ChaCha20 is so prevalent. One
 reason is that it's been thoroughly vetted as a secure stream cipher. And from a stream cipher, one
 can build a PRG. The process is simple: the key stream that's generated which would originally
 be XORed with some plaintext message is used as the PRG byte stream output. Clearly, the cipher is
-only secure if this byte stream is indistinguishable from random. So if the cipher is secure then we've
-essentially a cryptographically secure PRG (CSPRG). The only caveat is that the initial state must be kept secret;
+only secure if this byte stream is indistinguishable from random. So if the cipher is secure then we have a cryptographically secure PRG (CSPRG). The only caveat is that the initial state must be secret;
 otherwise someone could easily determine future output of the PRG. When used in the Linux kernel, this
 state is the result of entropy collected from the environment. So it is effectively secret.
 
 ![A stream cipher as a CSPRG.](/images/stream_cipher_prg.png)
 
-For the sake of argument, assume we have a CSPRG $$G$$ that we want to use. Sadly, however, we do not
-trust its security proof. (Bear with me...) Instead, we only believe the observed randomness from
-$$G$$. But how do we assess the randomness of $$G$$? Long ago (over two decades), George Marsaglia
-proposed a suite of statistical tests -- called the DieHard tests -- aimed at
-measuring the effectiveness of random number generators [1].
+For the sake of argument, assume we have a (CS)PRG $$G$$ that we want to use. Moreover, even if we have a security proof, we do not trust it. (Bear with me...) Instead, we only have faith in randomness that we can test. But how do we assess the randomness of $$G$$? Long ago (over two decades), George Marsaglia
+proposed a suite of statistical tests -- called the DieHard tests [1] -- aimed at
+measuring the effectiveness of random number generators.
 It included tests such as the "birthday spacings," "overlapping permutations,"
 "minimum distance," and so on. While the Diehard
-tests are no longer suitable for assessing the randomness properties of $$G$$, it's a good place to start.
+tests are no longer suitable for assessing the randomness properties of PRGs like $$G$$, it's a good place to start.
 (Modern test suites include DieHarder [2], TestU01 [3], and the NIST suite [4].)
 
-Suppose the first test we want to run is the "minimum distance" one [5]. This test works as follows.
+Suppose the first test we want to run is the "minimum distance" test [5]. This works as follows.
 Let $$T = 100$$ be the number of trials we conduct for this test. For each trial, pick $$n=8000$$
 random points in a square with sides of length $$10000$$. Then, find the minimum distance $$d$$
 between each pair of points. The Python code to do this is below.
@@ -39,7 +36,7 @@ If the points are truly i.i.d. variables drawn from a uniform distribution, as w
 a random number generator, then $$d^2$$ should be exponentially distributed with a mean of $$0.995$$.
 
 So how do we actually test that the distribution of $$d^2$$ is exponential with the given mean? This is
-where the Kolmogorov-Smirnov (KS) test comes in handy. The KS test can be used to test that the distribution
+where the Kolmogorov-Smirnov (KS) test comes in handy. The KS test tests that the distribution
 of some set of data matches a specific distribution. (In this case, the exponential distribution.)
 The test itself is rather elegant. It basically works as follows. Let $$F_k$$ be the empirical distribution
 function of the input data set, and let $$F_0$$ be the CDF of the known distribution. $$F_k$$ is computed
@@ -80,11 +77,10 @@ returns false.
 
 {% gist 20a907c634aaeec09db1590a6416b97d %}
 
-To test this, I created a small set of data sampled uniformly from $$[0,2]$$. I then generated an actual uniform
-distribution CDF for this data and ran the results through the test. And, sure enough, the test passed.
+
 So now we can finally get back to the question at hand: does the minimum distance from the MDT follow an exponential
 distribution? To check this, I created the exponential CDF and ran it through the KS test with the minimum distance
-test code. The result was positive, as we would expect.
+test code. As we would expect, the result was positive.
 
 {% gist c74dd061376445d4344dfa99389417ee %}
 
@@ -92,7 +88,7 @@ I'd like to explore other randomness tests in the future. But for now, this was 
 way to get started. Recently there was a paper published entitled, "PCG: A Family of Simple Fast Space-Efficient Statistically Good
 Algorithms for Random Number Generation" [7]. The accompanying website [8] has
 a lot of great information about related random number generators. I hope to read
-through this paper soon to catch myself up with the state of the art.
+through this paper soon to catch up with the state of the art.
 
 # References
 
