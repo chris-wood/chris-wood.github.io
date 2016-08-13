@@ -1,8 +1,8 @@
+- HIEST attack overview
 - universal composability protocols
 - SIGMA protocols and their importance and reflection in TLS 1.3
 - Dropbox LAN sync protocol privacy and private service discovery
 - Linear Congruential Generators (LCGs), Linear Feedback Shift Registers (LFSRs) and POOR PRNGs
-- Kolmogorov–Smirnov test
 - DieHard tests for randomness of various block ciphers
 - FEC (https://tools.ietf.org/html/rfc5052)
 - proxy re-encryption and collusion
