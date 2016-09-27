@@ -1,16 +1,15 @@
-- Memory hard functions, and tuning them using hill-climbing
-- MiniExecutor code and explanation
+- Summary of IV requirements and problems for different MOOs
+- flavors of TCP congestion control algorithms (reno, cubic, cdg, bbr, ...)
+- Memory hard functions, and tuning them using hill-climbing, password hashing decision making processes (balancing throughput vs long-term encryption)
 - security beyond birthday bound (CENC PMAC_plus 22 33 https://sweet32.info/SWEET32_CCS16.pdf)
 - universal composability protocols
 - SIGMA protocols and their importance and reflection in TLS 1.3
-- Dropbox LAN sync protocol privacy and private service discovery
 - Linear Congruential Generators (LCGs), Linear Feedback Shift Registers (LFSRs) and POOR PRNGs
 - DieHard tests for randomness of various block ciphers
 - FEC (https://tools.ietf.org/html/rfc5052)
 - proxy re-encryption and collusion
 - network vs link adaption layers
 - Argon2d cache timing and side channel attacks
-- Password hashing decision making processes (balancing throughput vs long-term encryption)
 - BGP security approaches
 - Dijkstra with loops (NLSR is broken?)
 - LURK protocols and use cases
