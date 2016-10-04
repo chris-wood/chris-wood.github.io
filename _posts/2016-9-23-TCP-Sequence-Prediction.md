@@ -58,7 +58,7 @@ have to be a packet counter. So, on top of the computation and memory overhead, 
 
 # References
 
-- [1] [RFC 6528]{https://tools.ietf.org/html/rfc6528}
-- [2] [SipHash]{https://131002.net/siphash/}
-- [3] [tcpcrypt]{http://www.tcpcrypt.org/}
+- [1] [RFC 6528](https://tools.ietf.org/html/rfc6528)
+- [2] [SipHash](https://131002.net/siphash/)
+- [3] [tcpcrypt](http://www.tcpcrypt.org/)
 
