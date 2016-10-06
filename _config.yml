@@ -5,3 +5,4 @@ lsi: false
 disqus_shortname: httpchriswoodgithubio
 include: ['digests']
 exclude: [LICENSE, CNAME, README.md, .gitignore, Gemfile, Gemfile.lock]
+gems: [jekyll-gist]

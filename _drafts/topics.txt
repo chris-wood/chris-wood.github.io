@@ -1,3 +1,5 @@
+- Visualizing mixing of hash function and encryption functions
+- AES-256 weaker than AES-128!!! related key attack
 - Summary of IV requirements and problems for different MOOs
 - flavors of TCP congestion control algorithms (reno, cubic, cdg, bbr, ...)
 - Memory hard functions, and tuning them using hill-climbing, password hashing decision making processes (balancing throughput vs long-term encryption)

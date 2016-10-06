@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Moving from PARC to Apple
+title: Joining Apple
 ---
 
 I'm happy to write (to the zero people who read this) that I'm leaving PARC and will be
@@ -17,5 +17,5 @@ lessons with me into Apple. I'm also owe many thanks to Ersin Uzun, who is prima
 responsible for bringing me to PARC in the first place. He has spent many hours as my mentor
 and research big brother -- showing me the ropes and training me for a career in research. 
 And these are just two of the many people with whom I've been fortunate enough to call
-my colleagues. Transitioning to Apple will be a noticable change, but I think that with
-everything PARC has given me and taught me, it's something I'm well prepared to tackle. 
+my colleagues. Transitioning to Apple will be a challenge, but I think that with
+everything PARC has given and taught me, it's something I'm well prepared to face.
