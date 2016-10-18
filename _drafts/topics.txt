@@ -1,5 +1,9 @@
-- MD5 collision
-- Fuzzing protocols
+- SipHash assembly version (Go)
+- Argon2 Go implementation
+- XMSS python implementation
+- Galois field and ECC library implementation
+- MD5 collision finding program
+- Fuzzing protocols (GREASE and Roughtime)
 - Zooko's triangle for naming
 - Timer overhead -- (can PITs really expect to maintain timers for *every* interest?)
 - Visualizing mixing of hash function and encryption functions
