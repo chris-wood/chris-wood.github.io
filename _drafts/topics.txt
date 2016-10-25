@@ -1,3 +1,4 @@
+- malleability in encryption and authentication
 - SipHash assembly version (Go)
 - Argon2 Go implementation
 - XMSS python implementation
