@@ -1,3 +1,4 @@
+- constant time scrubbing
 - malleability in encryption and authentication
 - SipHash assembly version (Go)
 - Argon2 Go implementation
@@ -12,7 +13,7 @@
 - Summary of IV requirements and problems for different MOOs -- what goes wrong when they're not random, e.g.
 - CurveCP protocol and comparison to TLS
 - flavors of TCP congestion control algorithms (reno, cubic, cdg, bbr, chicago, ...)
-- Memory hard functions, and tuning them using hill-climbing, password hashing decision making processes (balancing throughput vs long-term encryption)
+- Memory hard functions, and tuning them using hill-climbing, password hashing decision making processes (balancing throughput vs long-term protection)
 - security beyond birthday bound (CENC PMAC_plus 22 33 https://sweet32.info/SWEET32_CCS16.pdf)
 - universal composability protocols
 - SIGMA protocols and their importance and reflection in TLS 1.3
