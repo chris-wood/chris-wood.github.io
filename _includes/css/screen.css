@@ -109,10 +109,11 @@ nav h1, nav h2 {
 
 #bio {
   margin-top: 10px;
-  margin-bottom: 15px;
-  border: dotted #ddd;
+  margin-bottom: 10px;
+  /*border: dotted #ddd;*/
   border-width: 1px 0;
-  padding-top: 15px;
+  padding: 5px;
+  text-align:center;
 }
 
 #social {
@@ -159,9 +160,10 @@ nav h1, nav h2 {
 .content {
   font: 400 16px/22px "open sans", sans-serif;
   border-left: 1px solid #DDD;
+  border-right: 1px solid #DDD;
   padding-left: 40px;
   padding-top: 25px;
-  min-height: 400px;
+  /*min-height: 400px;*/
 }
 
 .footer {
