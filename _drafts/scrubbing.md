@@ -36,7 +36,7 @@ be done in parallel, therefore leading to possible writes to the plaintext
 buffer. 
 
 If we do nothing else, the result of this function
-will indicate an error but the output buffer will actually contain the
+will indicate an error but the output buffer may actually contain the
 decrypted plaintext. This clearly violates the standard AEAD API contract, 
 wherein a failed authentication should yield the empty string. So what's the fix?
 The desired result is clear: if the tags don't line up, then the output
@@ -54,6 +54,7 @@ be constant time!) That's not so great, but I'm willing to accept that hit for n
 The first way is to use a constant-time select function (see e.g. `ConstantTimeSelect`
 from [golang]). For each slot in the output buffer, we can set its value to
 the already-stored value or 0 depending on the output of the tag comparison. 
+
 XXX: describe the other way from the email
 
 $$^*$$ I'll discuss what's actually done in practice for, say, AES-GCM, below.
