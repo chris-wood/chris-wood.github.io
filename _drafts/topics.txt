@@ -1,11 +1,16 @@
+- Anonymous rate limiting and blind signatures
+- Cumulative memory complexity for MHFs
+- Routing and load balancing on ciphertext
+- Transparency is critical (CT and CONIKS)
+- Fuzzing protocols (GREASE and Roughtime)
 - Platform independent size types for C
 - TLS version state machines
 - Standard model vs ROM
 - Packet numbers: authenticated or not, and how big? Can they be tampered with? What happens then?
 - Rekeying frequency -- can it be built into the state machine and enforced programmatically?
-- test vector language
+- Test vector language and the need for common APIs
 - global routing needs to go -- need NDN without NDN?
-- Entropy estimation and prediction resistance
+- Entropy estimation, entroscope, and prediction resistance
 - To verify or not verify protocol parameters: there should be no question (by design, parameters should always be valid)
 - NTP: single server or not? When does redundancy help and hurt? Is ANTP valid in the presence of a MiTM attacker? How about RoughTime?
 - Small subgroup attack code and backdoors
@@ -18,7 +23,6 @@
 - XMSS python implementation
 - Galois field and ECC library implementation
 - MD5 collision finding program
-- Fuzzing protocols (GREASE and Roughtime)
 - Zooko's triangle for naming
 - Timer overhead -- (can PITs really expect to maintain timers for *every* interest?)
 - Visualizing mixing of hash function and encryption functions
