@@ -1,3 +1,5 @@
+- ECDSA and deterministic variant
+- scrypt post and codec
 - Anonymous rate limiting and blind signatures
 - Cumulative memory complexity for MHFs
 - Routing and load balancing on ciphertext
