@@ -1,4 +1,3 @@
-- Constant-time tools (statistical analysis, static analysis, formal modelling)
 - ECDSA and deterministic variant
 - scrypt post and codec
 - Anonymous rate limiting and blind signatures
