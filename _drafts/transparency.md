@@ -23,8 +23,6 @@ correctness. A Merkle tree over 8 elements with a co-path highlighted is shown b
 
 XXX: merkle tree with highlighted co-path
 
-XXX: code for the merkle tree
-
 The concept of a verifiable log emerges as a natural application of Merkle trees. 
 A verifiable log is an append-only log which accumulates entries (elements of a set)
 and provides a proof of its correctness. Here, correctness covers problems such as
@@ -33,8 +31,6 @@ continually adding elements to a Merkle tree and producing an identifier that is
 signed. Verifying the log involves recomputing the Merkle tree hash, checking it for
 equality, and verifying the signature. Thus, as a consequence, any user can enumerate
 every item in the log.
-
-XXX: code for the log
 
 A verifiable map is a similar data structure. It is a tree with $$2^{256}$$ (possibly empty) 
 nodes. A key-value pair is added to the map by first computing a 256-bit cryptographic
