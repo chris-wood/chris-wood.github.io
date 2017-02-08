@@ -84,7 +84,7 @@ just proven that it is in possession of a message that was previously signed by 
 has *no knowledge* about what message it was since it was signed. We call this sort of signature
 *malleable*, or just randomizable.
 
-# Blind Signatures to the Rescue
+# Blind Signatures
 
 In this section we describe a series of approaches to the anonymous traffic
 filtering problem based on blind signatures.
@@ -154,17 +154,23 @@ them with the same origin. (This effectively violates the unlinkable properties 
 traffic in Tor.) Also, the server no longer has control over the number of tokens that can be
 delegated per CAPTCHA since $$N$$ is controlled by the client. This is an undesirable feature.
 
-# Improvements with OPRFs
+# Rerandomizable Tokens and OPRFs
 
 Let's now consider what we could do if we used OPRFs. As previously discussed, an OPRF lets two parties
 jointly compute $$F(k, m)$$ while only one party learns the true OPRF value. The obvious application is
 to assume that the server owns the secret key $$k$$ and the client provides the message $$m$$ to be signed.
 Specifically, assume we use the one-round OPRF protocol from Hugo [4]. The server is assumed to have
 a secret key it can use to compute the PRF and the client's secret input is a randomly chosen value.
-The output of this protocol is, essentially, a MAC on the client's input, but one with the special randomizable
+The output of this protocol is, essentially, an encryption of the client's input, but one with the special randomizable
 property described earlier. We can exploit this when clients need to redeem their tokens. Specifically,
-they can simply blind $$H(m)$$ *and* the signature $$H(m)^k$$ with a fresh random value $$r$$ and send
-both to the server. The server then verifies that removing the $$k$$ factor reveals the original value.
+they can simply blind $$H(m)$$ *and* its encryption $$H(m)^k$$ with a fresh random value $$r$$ and send
+both to the server. The server then verifies that removing the $$k$$ factor (by decryption) reveals
+the blinded value.
+
+One obvious concern are replay attacks. If an attacker gets one valid token and its
+encryption, it can then distribute this to other machines (zombies) to freely bypass
+the CAPTCHA. The problem is, of course, that the token is not bound to anything specific
+to the client. Sadly, I don't see a way around this.
 
 # Performance Considerations
 
