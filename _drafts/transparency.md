@@ -60,14 +60,37 @@ XXX: code for the verifiable log-based map
 
 The Certificate Transparency project is built on the concept of these verifiable data structures, but
 at a (to-be) massive scale. The goal of the project is to build a transparent PKI that clients
-can efficiently verify if desired. This provides extra assurance that certificates offered by TLS
-servers are legitimate. It also allows server operators to detect when their identity has been
-hijacked, modified, or otherwise tampered with based on the log contents. To do this, several pieces
-are required.
+can efficiently verify, if so desired. This provides extra assurance that certificates offered by TLS
+servers are legitimate and are not being offered up by a MITM attacker. 
+It also allows server operators to detect when their identity has been
+hijacked, modified, or otherwise tampered with based on the log contents. 
 
-1. Monitor:
-2. Auditor:
-3. Log server
+Before describing the CT ecosystem, first recall how standard PKIs operate. Certificate Authorities (CAs)
+distribute (for profit) certificates to domain owners after vetting their identity. Domain owners then use
+these certificates that chain up to a trusted CA root to establish TLS connections with clients. The general
+MITM attack on this model is for adversary to intercept traffic between a victim client and server to offer
+up a fake and fraudulently-obtained certificate to the client. Success requires that the client trust this
+fake certificate, so it must come from a (possibly compromised) CA. This is not much of a stretch. Once complete,
+the MITM can then establish a TLS session with the real server and marshall data back and forth unbeknownst to
+either party. 
+
+One (shaky) goal of CT is to detect such attacks *after they've already occurred*. To do this, it relies on a "simple"
+system of checks and balances backed by verifiable data structures. In general, there exists a verifiable log
+of certificates that can be audited for malicious behavior. For example, if a CA was duped and inadvertantly issued
+a certificate to an attacker, the rightful domain owner can, in theory, detect this certificate in the log and take
+corrective action. Collectively, this policy is realized with the following major pieces [CT-website]:
+
+1. Monitor: An entity that watches out for suspicious behavior or certificates in logs. It is expected that most monitors will be operated by CAs, since it is within their best interest to track misissuance of certificates under the auspices of their identity.
+2. Auditor: An entity that periodically checks the health of "the" log. Since there are several monitors and logs in flight, CT suggests the use of a gossip protocol to ensure that everyone is inspecting the same log. If an auditor detects a problem with a log, it's reported. 
+3. Log server: An entity that collects issued certificates in an append-only, verifiable log. 
+
+The system of checks and balances between these three entities is shown in the figure below.
+
+CT is [far from perfect](https://mailarchive.ietf.org/arch/msg/trans/gO_DFW3v9FmBCOek_hifZ6KL368). 
+Among its problems is the fact that logs and monitors are equally likely to
+be compromised as today's PKI elements. (So really, what's the point?)
+
+XXX: richard's comments here
 
 # References
 
