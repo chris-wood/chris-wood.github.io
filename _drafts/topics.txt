@@ -1,3 +1,4 @@
+DLEQ and DL NIZK code
 - Modern secure transport protocols: TLS 1.3, QUIC, CurveTP, MinimalT
 - Constant-time tools (statistical analysis, static analysis, formal modelling)
 - ECDSA and deterministic variant
