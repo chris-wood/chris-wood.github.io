@@ -4,7 +4,6 @@
 - Constant-time tools (statistical analysis, static analysis, formal modelling)
 - ECDSA and deterministic variant
 - scrypt post and codec
-- Anonymous rate limiting and blind signatures
 - Cumulative memory complexity for MHFs
 - Routing and load balancing on ciphertext
 - Transparency is critical (CT and CONIKS)
@@ -22,7 +21,6 @@
 - Small subgroup attack code and backdoors
 - Semantic gap and software abstraction (email to Glenn)
 - Oblivious network services (what's feasible and what's not when stuff is encrypted?)
-- constant time scrubbing
 - malleability in encryption and authentication
 - SipHash assembly version (Go)
 - Argon2 Go implementation
@@ -93,5 +91,3 @@
 - overview, analysis, and comparison of build systems (scons, autotools, cmake)
 - DNS privacy overview, and degrees of privacy
 - DNS Cache poisoning
-
-
