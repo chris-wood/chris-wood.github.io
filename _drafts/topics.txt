@@ -1,6 +1,10 @@
 - Object systems in C
 - DLEQ and DL NIZK code
 - Modern secure transport protocols: TLS 1.3, QUIC, CurveTP, MinimalT, and a post-sockets API
+- Active vs passive attackers in TLS 1.3
+- CBC-MAC vs CCM vs EAX
+- The perils of 0-RTT data
+- Plentry of PRFs: PRF, OPRF, VRF, OVRF
 - Constant-time tools (statistical analysis, static analysis, formal modelling)
 - ECDSA and deterministic variant
 - scrypt post and codec
@@ -21,7 +25,6 @@
 - Small subgroup attack code and backdoors
 - Semantic gap and software abstraction (email to Glenn)
 - Oblivious network services (what's feasible and what's not when stuff is encrypted?)
-- constant time scrubbing
 - malleability in encryption and authentication
 - SipHash assembly version (Go)
 - Argon2 Go implementation
@@ -92,5 +95,3 @@
 - overview, analysis, and comparison of build systems (scons, autotools, cmake)
 - DNS privacy overview, and degrees of privacy
 - DNS Cache poisoning
-
-
