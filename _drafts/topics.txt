@@ -1,3 +1,4 @@
+-  Golomb-coded sets
 - ARC vs GC
 - Object systems in C
 - DLEQ and DL NIZK code
