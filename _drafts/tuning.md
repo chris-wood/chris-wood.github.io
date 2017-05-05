@@ -7,12 +7,12 @@ It's been a while since I wrote to this blog. That was an expected side effect o
 into my post-PARC life at Apple. However, now that the dust seems to have settled, I'm trying
 to get back into my routine. To that end, I'm going to pick back up on the topic of memory
 hard functions (MHFs) that I discussed in the [last post](LINK). In particular, I'm going to
-talk about parameter selection for MHFs. 
+talk about parameter selection for MHFs.
 
 Typically, one chooses the MHF parameters such that the execution time is "within" reason
 for a single execution. For example, the Argon2 paper [1] suggests one to do the following.
 
-1. Detemrine the number of threads that can be used.
+1. Determine the number of threads that can be used.
 2. Determine the memory capacity.
 3. Tune the number of rounds until the runtime is "within reason" for a single execution.
 
@@ -60,7 +60,7 @@ that hasn't exceeded the bound. To see how this can result in a suboptimal node 
 consider the following graph. The hill climb algorithm would choose the red path through
 the tree since it optimizes the value of the objective function at each step. However,
 with a bound of $N = 90$, the algorithm would terminate at the node with label $(2,4)$,
-whose value is $80$. This is not the correct result, since the node with label $(3,2)$ 
+whose value is $80$. This is not the correct result, since the node with label $(3,2)$
 yields a value of $89$, which is closer to $90$.
 
 ![Suboptimal hill climb instance](/images/hill_climb_tree.pdf)
@@ -80,8 +80,8 @@ We'll use this in what follows.
 
 It now seems that using the BNB algorithm is the best choice for tuning a MHF that is
 parameterized by a time and memory parameter. (Of course, I'm no optimization expert. Far
-from it, if that's not abundantly clear by now. So maybe there's a better way that I didn't 
-examine.) 
+from it, if that's not abundantly clear by now. So maybe there's a better way that I didn't
+examine.)
 
 XXX: code that does the tuning
 

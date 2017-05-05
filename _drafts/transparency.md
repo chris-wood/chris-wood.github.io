@@ -86,11 +86,21 @@ corrective action. Collectively, this policy is realized with the following majo
 
 The system of checks and balances between these three entities is shown in the figure below.
 
+XXX: figure of CT elements
+
 CT is [far from perfect](https://mailarchive.ietf.org/arch/msg/trans/gO_DFW3v9FmBCOek_hifZ6KL368). 
 Among its problems is the fact that logs and monitors are equally likely to
 be compromised as today's PKI elements. (So really, what's the point?)
 
 XXX: richard's comments here
+
+# Key Transparency
+
+XXX
+
+# Trillian
+
+XXX
 
 # References
 
