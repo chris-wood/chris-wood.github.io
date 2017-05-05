@@ -1,15 +1,17 @@
+- Plentry of PRFs: PRF, OPRF, VRF, OVRF
+- Extractors and DH (why HKDF is done after a DH)
+- DNSSEC vs DNSCurve, why choose one over the other?
+- Zero Knowledge Zoo -- DLEQ and DL NIZK code
 - Object systems in C
-- DLEQ and DL NIZK code
 - Modern secure transport protocols: TLS 1.3, QUIC, CurveTP, MinimalT, and a post-sockets API
 - Active vs passive attackers in TLS 1.3
 - CBC-MAC vs CCM vs EAX
 - The perils of 0-RTT data
-- Plentry of PRFs: PRF, OPRF, VRF, OVRF
 - Constant-time tools (statistical analysis, static analysis, formal modelling)
 - ECDSA and deterministic variant
 - scrypt post and codec
 - Cumulative memory complexity for MHFs
-- Routing and load balancing on ciphertext
+- Routing and load balancing on ciphertext --> more generally, what path signal information is lost when headers start to be encrypted?
 - Transparency is critical (CT and CONIKS)
 - Fuzzing protocols (GREASE and Roughtime)
 - Platform independent size types for C
@@ -18,7 +20,7 @@
 - Packet numbers: authenticated or not, and how big? Can they be tampered with? What happens then?
 - Rekeying frequency -- can it be built into the state machine and enforced programmatically?
 - Test vector language and the need for common APIs
-- global routing needs to go -- need NDN without NDN?
+- global routing needs to go -- need NDN without NDN? rather, problems with global routing
 - Entropy estimation, entroscope, and prediction resistance
 - To verify or not verify protocol parameters: there should be no question (by design, parameters should always be valid)
 - NTP: single server or not? When does redundancy help and hurt? Is ANTP valid in the presence of a MiTM attacker? How about RoughTime?
