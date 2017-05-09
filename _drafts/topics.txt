@@ -2,6 +2,8 @@
 - Extractors and DH (why HKDF is done after a DH)
 - DNSSEC vs DNSCurve, why choose one over the other?
 - Zero Knowledge Zoo -- DLEQ and DL NIZK code
+-  Golomb-coded sets
+- ARC vs GC
 - Object systems in C
 - Modern secure transport protocols: TLS 1.3, QUIC, CurveTP, MinimalT, and a post-sockets API
 - Active vs passive attackers in TLS 1.3
@@ -96,4 +98,3 @@
 - Private/transient addresses -- can we do better with routing? Can we correlate packets for the same address?
 - overview, analysis, and comparison of build systems (scons, autotools, cmake)
 - DNS privacy overview, and degrees of privacy
-- DNS Cache poisoning
