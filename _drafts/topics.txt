@@ -1,3 +1,4 @@
+- Secure Multiparty Computation and appliations to routing
 - Plentry of PRFs: PRF, OPRF, VRF, OVRF
 - Extractors and DH (why HKDF is done after a DH)
 - DNSSEC vs DNSCurve, why choose one over the other?

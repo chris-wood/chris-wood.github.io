@@ -3,6 +3,9 @@ layout: post
 title: Trends in Protocol Security
 ---
 
+TLDR: identity information is being increasingly backed by transparency and protocol mechanics are
+being greased to prevent ossification.
+
 2016 was a tremendous year for security protocols in the Internet. Private messaging took off,
 transparency projects found traction, TLS 1.3 came closer to finalization, and people finally (?)
 started taking NTP security seriously. All of these things
