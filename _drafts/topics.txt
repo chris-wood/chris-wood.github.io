@@ -1,3 +1,4 @@
+- WireGuard, OpenVPN, ProtonVPN comparison
 - Deterministic signatures
 - Simulate red/blue AQM algorithms
 - Secure Multiparty Computation and appliations to routing
