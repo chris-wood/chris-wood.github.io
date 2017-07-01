@@ -1,5 +1,6 @@
 ---
 layout: post
-title: XXX
+title: Red vs Blue
 ---
+
 
