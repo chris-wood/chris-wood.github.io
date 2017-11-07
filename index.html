@@ -16,13 +16,4 @@ title: Home
       <li><span>{{ post.date | date_to_string }} &raquo;</span><a href="{{ post.url }}">{{ post.title }}</a></li>
     {% endfor %}
   </ul>
-
-  <h2><i class="fa fa-bookmark"></i> Digests</h2>
-  <ul id="blog-posts" class="posts">
-    {% for page in site.pages %}
-      {% if page.categories contains 'digest' %}
-        <li><a href="{{ site.url }}{{ page.url }}">{{ page.title }}</a></li>
-      {% endif %}
-    {% endfor %}
-  </ul>
 </div>

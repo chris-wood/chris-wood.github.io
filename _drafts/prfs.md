@@ -1,9 +1,7 @@
 ---
 layout: post
-title: PRFs Galore!
+title: Perusing Peculiar PRFs
 ---
-
-# Overview
 
 Cryptographic protocols are built on abstractions and approximations of ideal mathematical constructs.
 For example, we often assume that we have a perfect source of randomness. But in practice, we settle
@@ -196,7 +194,6 @@ it's the opposite of a constrained PRF, which restricts evaluation of the input 
 in the corresponding domain.
 
 https://eprint.iacr.org/2014/521.pdf
-
 
 # Delegated PRFs
 
