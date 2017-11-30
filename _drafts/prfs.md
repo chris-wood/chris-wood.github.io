@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Perusing Peculiar PRFs
+title: Peculiar PRFs
 ---
 
 Cryptographic protocols are built on abstractions and approximations of ideal mathematical constructs.
