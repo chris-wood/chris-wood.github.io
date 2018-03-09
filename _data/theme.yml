@@ -21,8 +21,7 @@ social:
 # "Hi, I'm _______"
 name: Christopher A. Wood
 email: christopherwood07@gmail.com
-tagline1: "Ph.D. Student"
-tagline2: "Software Engineer"
+tagline1: "cat /dev/random > /dev/null"
 
 # Google Analytics key, leave blank to ignore
 google_analytics_key: UA-xxxx-x
