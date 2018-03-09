@@ -1,3 +1,6 @@
+- VOPRFs
+- Invariants and ossification
+- ARC vs GC
 - WireGuard, OpenVPN, ProtonVPN comparison
 - Deterministic signatures
 - Simulate red/blue AQM algorithms
@@ -6,8 +9,7 @@
 - Extractors and DH (why HKDF is done after a DH)
 - DNSSEC vs DNSCurve, why choose one over the other?
 - Zero Knowledge Zoo -- DLEQ and DL NIZK code
--  Golomb-coded sets
-- ARC vs GC
+- Golomb-coded sets
 - Object systems in C
 - Modern secure transport protocols: TLS 1.3, QUIC, CurveTP, MinimalT, and a post-sockets API
 - Active vs passive attackers in TLS 1.3
@@ -24,14 +26,12 @@
 - TLS version state machines
 - Standard model vs ROM
 - Packet numbers: authenticated or not, and how big? Can they be tampered with? What happens then?
-- Rekeying frequency -- can it be built into the state machine and enforced programmatically?
 - Test vector language and the need for common APIs
 - global routing needs to go -- need NDN without NDN? rather, problems with global routing
 - Entropy estimation, entroscope, and prediction resistance
 - To verify or not verify protocol parameters: there should be no question (by design, parameters should always be valid)
 - NTP: single server or not? When does redundancy help and hurt? Is ANTP valid in the presence of a MiTM attacker? How about RoughTime?
 - Small subgroup attack code and backdoors
-- Semantic gap and software abstraction (email to Glenn)
 - Oblivious network services (what's feasible and what's not when stuff is encrypted?)
 - malleability in encryption and authentication
 - SipHash assembly version (Go)
@@ -93,7 +93,7 @@
 - Programmatically identifying patterns in software
 - CDN performance and what the key factors are
 - Amplification DDoS in IP and CCN blog post
-- BEAD+Accounting and Fastly 
+- BEAD+Accounting and Fastly
 - Trust models and examples
 - Code is Data and Data is Code?
 - Handling debates internally through proper process (Some Process Pays)
