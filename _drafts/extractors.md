@@ -44,20 +44,8 @@ and protocols, such as ECDH algorithms based on secp2256r1 [???] and Curve25519 
 
 Many cryptographic protocols are built on groups. Common groups include $$Z_p^*$$, i.e., the finite field over the integers modulo some prime
 $$p$$, and elements over elliptic curves such as secp256r1 and Curve25519. Consider what is the bit-wise distribution of elements in this group.
-Take $$Z_{11}$$ as an example. $$Z_{11} = \{1, 2, 3, 4, 5, 6, 7, 8, 9, 10\}$$. In binary, these elements are encoded as follows:
-
-$$
-0000 \\
-0001 \\
-0010 \\
-..\\
-1000 \\
-1001 \\
-1010 \\
-1011 \\
-$$
-
-There are $$10$$ elements in $$Z_{11}$$. They are encoded in $$4$$ bits. Distinguishing an encoding of random elements in this
+Take $$Z_{11}$$ as an example. There are $$10$$ elements in $$Z_{11}$$. 
+They require $$4$$ bits to encode, yet distinguishing an encoding of random elements in this
 group from random 4-bit strings is trivial: simply examine the most-significant bit. For a truly random bit string, the probability
 that the MSB equals $$1$$ is exactly 0.5. However, across all elements in this group, the probability that the MSB equals $$1$$
 is precisely $$4/10 = 0.4$$. The encoding of the algebraic structure leaks enough information to distinguish these elements
