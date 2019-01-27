@@ -3,9 +3,48 @@ layout: default
 title: Home
 ---
 
+<div class="card" style="display:flex; align-items:center;">
+    <img src="images/headshot.jpg" align="left" style="vertical-align:middle; margin:2em" alt="my ugly mug"/>
+    <p>
+        <a href="#">Christopher A. Wood</a> <br />
+        CV: <a href="https://github.com/chris-wood/cv/raw/master/caw_cv.pdf">Curriculum Vitae</a> <br />
+        &#128211; Research Interests: Security and privacy for computer networks, systems, and protocols <br />
+        [<a href="https://scholar.google.com/citations?user=f_QuauMAAAAJ&hl=en">Google Scholar</a>,
+        <a href="http://dblp.uni-trier.de/pers/hd/w/Wood:Christopher_A=">DBLP</a>] <br /><br /> <!-- test -->
+    </p>
+</div>
+
+<h2>&#x26A0; Updates</h2>
+<ul>
+    <% data.news.first(5).each do |n| %>
+        <li>[<%= n.date %>] <%= n.content %></li>
+    <% end %>
+</ul>
+
+<h2>&#9749; Daily Grind</h2>
+<p>
+    I am a Senior Software Engineer at <a target="_blank" href="https://www.apple.com">Apple</a>. I also serve as a co-chair of the <a target="_blank" href="https://datatracker.ietf.org/wg/tls/charter/">IETF TLS Working Group</a>, <a target="_blank" href="https://datatracker.ietf.org/wg/git/about/">IETF GIT Working Group</a>, and <a target="_blank" href="https://irtf.org/pearg">IRTF Privacy Enhancements and Assessments Research Group</a>.
+</p>
+
+<p>
+    Before Apple, I was a core developer of <a target="_blank" href="http://www.ccnx.org/">CCNx</a>
+    in the Computer Science Laboratory at <a target="_blank" href="http://www.parc.com">PARC</a> (Palo Alto Research Center).
+    In the past, I worked at Intel, L-3 Communications, and other small software firms.
+</p>
+
+<p>
+    I received my Ph.D. in Computer Science from UCI in 2017, where I focused on network security and
+    privacy under <a href="http://www.ics.uci.edu/~gts/">Gene Tsudik</a>. A NSF Graduate Research Fellowship
+    supported my graduate studies at UCI. I received a B.S. and M.S. in Computer Science and
+    B.S. in Software Engineering from RIT in 2013, where Dr. Stanislaw Radziszowski advised my graduate
+    studies in applied cryptography.
+</p>
+
+</div>
+
 <div id="home">
   <p>
-    Here lies a collection of random and possibly nonsensical thoughts. 
+    Here lies a collection of random, possibly nonsensical, and likely uninformed thoughts. 
     They were written in the spirit of edification and, as much as possible, elucidation. 
     May they serve no one besides their producer well. 
     (Though I’m happy if someone other than myself finds value in their contents.)
