@@ -1,0 +1,54 @@
+-
+    content: 'Along with David Benjamin, our proposal for supporting external pre-shared keys in
+    TLS 1.3  ("draft-wood-tls-external-psk-importer") was adopted as a TLS WG document.'
+    date: May 2, 2019
+-
+    content: 'Along with Tommy Pauly and David Schinazi, our proposal for a TLS client extension
+    specifying a desired number of tickets ("draft-ietf-tls-ticketrequests") was adopted as a TLS
+    WG document.'
+    date: January 1, 2019
+-
+    content: 'Along with Kazuho Oku, Eric Rescorla, and Nick Sullivan, our proposal for encrypted SNI
+    in TLS 1.3 ("draft-rescorla-tls-esni") was adopted as a TLS WG document.'
+    date: July 19, 2018
+-
+    content: 'Three new CFRG drafts were submitted today, including: "draft-cremers-cfrg-randomness-improvements-00,"
+    "draft-sullivan-cfrg-hash-to-curve-00," and "draft-sullivan-cfrg-voprf-00."'
+    date: March 5, 2018
+-
+    content: 'I successfully defended my Ph.D. dissertation entitled, "Security and Privacy Challenges in Content-Centric Networking."'
+    date: December 8, 2017
+-
+    content: 'I presented draft-kuehlewind-taps-crypto-sep at the IETF OPSEC meeting at IETF 100 in Singapore.'
+    date: November 13, 2017
+-
+    content: 'Along with Brian Trammell, Colin Perkins, Mirja Kuehlewind, and Tommy Pauly, we submitted
+    a new revision to the Post Sockets IETF draft.'
+    date: September 8, 2017
+-
+    content: 'Three of my recent papers on CCN were accepted -- one at ACM ICN
+    2017 and two at IEEE LCN 2017.'
+    date: July 19, 2017
+-
+    content: 'Tommy Pauly and I gave a talk in the TAPS WG covering our recent
+    drafts on transport security and common interfaces'
+    date: July 18, 2017
+-
+    content: 'Tommy Pauly, Mirja Kuehlewind, and I published two Internet Drafts
+    entitled, "A Survey of Transport Security Protocols," and "Separating Crypto
+    Negotiation and Communication".'
+    date: July 6, 2017
+-
+    content: 'The core CCNx documents in the IRTF ICNRG were moved to last call,
+    ending on July 11, 2017.'
+    date: June 27, 2017
+-
+    content: 'I presented my two CCN-related papers entitled, "Protecting the Long Tail -
+    Transparent Packet Security in Content-Centric Networks" and "Mobile Sessions in
+    Content-Centric Networks" at IFIP Networking 2017.'
+    date: June 15, 2017
+-
+    content: 'Alongside Eve Schooler (Intel), I participated in the ICN Industry Panel entitled, "Adoption Challenges
+    and Prospects of Information-Centric Fog Computing," at the Workshop on
+    Information-Centric Fog Computing (ICFC) at IFIP Networking 2017.'
+    date: June 12, 2017
