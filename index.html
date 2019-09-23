@@ -7,7 +7,7 @@ title: Home
   <h2>&#x26A0; Updates</h2>
   <ul class="posts">
       {% for news in site.data.news limit:5 %}
-          <li>[{{news.date}}] {{news.content}}</li>
+          <li>&#8734; [<b>{{news.date}}</b>] {{news.content}}</li>
       {% endfor %}
   </ul>
 
