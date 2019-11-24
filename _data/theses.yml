@@ -1,0 +1,22 @@
+-
+    type: thesis
+    title: Security and Privacy Challenges in Content-Centric Networks
+    authors: C. A. Wood
+    venue: Ph.D. Dissertation, Computer Science, University of California Irvine, Irvine, CA. December 2017
+    links:
+        pdf: https://chris-wood.github.io/thesis-wood-uci/dissertation.pdf
+        slides: https://chris-wood.github.io/thesis-wood-uci/defense.pdf
+        code:
+    abstract:
+    bibtex:
+-
+    type: thesis
+    title: Large Substitution Boxes with Efficient Combinational Implementations
+    authors: C. A. Wood
+    venue: M.S. Thesis, Computer Science, Rochester Institute of Technology, Rochester, NY. August 2013
+    links:
+        pdf: https://www.christopher-wood.com/docs/thesis/caw_thesis_rit.pdf
+        slides: https://www.christopher-wood.com/docs/thesis/caw_thesis_defense_slides.pdf
+        code:
+    abstract:
+    bibtex:

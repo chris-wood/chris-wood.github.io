@@ -1,0 +1,22 @@
+-
+    type: poster
+    title: A Network-Agnostic Data Framework and API for CCN
+    authors: G. Scott and C. A. Wood
+    venue: 2nd ACM Conference on Information Centric Networking (ICN 2015), September 30 - October 2, 2015, San Francisco, CA, USA
+    links:
+        pdf:
+        slides:
+        code:
+    abstract:
+    bibtex:
+-
+    type: poster
+    title: Secure Prefix Registration in CCN
+    authors: M. Mosko, G. Scott, I. Solis, and C. A. Wood
+    venue: 2nd ACM Conference on Information Centric Networking (ICN 2015), September 30 - October 2, 2015, San Francisco, CA, USA
+    links:
+        pdf:
+        slides:
+        code:
+    abstract:
+    bibtex:
