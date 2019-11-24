@@ -23,6 +23,87 @@ title: Home
       studies in applied cryptography.
   </p>
 
+  <h2>Research and Standardization Work</h2>
+  <h3>Conference Proceedings</h3>
+
+  <ol>
+    {% for p in site.publications.conferences %}
+    <li>
+        <p><b>{{p.title}} {% if p.awards != "" %}<span class="tag is-danger">{{ p.awards }}</span>{% endif %}</br>
+        {{p.authors}}<br/>
+        {% if p.links["pdf"] != "" %}<a class="button is-small is-info" href="{{p.links["pdf"] }}">PDF</a>{% endif %}
+        {% if p.links["slides"] != "" %}<a class="button is-small is-success" href="{{ p.links["slides"] }}">slides</a>{% endif %}
+        {% if p.links["code"] != "" %}<a class="button is-small is-warning" href="{{ p.links["code"] }}">code</a>{% endif %}
+        </p>
+    </li>
+    {% endif %}
+  </ol>
+
+  <h3>Journal Articles</h3>
+
+  <ol>
+      {% for p in site.publications.journals %}
+      <li>
+          <p><b>{{p.title}}</b><br/>
+          {{ p.authors }}</br>
+          {% if p.links["pdf"] != "" %}<a class="button is-small is-info" href="{{ p.links["pdf"] }}">PDF</a>{% endif %}
+          {% if p.links["slides"] != "" %}<a class="button is-small is-success" href="{{ p.links["slides"] }}">slides</a>{% endif %}
+          </p>
+      </li>
+      {% endif %}
+  </ol>
+
+  <h3>Posters</h3>
+  <ol>
+      {% for p in site.publications.posters %}
+      <li>
+          <p><b>{{p.title}}</b><br/>
+          {{p.authors}}</br>
+          {% if p.links["pdf"] != "" %}<a class="button is-small is-info" href="{{ p.links["pdf"] }}">PDF</a>{% endif %}
+          {% if p.links["slides"] != "" %}<a class="button is-small is-success" href="{{ p.links["slides"] }}">slides</a>{% endif %}
+          </p>
+      </li>
+      {% endif %}
+  </ol>
+
+  <h3>Theses</h3>
+  <ol>
+      {% for p in site.publications.theses %}
+      <li>
+          <p><b>{{p.title}}</b><br/>
+          {{ p.authors }}</br>
+          {% if p.links["pdf"] != "" %}<a class="button is-small is-info" href="{{ p.links["pdf"] }}">PDF</a>{% endif %}
+          {% if p.links["slides"] != "" %}<a class="button is-small is-success" href="{{ p.links["slides"] }}">slides</a>{% endif %}
+          </p>
+      </li>
+      {% endif %}
+  </ol>
+
+  <h3>Technical Reports</h3>
+  <ol>
+      {% for p in site.publications.reports %}
+      <li>
+          <p><b>{{p.title}}</b><br/>
+          {{ p.authors }}</br>
+          {% if p.links["pdf"] != "" %}<a class="button is-small is-info" href="{{ p.links["pdf"] }}">PDF</a>{% endif %}
+          </p>
+      </li>
+      {% endif %}
+  </ol>
+
+  <h3>Internet Drafts</h3>
+  <ol>
+      {% for p in site.publications.rfcs %}
+      <li>
+          <p><b>{{p.title}}</b><br/>
+          {{ p.authors }}</br>
+          <a class="button is-small is-info" href="{{ p.links["html"] }}">HTML</a>
+          <a class="button is-small is-success" href="{{ p.links["txt"] }}">TXT</a>
+          </p>
+      </li>
+      {% endif %}
+  </ol>
+
   <h2><i class="fa fa-bookmark"></i> Ramblings</h2>
 
   <p>

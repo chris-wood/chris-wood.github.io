@@ -1,0 +1,216 @@
+-
+    title: Transport Security and Crypto Separation
+    authors:
+    venue: IETF TAPS WG, Prague, Czech Republic. July 18, 2017
+    links:
+        pdf:
+        aux: https://www.ietf.org/proceedings/99/slides/slides-99-taps-2-transport-security-protocol-survey-01.pdf
+-
+    title: Adoption Challenges and Prospects of Information-Centric Fog Computing
+    authors:
+    venue: Workshop on Information-Centric Fog Computing (ICFC) at IFIP Networking 2017
+    links:
+        pdf:
+        aux: http://networking.ifip.org/2017/index.php/workshops/workshop-on-information-centric-fog-computing-icfc/icfc-technical-program
+-
+    title: Your Apps and Evolving Network Security Standards
+    authors: Bailey Basile, Christopher A. Wood
+    venue: WWDC 2017
+    links:
+        aux: https://developer.apple.com/videos/play/wwdc2017/701/
+    references:
+        -
+            name: MPTCP and TLS 1.3 – Big Announcements from Apple
+            link: http://www.internetsociety.org/deploy360/blog/2017/06/mptcp-and-tls-1-3-big-announcements-from-apple/
+        -
+            name: Crypto and SSL Improvements in High Sierra and iOS 11
+            link: https://www.thesslstore.com/blog/crypto-ssl-improvements-high-sierra-ios-11/
+        -
+            name: Top 7 Highlights from the Apple Worldwide Developers Conference (WWDC) 2017
+            link: https://www.broadsoft.com/technology-innovation-blog/top_7_highlights_apple_wwdc_2017
+-
+    title: Security and Privacy Analysis of NSF Future Internet Architectures
+    authors:
+    venue: ICNRG Interim Meeting, Chicago, USA. March 26, 2017
+    links:
+        pdf: https://www.ietf.org/proceedings/interim-2017-icnrg-01/slides/slides-interim-2017-icnrg-01-sessa-security-and-privacy-analysis-of-nsf-future-internet-architectures-chris-wood-00.pdf
+-
+    title: Content-Centric Networking - Overview, Open Problems, Closed Future?
+    authors:
+    venue: Gene Tsudik's <a href="http://sconce.ics.uci.edu/203-W17/">Network and Distributed Systems Security</a> course, UCI. February 21, 2017.
+    links:
+        pdf: docs/talks/ccn_overview_ac.pdf
+-
+    title: A Study of Privacy and Anonymity in the DNS
+    authors:
+    venue: DNS OARC 25, Dallas, TX, USA. October 15, 2016
+    links:
+        pdf: docs/talks/dns16.pdf
+-
+    title: Access Control in Information-Centric Networks
+    authors:
+    venue: Invited Talk at SRI, Menlo Park, CA, USA. August 17, 2016
+    links:
+        pdf: docs/talks/ccn-ac.pdf
+-
+    title: File-Like ICN Collection (FLIC)
+    authors:
+    venue: ICNRG Meeting, Berlin, Germany
+    links:
+        pdf: docs/talks/ietf96-icnrg-wood-flic.pdf
+-
+    title: CCNx Testrig
+    authors:
+    venue: ICNRG Interim Meeting, Berlin, Germany
+    links:
+        pdf: docs/talks/ietf96-icnrg-wood-ccnx-testrig.pdf
+-
+    title: Secure Transport Offload with Encrypted PEPs
+    authors:
+    venue: ICNRG Interim Meeting, Berlin, Germany
+    links:
+        pdf: docs/talks/ietf96-icnrg-wood-epeps.pdf
+-
+    title: Group Key Encryption
+    authors:
+    venue: ICNRG Interim Meeting, Berlin, Germany
+    links:
+        pdf: docs/talks/ietf96-icnrg-wood-group-key.pdf
+-
+    title: CDN Architecture Pain Points and ICN Cures?
+    authors:
+    venue: ICNRG Interim Meeting, Berlin, Germany
+    links:
+        pdf: docs/talks/ietf96-icnrg-wood-cdnpainpoints.pdf
+-
+    title: Forward Secrecy in ICN?
+    authors:
+    venue: Dagstuhl Seminar 16251, Schloss Dagstuhl, Wadern, Germany
+    links:
+        pdf: docs/talks/dagstuhl16_fs.pdf
+-
+    title: Cryptographic Algorithms and Security Protocols for ICN
+    authors:
+    venue: Dagstuhl Seminar 16251, Schloss Dagstuhl, Wadern, Germany
+    links:
+        pdf: docs/talks/dagstuhl16_crypto.pdf
+-
+    title: Let's Check Let's Encrypt - A Tool for Code-Driven Threat Modeling
+    authors:
+    venue: BSidesROC, Rochester, NY, USA
+    links:
+        pdf: docs/talks/ts_bsides_2016.pdf
+-
+    title: Session-Based Content Distribution with CCNx-KE
+    authors:
+    venue: ICNRG Interim Meeting, Buenos Aires, Argentina
+    links:
+        pdf: docs/talks/ccnxke_cdn.pdf
+-
+    title: CCNx-KE vs (D)TLS
+    authors:
+    venue: ICNRG Interim Meeting, Buenos Aires, Argentina
+    links:
+        pdf: docs/talks/ccnxke_comparison.pdf
+-
+    title: Private Communication in ICN
+    authors:
+    venue: ICNRG Interim Meeting, Buenos Aires, Argentina
+    links:
+        pdf: docs/talks/private-comm-caw.pdf
+-
+    title: TLV Encryption and Packet Encapsulation
+    authors:
+    venue: ICNRG Interim Meeting, Paris, France
+    links:
+        pdf: docs/talks/encryption_paris16.pdf
+-
+    title: CCNx Key Exchange - Updates
+    authors:
+    venue: ICNRG Interim Meeting, Paris, France
+    links:
+        pdf: docs/talks/ke_paris16.pdf
+-
+    title: FLIC Manifests
+    authors:
+    venue: ICNRG Interim Meeting, Paris, France
+    links:
+        pdf: docs/talks/flic_paris16.pdf
+-
+    title: CCNx Key Exchange
+    authors:
+    venue: IETF 94 ICNRG Meeting, Yokohama, Japan
+    links:
+        pdf: docs/talks/ke15.pdf
+-
+    title: Static Manifest Requirements
+    authors:
+    venue: IETF 94 ICNRG Meeting, Yokohama, Japan
+    links:
+        pdf: docs/talks/manifestreqs.pdf
+-
+    title: CCNx over UDP
+    authors:
+    venue: IETF ICNRG Interim Meeting, San Francisco, CA
+    links:
+        pdf: docs/talks/CCNx-over-UDP-IETFinterim-2015-10.pdf
+-
+    title: Manifests
+    authors:
+    venue: IETF ICNRG Interim Meeting, San Francisco, CA
+    links:
+        pdf: docs/talks/ManifestVariations_v7.pdf
+-
+    title: Efficient Security Bindings for Information Centric Networks
+    authors:
+    venue: CCNxCon 2015, Palo Alto Research Center, Palo Alto, CA. May 20, 2015
+    links:
+        pdf: docs/talks/CCNxCon15_Bindings.pdf
+-
+    title: Handling Trust Enforcement
+    authors:
+    venue: CCNxCon 2015, Palo Alto Research Center, Palo Alto, CA. May 20, 2015
+    links:
+        pdf: docs/talks/trust15.pdf
+-
+    title: Digital Signatures and Implicit Certificates
+    authors:
+    venue: <a href="http://www.cs.rit.edu/~spr">Dr. Stanislaw Radziszowski's</a> (CS@RIT), Crypto II course, May 5, 2015
+    links:
+        pdf: docs/talks/ic15.pdf
+-
+    title: On the L(2, 1) Labeling of Trees
+    authors:
+    venue: Joint Mathematics Meetings, Baltimore, MD. January 15-18, 2014.
+    links:
+        pdf:
+-
+    title: Secure Content Dissemination in Content Centric Networking
+    authors:
+    venue: CCNxCon 2013, Palo Alto Research Center, Palo Alto, CA. September 5, 2013
+    links:
+        pdf:
+-
+    title: Cryptographic S-boxes
+    authors:
+    venue: <a href="http://www.cs.rit.edu/~spr">Dr. Stanislaw Radziszowski's</a> (CS@RIT) Crypto II course, April 8, 2013
+    links:
+        pdf:
+-
+    title: Characterization Results for the L(2,1)-Labeling Problem on Trees
+    authors:
+    venue: AMS Sectional Meeting, RIT, Rochester, NY. September 22, 2012
+    links:
+        pdf: docs/talks/L21Characterization_AMS.pdf
+-
+    title: Chaos-Based Symmetric Key Cryptosystems
+    authors:
+    venue: RIT Graduate Research Symposium, RIT, Rochester, NY. July 22, 2011
+    links:
+        pdf: docs/talks/L21Characterization_AMS.pdf
+-
+    title: Layered Driver Rootkit Detection on Microsoft Windows PCs
+    authors:
+    venue: RIT Undergraduate Research Symposium, RIT, Rochester, NY. August 24, 2009
+    links:
+        pdf: docs/talks/rootkits09.pdf
