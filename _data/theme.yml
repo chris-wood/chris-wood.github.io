@@ -4,11 +4,11 @@ highlight_color: '#8e44ad'
 # Profile links on the left sidebar, leave blank to ignore
 social:
   github: chris-wood
-  twitter: phonzbm
+  twitter: __caw__
   gravatar: d5bb97fd0290c170a56f58366d70d6bf
 
 name: Christopher A. Wood
-email: christopherwood07@gmail.com
+email: "caw at heapingbits dot net"
 tagline1: "cat /dev/random > /dev/null"
 
 # Toggle "Postings are my own" disclaimer in footer
