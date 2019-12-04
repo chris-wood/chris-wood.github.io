@@ -1,0 +1,99 @@
+
+-
+    type: journal
+    title: Privacy-Aware Caching in Information-Centric Networking
+    authors: G. Acs, M. Conti, P. Gasti, C. Ghali, G. Tsudik, and C. A. Wood
+    article: IEEE Transactions on Dependable and Secure Computing
+    links:
+        pdf: https://doi.org/10.1109/TDSC.2017.2679711
+        slides:
+        code:
+    abstract: "Information-Centric Networking (ICN) is an emerging networking paradigm where named and routable data (content) is the focal point. Users send explicit requests (interests) which specify content by name, and the network handles routing these interests to some entity capable of satisfying them with the appropriate data response (producer). One key feature of ICN is opportunistic in-network content caching. This property facilitates efficient content distribution by reducing bandwidth consumption, lessening network congestion, and improving the content retrieval latency by users (consumers). Unfortunately, the same feature is also detrimental to privacy of content consumers and producers. Simple to implement, and difficult to detect, timing attacks can exploit ICN routers as “oracles” and allow an adversary to learn whether a nearby consumer recently requested certain content. The attack leverages a timing side channel that relies on router caches and is implemented by requesting a few packets from each piece of content being probed. Similarly, probing attacks that target content producers can be used to discover whether certain content has been recently distributed. After analyzing the scope and feasibility of such attacks, we propose and evaluate some efficient countermeasures that offer quantifiable privacy guarantees while retaining the benefits of ICN."
+    bibtex: "@article{acs2017privacy,\n
+title={Privacy-Aware Caching in Information-Centric Networking},\n
+author={Acs, Gergely and Conti, Mauro and Gasti, Paolo and Ghali, Cesar and Tsudik, Gene and Wood, Christopher},\n
+journal={IEEE Transactions on Dependable and Secure Computing},\n
+year={2017},\n
+publisher={IEEE}\n
+}"
+-
+    type: journal
+    title: Can We Make a Cake and Eat It Too? A Discussion of ICN Security and Privacy
+    authors: E. Ngai, B. Ohlman, G. Tsudik, E. Uzun, M. Wahlisch, and C. A. Wood
+    article: ACM SIGCOMM Computer Communication Review, Volume 47 Issue 1, January 2017, Pages 49-54
+    links:
+        pdf: https://ccronline.sigcomm.org/wp-content/uploads/2017/01/p49-ngai.pdf
+        slides:
+        code:
+    abstract: "In recent years, Information-centric Networking (ICN) has received much attention from both academic and industry participants. ICN offers data-centric inter-networking that is radically different from today’s host-based IP networks. Security and privacy features on today’s Internet were originally not present and have been incre- mentally retrofitted over the last 35 years. As such, these issues have become increasingly important as ICN technology gradually matures towards real-world deployment. Thus, while ICN-based architectures (e.g., NDN, CCNx, etc.) are still evolving, it is both timely and important to explore ICN security and privacy issues as well as devise and assess possible mitigation techniques.
+This report documents the highlights and outcomes of the Dagstuhl Seminar 16251 on “Information-centric Networking and Security.” The goal of which was to bring together researchers to discuss and address security and privacy issues particular to ICN-based archi- tectures. Upon finishing the three-day workshop, the outlook of ICN is still unclear. Many unsolved and ill-addressed problems remain, such as namespace and identity management, object se- curity and forward secrecy, and privacy. Regardless of the fate of ICN, one thing is certain: much more research and practical ex- perience with these systems is needed to make progress towards solving these arduous problems."
+    bibtex: "@article{ngai2017can,\n
+title={Can We Make a Cake and Eat it Too? A Discussion of ICN Security and Privacy},\n
+author={Ngai, Edith and Ohlman, B{\"o}rje and Tsudik, Gene and Uzun, Ersin and W{\"a}hlisch, Matthias and Wood, Christopher A},\n
+journal={ACM SIGCOMM Computer Communication Review},\n
+volume={47},\n
+number={1},\n
+pages={49--54},\n
+year={2017},\n
+publisher={ACM}\n
+}"
+-
+    type: journal
+    title: Stochastic Analysis and Modeling of a Tree-Based Group Key Distribution Method in Tactical Wireless Networks
+    authors: P. Bajorski, A. Kaminsky, M. Kurdziel, M. Lukowiak, S. Radziszowski, and C. Wood
+    article: Journal of Telecommunications System & Management 3.2 (2014) - 1
+    links:
+        pdf:
+        slides:
+        code:
+    abstract:
+    bibtex: "@article{bajorski2014stochastic,\n
+title={Stochastic Analysis and Modeling of a Tree-Based Group Key Distribution Method in Tactical Wireless Networks},\n
+author={Bajorski, Peter and Kaminsky, Alan and Kurdziel, Michael and Lukowiak, Marcin and Radziszowski, Stanislaw and Wood, Christopher},\n
+journal={Journal of Telecommunications System & Management},\n
+volume={3},\n
+number={2},\n
+pages={1},\n
+year={2014},\n
+publisher={OMICS Publishing Group}\n
+}"
+-
+    type: journal
+    title: A Complete L(2,1) Span Characterization for Small Trees
+    authors: C. A. Wood and J. Jacob
+    article: AKCE International Journal of Graphs and Combinatorics, Volume 12, Issue 1, July 2015, Pages 26-31, ISSN 0972-8600.
+    links:
+        pdf: https://www.christopher-wood.com/docs/journal/l21span15.pdf
+        slides:
+        code:
+    abstract: "An L(2, 1) labeling of a graph G is a vertex labeling such that any pair of vertices v_i and v_j must have labels at least 2 apart if d(v_i,v_j) = 1 and labels at least 1 apart if d(v_i,v_j) = 2. The span of an L(2,1) labeling f on a graph G is the maximum f(u) for all u ∈ V (G). The L(2, 1) span of a graph G is the minimum span of all L(2, 1) labelings on G. The L(2, 1) labeling on trees has been extensively studied in recent years. In this paper we present a complete characterization of the L(2, 1) span of trees up to twenty vertices."
+    bibtex: "@article{wood2015complete,\n
+title={A complete L (2, 1) span characterization for small trees},\n
+author={Wood, Christopher A and Jacob, Jobby},\n
+journal={AKCE International Journal of Graphs and Combinatorics},\n
+volume={12},\n
+number={1},\n
+pages={26--31},\n
+year={2015},\n
+publisher={Elsevier}\n
+}"
+-
+    type: journal
+    title: Cybersecurity Education - Bridging the Gap between Hardware and Software Domains
+    authors: M. Lukowiak, S. Radziszowski, J. Vallino, and C. Wood
+    article: ACM Transactions on Computing Education, 14(1) (2014)
+    links:
+        pdf:
+        slides:
+        code:
+    abstract:
+    bibtex: "@article{lukowiak2014cybersecurity,\n
+title={Cybersecurity education: Bridging the gap between hardware and software domains},\n
+author={Lukowiak, Marcin and Radziszowski, Stanislaw and Vallino, James and Wood, Christopher},\n
+journal={ACM Transactions on Computing Education (TOCE)},\n
+volume={14},\n
+number={1},\n
+pages={2},\n
+year={2014},\n
+publisher={ACM}\n
+}"
