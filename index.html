@@ -6,7 +6,8 @@ title: Home
 <div id="home">
   <h2>&#9749; Daily Grind</h2>
   <p>
-      I am a Senior Software Engineer at <a target="_blank" href="https://www.apple.com">Apple</a>. I also serve as a co-chair of the <a target="_blank" href="https://datatracker.ietf.org/wg/tls/charter/">IETF TLS Working Group</a>, <a target="_blank" href="https://datatracker.ietf.org/wg/git/about/">IETF GIT Working Group</a>, and <a target="_blank" href="https://irtf.org/pearg">IRTF Privacy Enhancements and Assessments Research Group</a>.
+      I am a Senior Software Engineer at <a target="_blank" href="https://www.apple.com">Apple</a>.
+      I also contribute to open Internet standards in various capacities, including co-chair of the <a target="_blank" href="https://datatracker.ietf.org/wg/tls/charter/">IETF TLS Working Group</a>, <a target="_blank" href="https://datatracker.ietf.org/wg/git/about/">IETF GIT Working Group</a>, and <a target="_blank" href="https://irtf.org/pearg">IRTF Privacy Enhancements and Assessments Research Group</a>.
   </p>
 
   <p>
@@ -22,81 +23,6 @@ title: Home
       B.S. in Software Engineering from RIT in 2013, where Dr. Stanislaw Radziszowski advised my graduate
       studies in applied cryptography.
   </p>
-
-  <h2>Research and Standardization Work</h2>
-  <h3>Conference Proceedings</h3>
-
-  <ol>
-    {% for p in site.data.conferences %}
-    <li>
-        <p>"<b>{{p.title}}<b>," {{p.authors}}, {{p.venue}}. {% if p.awards != "" %}<font color="red">{{ p.awards }}</font>{% endif %}<br/>
-        <!-- {% if p.links["pdf"] != "" %}<a class="button is-small is-info" href="{{p.links["pdf"] }}">PDF</a>{% endif %}
-        {% if p.links["slides"] != "" %}<a class="button is-small is-success" href="{{ p.links["slides"] }}">slides</a>{% endif %}
-        {% if p.links["code"] != "" %}<a class="button is-small is-warning" href="{{ p.links["code"] }}">code</a>{% endif %} -->
-        </p>
-    </li>
-    {% endfor %}
-  </ol>
-
-    <h3>Journal Articles</h3>
-
-  <ol>
-      {% for p in site.data.journals %}
-      <li>
-          <p>"<b>{{p.title}}</b>," {{ p.authors }}, {{p.article}}.
-          <!-- {% if p.links["pdf"] != "" %}<a class="button is-small is-info" href="{{ p.links["pdf"] }}">PDF</a>{% endif %}
-          {% if p.links["slides"] != "" %}<a class="button is-small is-success" href="{{ p.links["slides"] }}">slides</a>{% endif %} -->
-          </p>
-      </li>
-      {% endfor %}
-  </ol>
-
-  <h3>Posters</h3>
-  <ol>
-      {% for p in site.data.posters %}
-      <li>
-          <p>"<b>{{p.title}}</b>," {{p.authors}}.
-          <!-- {% if p.links["pdf"] != "" %}<a class="button is-small is-info" href="{{ p.links["pdf"] }}">PDF</a>{% endif %}
-          {% if p.links["slides"] != "" %}<a class="button is-small is-success" href="{{ p.links["slides"] }}">slides</a>{% endif %} -->
-          </p>
-      </li>
-      {% endfor %}
-  </ol>
-
-  <h3>Theses</h3>
-  <ol>
-      {% for p in site.data.theses %}
-      <li>
-          <p>"<b>{{p.title}}</b>,"{{ p.authors }}.
-          <!-- {% if p.links["pdf"] != "" %}<a class="button is-small is-info" href="{{ p.links["pdf"] }}">PDF</a>{% endif %}
-          {% if p.links["slides"] != "" %}<a class="button is-small is-success" href="{{ p.links["slides"] }}">slides</a>{% endif %} -->
-          </p>
-      </li>
-      {% endfor %}
-  </ol>
-
-  <h3>Technical Reports</h3>
-  <ol>
-      {% for p in site.data.reports %}
-      <li>
-          <p>"<b>{{p.title}}</b>," {{ p.authors }}.
-          <!-- {% if p.links["pdf"] != "" %}<a class="button is-small is-info" href="{{ p.links["pdf"] }}">PDF</a>{% endif %} -->
-          </p>
-      </li>
-      {% endfor %}
-  </ol>
-
-  <h3>Internet Drafts</h3>
-  <ol>
-      {% for p in site.data.rfcs %}
-      <li>
-          <p>"<b>{{p.title}}</b>," {{ p.authors }}.
-          <!-- <a class="button is-small is-info" href="{{ p.links["html"] }}">HTML</a>
-          <a class="button is-small is-success" href="{{ p.links["txt"] }}">TXT</a> -->
-          </p>
-      </li>
-      {% endfor %}
-  </ol>
 
   <h2><i class="fa fa-bookmark"></i> Ramblings</h2>
 
